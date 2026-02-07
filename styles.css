@@ -505,3 +505,18 @@ body {
         display: none;
     }
 }
+/* في styles.css، أضف فقط: */
+.filter-tab:hover {
+    background: #FF5722; /* برتقالي */
+    color: white;
+    border-color: #FF5722;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 87, 34, 0.3);
+}
+
+.filter-tab.active {
+    background: #1a237e;
+    color: white;
+    border-color: #1a237e;
+}
+}
