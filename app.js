@@ -156,8 +156,8 @@ function createProductCard(product) {
                    class="action-button download" 
                    id="dl-${product.code}" 
                    onclick="event.stopPropagation();"
-                   style="background: #ffeb3b; color: #000; box-shadow: 0 0 10px rgba(255, 235, 59, 0.5); font-weight: bold;">
-                    <i class="fas fa-download"></i> حفظ صورة
+                   style="background: #ffeb3b; color: #808080 ; box-shadow: 0 0 10px rgba(255, 235, 59, 0.5); font-weight: bold;">
+                    <i class="fas fa-download"></i> حفظ 
                 </a>
             </div>
         </div>
