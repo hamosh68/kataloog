@@ -333,26 +333,29 @@ body {
     font-weight: 600;
 }
 
+/* 🔧 التعديل: تصغير أزرار العرض والمشاركة والحفظ */
 .product-actions {
-    padding: 0 10px 10px;
+    padding: 0 5px 5px !important;    /* كان: 0 10px 10px */
     display: flex;
-    gap: 5px;
+    gap: 2px !important;              /* كان: 5px */
 }
 
 .action-button {
-    flex: 1;
-    padding: 8px;
+    flex: 0.8 !important;             /* كان: 1 */
+    padding: 4px 1px !important;      /* كان: 8px */
     border: none;
-    border-radius: 8px;
+    border-radius: 5px !important;    /* كان: 8px */
     font-family: 'Cairo', sans-serif;
-    font-size: 0.85rem;
+    font-size: 0.65rem !important;    /* كان: 0.85rem */
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    transition: all 0.2s;
+    gap: 2px !important;              /* كان: 5px */
+    transition: all 0.1s;
+    min-width: 0;
+    text-decoration: none;
 }
 
 .action-button.view {
@@ -363,6 +366,11 @@ body {
 .action-button.share {
     background: var(--success);
     color: white;
+}
+
+/* تحسين الأيقونات داخل الأزرار */
+.action-button i {
+    font-size: 0.7rem !important;     /* تصغير الأيقونات */
 }
 
 /* لا توجد نتائج */
@@ -501,22 +509,40 @@ body {
         height: 160px;
     }
     
+    /* تصغير الأزرار أكثر على الشاشات الكبيرة */
+    @media (min-width: 768px) {
+        .action-button {
+            flex: 0.75 !important;
+            padding: 5px 1px !important;
+            font-size: 0.6rem !important;
+        }
+        
+        .product-actions {
+            gap: 1px !important;
+            padding: 0 3px 3px !important;
+        }
+    }
+    
     .bottom-nav {
         display: none;
     }
 }
-/* في styles.css، أضف فقط: */
-.filter-tab:hover {
-    background: #FF5722; /* برتقالي */
-    color: white;
-    border-color: #FF5722;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(255, 87, 34, 0.3);
+
+/* تحسين للأجهزة الصغيرة جدا */
+@media (max-width: 360px) {
+    .action-button {
+        padding: 3px 0 !important;
+        font-size: 0.6rem !important;
+        gap: 1px !important;
+    }
+    
+    .action-button i {
+        font-size: 0.65rem !important;
+    }
+    
+    /* إخفاء النص وإظهار الأيقونة فقط على الشاشات الصغيرة جداً */
+    .action-button span {
+        display: none;
+    }
 }
 
-.filter-tab.active {
-    background: #1a237e;
-    color: white;
-    border-color: #1a237e;
-}
-}
