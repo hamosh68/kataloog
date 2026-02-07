@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>كتالوج أبو شمس</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- الهيدر -->
+    <header class="app-header">
+        <div class="header-content">
+            <div>
+                <div class="logo">كتالوج <span>أبو شمس</span></div>
+                <div class="subtitle">للمنتجات العالمية</div>
+            </div>
+            <div class="badge">مندوبين</div>
+        </div>
+    </header>
+
+    <!-- البحث -->
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="ابحث بكود أو اسم المنتج...">
+            <button class="clear-btn" id="clearBtn">×</button>
+        </div>
+    </div>
+
+    <!-- الأزرار السريعة -->
+    <div class="quick-actions">
+        <button class="action-btn" id="showAllBtn">
+            <i class="fas fa-th-large"></i>
+            الكل
+        </button>
+        <button class="action-btn fav" id="showFavBtn">
+            <i class="fas fa-heart"></i>
+            المفضلة
+        </button>
+        <button class="action-btn" id="clearFavBtn">
+            <i class="fas fa-trash-alt"></i>
+            مسح المفضلة
+        </button>
+    </div>
+
+    <!-- الفلاتر -->
+    <div class="filters-container">
+        <div class="filter-tabs" id="brandTabs"></div>
+    </div>
+
+    <div class="filters-container">
+        <div class="filter-tabs" id="subTabs"></div>
+    </div>
+
+    <!-- المنتجات -->
+    <div class="products-container">
+        <div class="products-grid" id="productsGrid">
+            <!-- سيتم ملؤها جافاسكريبت -->
+        </div>
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-state-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="empty-state-text">لا توجد منتجات مطابقة</div>
+            <div class="empty-state-subtext">جرب تغيير البحث أو الفلاتر</div>
+        </div>
+    </div>
+
+    <!-- القائمة السفلية -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="showAll()">
+            <i class="fas fa-th-large"></i>
+            <span>الرئيسية</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showFavorites()">
+            <i class="fas fa-heart"></i>
+            <span>المفضلة</span>
+        </a>
+        <a href="#" class="nav-item" onclick="clearFavorites()">
+            <i class="fas fa-trash-alt"></i>
+            <span>مسح الكل</span>
+        </a>
+        <a href="#" class="nav-item" onclick="refreshPage()">
+            <i class="fas fa-redo-alt"></i>
+            <span>تحديث</span>
+        </a>
+    </nav>
+
+    <!-- السكريبتات -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
+    <script src="products-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
