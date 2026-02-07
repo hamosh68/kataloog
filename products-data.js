@@ -190,17 +190,10 @@ const products = [
     { brand: 'Stabilo', sub: 'أقلام', code: '4006381592246', name: '' },
     { brand: 'Stabilo', sub: 'أقلام', code: '4006381592307', name: '' },
     { brand: 'Stabilo', sub: 'أقلام', code: '4006381597180', name: '' },
-    { brand: 'Other', sub: 'أخرى', code: '6939219094750', name: '' },
-    { brand: 'Other', sub: 'أخرى', code: '9556091107360', name: '' },
-    { brand: 'Other', sub: 'أخرى', code: '9556091135646', name: '' },
-    { brand: 'Other', sub: 'أخرى', code: '9556091139873', name: '' },
-    { brand: 'Other', sub: 'أخرى', code: '9556091511501', name: '' },
-    { brand: 'IBC', sub: 'دفاتر', code: '9556233860320', name: 'دفتر 80 ورقة' },
-    { brand: 'IBC', sub: 'دفاتر', code: '9556233860337', name: 'دفتر 96 ورقة' },
-    { brand: 'IBC', sub: 'ملفات', code: '9556233860344', name: 'ملف A4' },
-    { brand: 'IBC', sub: 'أقلام حبر', code: '9556233860351', name: 'قلم حبر أزرق' },
-    { brand: 'Faber-Castell', sub: 'أقلام رصاص', code: '4005401119000', name: 'قلم رصاص HB' },
-    { brand: 'Faber-Castell', sub: 'أقلام تلوين', code: '4005401129000', name: 'علبة تلوين 12 لون' },
-    { brand: 'Faber-Castell', sub: 'مساحات', code: '4005401139000', name: 'مساحة بيضاء' },
-    { brand: 'عام', sub: 'متنوع', code: '622123456789', name: 'منتج متنوع' }
+    { brand: 'Stationery', sub: 'قرطاسية', code: '6939219094750', name: '' },
+    { brand: 'Stabilo', sub: 'أخرى', code: '9556091107360', name: '' },
+    { brand: 'Stabilo', sub: 'أخرى', code: '9556091135646', name: '' },
+    { brand: 'Stabilo', sub: 'أخرى', code: '9556091139873', name: '' },
+    { brand: 'Stabilo', sub: 'أخرى', code: '9556091511501', name: '' }
+
 ];
