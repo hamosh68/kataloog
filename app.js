@@ -218,7 +218,7 @@ function sendCartToWhatsApp() {
         minute: '2-digit'
     });
     
-    let message = `📋 *طلب جديد - كتالوج IBC*\n`;
+    let message = `📋 *طلب جديد - IBC *\n`;
     message += `📅 ${currentDate}\n`;
     message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
     message += `────────────────\n\n`;
@@ -342,8 +342,30 @@ function createProductCard(product) {
                 <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
             </button>
             
-            <!-- أضف زر الطلب هنا -->
-            <button class="cart-add-btn" onclick="addToCart('${product.code}', '${productName}', '${product.brand}')" title="أضف للطلب">
+            <!-- زر الطلب المعدل -->
+            <button class="cart-add-btn" onclick="addToCart('${product.code}', '${productName}', '${product.brand}')" 
+                    title="أضف للطلب"
+                    style="
+                        position: absolute;
+                        top: 8px;
+                        left: 8px;
+                        width: 34px;
+                        height: 34px;
+                        background: linear-gradient(135deg, #2196F3, #21CBF3);
+                        border: 2px solid white;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 0.95rem;
+                        color: white;
+                        cursor: pointer;
+                        z-index: 10;
+                        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4), 0 0 0 3px rgba(33, 150, 243, 0.1);
+                        transition: all 0.3s ease;
+                        margin: 0;
+                        padding: 0;
+                    ">
                 <i class="fas fa-cart-plus"></i>
             </button>
             
@@ -660,5 +682,6 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
+
 
 
