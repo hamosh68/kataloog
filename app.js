@@ -218,7 +218,7 @@ function sendCartToWhatsApp() {
         minute: '2-digit'
     });
     
-    let message = `📋 *طلب جديد - كتالوج أبو شمس*\n`;
+    let message = `📋 *طلب جديد - كتالوج IBC*\n`;
     message += `📅 ${currentDate}\n`;
     message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
     message += `────────────────\n\n`;
@@ -660,4 +660,5 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
+
 
