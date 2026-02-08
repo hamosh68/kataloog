@@ -36,7 +36,218 @@ function renderBrands() {
         </button>
     `).join('');
 }
+// عرض صفحة الطلبات
+function showCartPage() {
+    if (cart.length === 0) {
+        alert('🚫 سلة الطلبات فارغة\nأضف منتجات أولاً باستخدام زر 🛒');
+        return;
+    }
+    
+    const cartItemsHTML = cart.map((item, index) => {
+        const product = products.find(p => p.code === item.code);
+        return `
+            <div class="cart-item" data-index="${index}">
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 60px; height: 60px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                        <img src="images/${item.code}.webp" 
+                             style="max-width: 90%; max-height: 90%;"
+                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\"><rect width=\"100%\" height=\"100%\" fill=\"%23eee\"/><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" font-family=\"Cairo\" font-size=\"10\" fill=\"%23999\">${item.code}</text></svg>'">
+                    </div>
+                    <div style="flex: 1;">
+                        <div style="font-weight: bold; color: #1a237e;">${item.brand}</div>
+                        <div style="font-size: 0.85rem; color: #666;">${item.name || 'منتج'}</div>
+                        <div style="font-family: monospace; font-size: 0.8rem; color: #ff9800;">${item.code}</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px; background: #f5f5f5; padding: 5px 10px; border-radius: 20px;">
+                        <button onclick="updateCartQuantity(${index}, -1)" style="width: 25px; height: 25px; border: none; background: #ddd; border-radius: 50%; cursor: pointer; font-weight: bold;">−</button>
+                        <span style="font-weight: bold; min-width: 30px; text-align: center;">${item.quantity}</span>
+                        <button onclick="updateCartQuantity(${index}, 1)" style="width: 25px; height: 25px; border: none; background: #4CAF50; color: white; border-radius: 50%; cursor: pointer; font-weight: bold;">+</button>
+                    </div>
+                    
+                    <button onclick="removeFromCart(${index})" style="background: none; border: none; color: #f44336; cursor: pointer; font-size: 1.2rem;" title="حذف">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    const cartModalHTML = `
+        <div class="modal" id="cartModal" style="display: flex;">
+            <div class="modal-content" style="max-width: 500px;">
+                <div style="padding: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="color: #1a237e; margin: 0;">
+                            <i class="fas fa-shopping-cart"></i> طلبات اليوم
+                        </h3>
+                        <button onclick="closeCartModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+                    </div>
+                    
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <div>
+                                <div style="font-weight: bold;">عدد المنتجات:</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #1a237e;">${cart.length}</div>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold;">إجمالي القطع:</div>
+                                <div style="font-size: 2rem; font-weight: bold; color: #4CAF50;">${cart.reduce((sum, item) => sum + item.quantity, 0)}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;">
+                        ${cartItemsHTML}
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="sendCartToWhatsApp()" style="flex: 2; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fab fa-whatsapp"></i> إرسال الطلب للمكتب
+                        </button>
+                        <button onclick="clearCart()" style="flex: 1; padding: 12px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; cursor: pointer;">
+                            مسح الكل
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // إضافة المودال للصفحة
+    if (document.getElementById('cartModal')) {
+        document.getElementById('cartModal').remove();
+    }
+    
+    document.body.insertAdjacentHTML('beforeend', cartModalHTML);
+    
+    // إضافة CSS للمودال
+    const style = document.createElement('style');
+    style.textContent = `
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            transition: all 0.3s;
+        }
+        
+        .cart-item:hover {
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        #cartModal .modal-content {
+            animation: slideUp 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+}
 
+// تحديث الكمية
+function updateCartQuantity(index, change) {
+    if (cart[index]) {
+        cart[index].quantity += change;
+        
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        
+        localStorage.setItem('abushams_cart', JSON.stringify(cart));
+        updateCartBadge();
+        showCartPage(); // تحديث الصفحة
+    }
+}
+
+// حذف من الطلب
+function removeFromCart(index) {
+    if (confirm('هل تريد حذف هذا المنتج من الطلب؟')) {
+        cart.splice(index, 1);
+        localStorage.setItem('abushams_cart', JSON.stringify(cart));
+        updateCartBadge();
+        showCartPage();
+    }
+}
+
+// إغلاق نافذة الطلبات
+function closeCartModal() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => modal.remove(), 300);
+    }
+}
+
+// مسح كل الطلبات
+function clearCart() {
+    if (cart.length === 0) {
+        alert('سلة الطلبات فارغة بالفعل!');
+        return;
+    }
+    
+    if (confirm('هل تريد مسح جميع الطلبات؟')) {
+        cart = [];
+        localStorage.setItem('abushams_cart', JSON.stringify(cart));
+        updateCartBadge();
+        closeCartModal();
+        alert('✓ تم مسح جميع الطلبات');
+    }
+}
+
+// إرسال الطلب عبر واتساب (المرحلة القادمة)
+// إرسال الطلب للمكتب عبر واتساب
+function sendCartToWhatsApp() {
+    if (cart.length === 0) {
+        alert('🚫 سلة الطلبات فارغة!');
+        return;
+    }
+    
+    // إعداد نص الطلب
+    const currentDate = new Date().toLocaleDateString('ar-EG', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+    
+    let message = `📋 *طلب جديد - كتالوج أبو شمس*\n`;
+    message += `📅 ${currentDate}\n`;
+    message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
+    message += `────────────────\n\n`;
+    
+    // إضافة المنتجات
+    cart.forEach((item, index) => {
+        const product = products.find(p => p.code === item.code);
+        message += `*${index + 1}. ${item.brand}*\n`;
+        message += `🔢 ${item.code}\n`;
+        message += `📦 ${item.quantity} قطعة\n`;
+        if (product?.name) message += `📝 ${product.name}\n`;
+        message += `\n`;
+    });
+    
+    message += `────────────────\n`;
+    message += `🚚 تم الطلب عبر تطبيق المندوبين`;
+    
+    // تشفير الرسالة للرابط
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+    
+    // فتح واتساب
+    window.open(whatsappUrl, '_blank');
+    
+    // عرض تأكيد
+    setTimeout(() => {
+        alert(`✅ تم إرسال الطلب!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`);
+    }, 500);
+}
 function renderSubCategories() {
     let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
     const subs = ['الكل', ...new Set(filtered.map(p => p.sub))];
@@ -130,6 +341,12 @@ function createProductCard(product) {
             <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite('${product.code}', event)">
                 <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
             </button>
+            
+            <!-- أضف زر الطلب هنا -->
+            <button class="cart-add-btn" onclick="addToCart('${product.code}', '${productName}', '${product.brand}')" title="أضف للطلب">
+                <i class="fas fa-cart-plus"></i>
+            </button>
+            
             <div class="product-image-container" onclick="openProduct('${product.code}', '${productName}', '${product.brand}')">
                 <img src="images/${product.code}.webp" 
                      class="product-image"
@@ -137,33 +354,30 @@ function createProductCard(product) {
                      onerror="tryNextExtension(this, '${product.code}')"
                      alt="${productName}">
             </div>
+            
             <div class="product-info">
                 <div class="product-code">${product.code}</div>
                 <div class="product-name">${productName}</div>
                 <div class="product-brand">${product.brand}</div>
             </div>
+            
             <div class="product-actions">
                 <button class="action-button view" onclick="openProduct('${product.code}', '${productName}', '${product.brand}', event)">
-                    <i class="fas fa-eye"></i>
-                    عرض
+                    <i class="fas fa-eye"></i> عرض
                 </button>
                 <button class="action-button share" onclick="shareProduct('${product.code}', '${productName}', '${product.brand}', event)">
-                    <i class="fab fa-whatsapp"></i>
-                    مشاركة
+                    <i class="fab fa-whatsapp"></i> مشاركة
                 </button>
                 <a href="images/${product.code}.webp" 
                    download="${product.code}.webp" 
                    class="action-button download" 
-                   id="dl-${product.code}" 
-                   onclick="event.stopPropagation();"
-                   style="background: #ffeb3b; color: #808080 ; box-shadow: 0 0 10px rgba(255, 235, 59, 0.5); font-weight: bold;">
-                    <i class="fas fa-download"></i> حفظ 
+                   onclick="event.stopPropagation();">
+                    <i class="fas fa-download"></i> حفظ
                 </a>
             </div>
         </div>
     `;
 }
-
 function tryNextExtension(img, code) {
     const currentSrc = img.src;
     const currentExt = currentSrc.split('.').pop().toLowerCase();
@@ -279,7 +493,76 @@ function clearFavorites() {
         }
     }
 }
+// نظام الطلبات
+let cart = JSON.parse(localStorage.getItem('abushams_cart')) || [];
 
+// تحديث عداد الطلبات
+function updateCartBadge() {
+    const badge = document.getElementById('cartBadge');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    if (badge) {
+        badge.textContent = totalItems > 0 ? totalItems : '';
+        badge.style.display = totalItems > 0 ? 'flex' : 'none';
+    }
+}
+
+// إضافة منتج للطلب
+function addToCart(productCode, productName = '', productBrand = '') {
+    const existingItem = cart.find(item => item.code === productCode);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            code: productCode,
+            name: productName,
+            brand: productBrand,
+            quantity: 1,
+            addedAt: new Date().toISOString()
+        });
+    }
+    
+    localStorage.setItem('abushams_cart', JSON.stringify(cart));
+    updateCartBadge();
+    showCartNotification(productName || productCode);
+}
+
+// إشعار إضافة للطلب
+function showCartNotification(productName) {
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            font-family: 'Cairo';
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        ">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <div style="font-weight: bold;">تمت الإضافة للطلب</div>
+                <div style="font-size: 0.9rem;">${productName}</div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
+}
 function showAll() {
     currentBrand = 'الكل';
     currentSub = 'الكل';
@@ -377,3 +660,4 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
+
