@@ -194,6 +194,16 @@ const products = [
     { brand: 'Stabilo', sub: 'أخرى', code: '9556091107360', name: '' },
     { brand: 'Stabilo', sub: 'أخرى', code: '9556091135646', name: '' },
     { brand: 'Stabilo', sub: 'أخرى', code: '9556091139873', name: '' },
-    { brand: 'Stabilo', sub: 'أخرى', code: '9556091511501', name: '' }
-
+    { brand: 'Stabilo', sub: 'أخرى', code: '9556091511501', name: '' },
+     { brand: 'Stationery', sub: 'أقلام', code: '6941287402146', name: '' },  
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217871316', name: '' },  
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217871330', name: '' }, 
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217871347', name: '' },
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217871354', name: '' },  
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217871392', name: '' },   
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217871408', name: '' },
+      { brand: 'Stationery', sub: 'علبة طعام', code: '6974217874300', name: '' },
+      { brand: 'Stationery', sub: 'أقلام', code: '8911521156713', name: '' }, 
+      { brand: 'Stationery', sub: 'أقلام', code: '8911521156720', name: '' }
+ 
 ];
