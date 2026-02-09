@@ -243,7 +243,7 @@ function sendCartToWhatsApp() {
         minute: '2-digit'
     });
     
-    // قاعدة الرابط للصور (يمكن تغييرها إلى domain خاص بك إذا لزم الأمر)
+    // قاعدة الرابط للصور (غيرها إلى رابط عام مثل https://your-domain.com/images/ ليعمل الـ preview في واتساب)
     const baseUrl = window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + 'images/';
     
     let message = `📋 *طلب جديد - IBC *\n`;
@@ -259,7 +259,7 @@ function sendCartToWhatsApp() {
         message += `📦 ${item.quantity} قطعة\n`;
         if (product?.name) message += `📝 ${product.name}\n`;
         if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
-        message += `🔗 صورة المنتج: ${baseUrl}${item.code}.webp\n`; // إضافة رابط الصورة لعرض thumbnail في واتساب
+        message += `🔗 صورة المنتج: ${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}\n`; // استخدام الامتداد الأول (webp) للـ preview، غيره لو لازم
         message += `\n`;
     });
     
@@ -720,4 +720,3 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
-
