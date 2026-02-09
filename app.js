@@ -251,7 +251,7 @@ function sendCartToWhatsApp() {
     message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
     message += `────────────────\n\n`;
     
-    // إضافة المنتجات مع ملاحظاتها الخاصة ورابط الصورة المخفي خلف نص
+    // إضافة المنتجات مع ملاحظاتها الخاصة ورابط الصورة المخفي خلف إيموجي قصير
     cart.forEach((item, index) => {
         const product = products.find(p => p.code === item.code);
         const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`; // استخدام الامتداد الأول (webp)
@@ -260,7 +260,7 @@ function sendCartToWhatsApp() {
         message += `📦 ${item.quantity} قطعة\n`;
         if (product?.name) message += `📝 ${product.name}\n`;
         if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
-        message += `📸 [اضغط لعرض الصورة](${imageUrl})\n`; // إضافة إيموجي للأيقونة، وmarkdown لإخفاء الرابط
+        message += `[📸](${imageUrl})\n`; // إيموجي قصير كأيقونة، يخفي الرابط ويظهر preview
         message += `\n`;
     });
     
@@ -721,5 +721,3 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
-
-
