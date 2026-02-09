@@ -227,66 +227,53 @@ function clearCart() {
 }
 
 // إرسال الطلب للمكتب عبر واتساب
+// إرسال الطلب للمكتب عبر واتساب - النسخة المضغوطة
 function sendCartToWhatsApp() {
     if (cart.length === 0) {
         alert('🚫 سلة الطلبات فارغة!');
         return;
     }
     
-    // إعداد نص الطلب
     const currentDate = new Date().toLocaleDateString('ar-EG', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
     });
     
-    // قاعدة الرابط للصور (غيرها إلى رابط عام مثل https://your-domain.com/images/ ليعمل الـ preview في واتساب)
     const baseUrl = window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + 'images/';
     
-    let message = `📋 *طلب جديد - IBC *\n`;
+    // هيدر مختصر جداً
+    let message = `📋 *طلب جديد - IBC*\n`;
     message += `📅 ${currentDate}\n`;
-    message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
-    message += `────────────────\n\n`;
+    message += `📊 ${cart.length} صنف | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
+    message += `────────────────\n`;
     
-    // إضافة المنتجات مع ملاحظاتها الخاصة ورابط الصورة المخفي خلف إيموجي قصير
     cart.forEach((item, index) => {
-        const product = products.find(p => p.code === item.code);
-        const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`; // استخدام الامتداد الأول (webp)
-        message += `*${index + 1}. ${item.brand}*\n`;
-        message += `🔢 ${item.code}\n`;
-        message += `📦 ${item.quantity} قطعة\n`;
-        if (product?.name) message += `📝 ${product.name}\n`;
-        if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
-        message += `[📸](${imageUrl})\n`; // إيموجي قصير كأيقونة، يخفي الرابط ويظهر preview
-        message += `\n`;
+        const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`;
+        
+        // سطر واحد يحتوي على كل المعلومات (رقم. الماركة - الكود - الكمية)
+        message += `*${index + 1}.* ${item.brand} | *${item.code}* | عدد: *${item.quantity}*\n`;
+        
+        // سطر للملاحظة والرابط بشكل مختصر (أيقونات فقط)
+        let rowDetails = "";
+        if (item.note) rowDetails += `🗒️ ${item.note} `;
+        rowDetails += `🖼️ ${imageUrl}`; // الرابط سيظهر بجانب الأيقونة بشكل نظيف
+        
+        message += `${rowDetails}\n`;
     });
     
-    // إضافة الملاحظة العامة إذا كانت موجودة
     const noteElement = document.getElementById('cartNote');
     const generalNote = noteElement ? noteElement.value.trim() : '';
     if (generalNote) {
-        message += `────────────────\n🗒️ *ملاحظات عامة:*\n${generalNote}\n`;
+        message += `───\n🗒️ *ملاحظة:* ${generalNote}\n`;
     }
     
     message += `────────────────\n`;
-    message += `🚚 تم الطلب عبر تطبيق المندوبين`;
+    message += `🚚 تطبيق مندوبين أبو شمس`;
     
-    // تشفير الرسالة للرابط
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
-    
-    // فتح واتساب
     window.open(whatsappUrl, '_blank');
-    
-    // عرض تأكيد
-    setTimeout(() => {
-        alert(`✅ تم إرسال الطلب!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`);
-    }, 500);
-}
-function renderSubCategories() {
+}function renderSubCategories() {
     let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
     const subs = ['الكل', ...new Set(filtered.map(p => p.sub))];
     subTabs.innerHTML = subs.map(sub => `
@@ -721,4 +708,5 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
+
 
