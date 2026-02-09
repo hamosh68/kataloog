@@ -260,7 +260,7 @@ function sendCartToWhatsApp() {
         message += `📦 ${item.quantity} قطعة\n`;
         if (product?.name) message += `📝 ${product.name}\n`;
         if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
-        message += `[اضغط لعرض الصورة](${imageUrl})\n`; // markdown لإخفاء الرابط وإظهار preview
+        message += `📸 [اضغط لعرض الصورة](${imageUrl})\n`; // إضافة إيموجي للأيقونة، وmarkdown لإخفاء الرابط
         message += `\n`;
     });
     
@@ -721,4 +721,5 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
+
 
