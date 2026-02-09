@@ -746,16 +746,28 @@ function startScanner() {
         { facingMode: "environment" }, 
         config,
         (decodedText) => {
-            // وضع الكود في البحث وتشغيل الفلترة
+            // 1. وضع الكود المقروء في خانة البحث
             searchInput.value = decodedText;
+
+            // 2. إلغاء وضع المفضلة فوراً لضمان البحث في كل المنتجات
+            showOnlyFavorites = false;
+            currentBrand = 'الكل';
+            currentSub = 'الكل';
+
+            // 3. تحديث واجهة الأزرار (الفلاتر) لتعكس وضع "الكل"
+            renderBrands();
+            renderSubCategories();
+            updateActiveNav('home'); // تحديث القائمة السفلية لتظهر أننا في الرئيسية
+
+            // 4. إيقاف الكاميرا
             stopScanner();
             
-            // استدعاء دالة البحث الموجودة في كودك الأصلي
+            // 5. استدعاء دالة البحث الأصلية لتحديث قائمة المنتجات
             if (typeof handleSearch === "function") {
                 handleSearch();
             }
             
-            // إهتزاز خفيف للموبايل عند القراءة (إذا كان يدعم)
+            // إهتزاز خفيف للموبايل عند نجاح القراءة
             if (navigator.vibrate) navigator.vibrate(100);
         }
     ).catch(err => {
@@ -763,12 +775,21 @@ function startScanner() {
         console.error(err);
     });
 }
-
 function stopScanner() {
-    if (html5QrCode) {
+    // التأكد أن الكاميرا تعمل أصلاً قبل محاولة إغلاقها
+    if (html5QrCode && html5QrCode.getState() > 1) { 
         html5QrCode.stop().then(() => {
+            // إخفاء الحاوية بعد الإيقاف بنجاح
             document.getElementById('reader-container').style.display = 'none';
-        }).catch(err => console.error(err));
+            console.log("تم إغلاق الكاميرا بنجاح");
+        }).catch(err => {
+            console.error("فشل إيقاف الكاميرا:", err);
+            // في حال فشل الإيقاف البرمجي، نخفي الحاوية قسراً
+            document.getElementById('reader-container').style.display = 'none';
+        });
+    } else {
+        // إذا لم تكن الكاميرا تعمل، فقط أخفِ الحاوية
+        document.getElementById('reader-container').style.display = 'none';
     }
 }
 
