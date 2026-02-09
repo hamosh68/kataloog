@@ -27,24 +27,25 @@
         </div>
     </div>
 </header>
-  <div class="search-container">
-    <div class="search-flex">
-        <div class="search-box">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="searchInput" placeholder="ابحث بكود أو اسم...">
-            <button class="clear-btn" id="clearBtn">×</button>
-        </div>
-
-        <button class="scan-action-btn" id="scanBtn" onclick="toggleScanner()" title="فحص باركود">
+   <div class="search-container">
+    <div class="search-box">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="searchInput" placeholder="ابحث بكود أو اسم المنتج...">
+        
+        <button class="clear-btn" id="clearBtn">×</button>
+        
+        <button class="scan-btn" id="scanBtn" onclick="toggleScanner()" title="فحص باركود">
             <i class="fas fa-camera"></i>
         </button>
     </div>
     
     <div id="reader-container" style="display:none; margin-top: 10px; border-radius: 10px; overflow: hidden; border: 2px solid var(--primary);">
         <div id="reader"></div>
-        <button onclick="stopScanner()" style="width:100%; padding:10px; background:#ff4444; color:white; border:none; font-weight:bold;">إغلاق الكاميرا</button>
+        <button onclick="stopScanner()" style="width:100%; padding:10px; background:#ff4444; color:white; border:none;">إغلاق الكاميرا</button>
     </div>
 </div>
+
+<script src="https://unpkg.com/html5-qrcode"></script>
 
     <!-- الأزرار السريعة -->
     <div class="quick-actions">
@@ -111,5 +112,6 @@
     <script src="app.js"></script>
 </body>
 </html>
+
 
 
