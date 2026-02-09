@@ -715,51 +715,63 @@ function setupEventListeners() {
         }
     });
 }
+
+// تشغيل التطبيق
+document.addEventListener('DOMContentLoaded', init);
+
+// منع التكبير باللمس المزدوج على الموبايل
+document.addEventListener('dblclick', e => e.preventDefault());
 let html5QrCode;
 
-function startScanner() {
-    const readerDiv = document.getElementById('reader');
-    readerDiv.style.display = 'block'; // إظهار مكان الكاميرا
+function toggleScanner() {
+    const container = document.getElementById('reader-container');
+    if (container.style.display === 'none') {
+        startScanner();
+    } else {
+        stopScanner();
+    }
+}
 
+function startScanner() {
+    document.getElementById('reader-container').style.display = 'block';
     html5QrCode = new Html5Qrcode("reader");
     
-    const config = { fps: 10, qrbox: { width: 250, height: 150 } };
+    const config = { 
+        fps: 15, 
+        qrbox: { width: 250, height: 150 },
+        aspectRatio: 1.0
+    };
 
     html5QrCode.start(
-        { facingMode: "environment" }, // استخدام الكاميرا الخلفية
+        { facingMode: "environment" }, 
         config,
         (decodedText) => {
-            // 1. وضع الكود المقروء في خانة البحث
-            document.getElementById('searchInput').value = decodedText;
-            
-            // 2. إيقاف الكاميرا
+            // وضع الكود في البحث وتشغيل الفلترة
+            searchInput.value = decodedText;
             stopScanner();
             
-            // 3. تشغيل دالة البحث الموجودة عندك أصلاً
-            handleSearch(); 
+            // استدعاء دالة البحث الموجودة في كودك الأصلي
+            if (typeof handleSearch === "function") {
+                handleSearch();
+            }
             
-            alert("تم قراءة الباركود: " + decodedText);
-        },
-        (errorMessage) => {
-            // يمكن تجاهل أخطاء عدم القراءة اللحظية
+            // إهتزاز خفيف للموبايل عند القراءة (إذا كان يدعم)
+            if (navigator.vibrate) navigator.vibrate(100);
         }
-    ).catch((err) => {
-        console.error("خطأ في تشغيل الكاميرا:", err);
+    ).catch(err => {
+        alert("يرجى السماح بصلاحية الكاميرا");
+        console.error(err);
     });
 }
 
 function stopScanner() {
     if (html5QrCode) {
         html5QrCode.stop().then(() => {
-            document.getElementById('reader').style.display = 'none';
-        });
+            document.getElementById('reader-container').style.display = 'none';
+        }).catch(err => console.error(err));
     }
 }
-// تشغيل التطبيق
-document.addEventListener('DOMContentLoaded', init);
 
-// منع التكبير باللمس المزدوج على الموبايل
-document.addEventListener('dblclick', e => e.preventDefault());
 
 
 
