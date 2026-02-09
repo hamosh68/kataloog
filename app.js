@@ -45,17 +45,20 @@ function showCartPage() {
     
     const cartItemsHTML = cart.map((item, index) => {
         const product = products.find(p => p.code === item.code);
+        const productName = item.name || 'منتج';
         return `
             <div class="cart-item" data-index="${index}">
                 <div style="display: flex; align-items: center; gap: 15px;">
-                    <div style="width: 60px; height: 60px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                    <div onclick="openProduct('${item.code}', '${productName}', '${item.brand}')" 
+                         style="width: 60px; height: 60px; background: #f5f5f5; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer;" 
+                         title="اضغط لعرض الصورة الكاملة">
                         <img src="images/${item.code}.webp" 
-                             style="max-width: 90%; max-height: 90%;"
-                             onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\"><rect width=\"100%\" height=\"100%\" fill=\"%23eee\"/><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" font-family=\"Cairo\" font-size=\"10\" fill=\"%23999\">${item.code}</text></svg>'">
+                             style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                             onerror="tryNextExtension(this, '${item.code}')">
                     </div>
                     <div style="flex: 1;">
                         <div style="font-weight: bold; color: #1a237e;">${item.brand}</div>
-                        <div style="font-size: 0.85rem; color: #666;">${item.name || 'منتج'}</div>
+                        <div style="font-size: 0.85rem; color: #666;">${productName}</div>
                         <div style="font-family: monospace; font-size: 0.8rem; color: #ff9800;">${item.code}</div>
                     </div>
                 </div>
@@ -70,6 +73,12 @@ function showCartPage() {
                     <button onclick="removeFromCart(${index})" style="background: none; border: none; color: #f44336; cursor: pointer; font-size: 1.2rem;" title="حذف">
                         <i class="fas fa-trash"></i>
                     </button>
+                </div>
+
+                <div style="margin-top: 10px; width: 100%;">
+                    <textarea class="item-note" data-index="${index}" placeholder="ملاحظة خاصة لهذا المنتج (اختياري)..." 
+                              style="width: 100%; height: 50px; padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Cairo'; resize: vertical; font-size: 0.85rem;"
+                              onblur="saveItemNote(${index}, this.value)">${item.note || ''}</textarea>
                 </div>
             </div>
         `;
@@ -102,6 +111,10 @@ function showCartPage() {
                     <div style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;">
                         ${cartItemsHTML}
                     </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <textarea id="cartNote" placeholder="اكتب ملاحظاتك هنا (اختياري)..." style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: vertical;"></textarea>
+                    </div>
                     
                     <div style="display: flex; gap: 10px;">
                         <button onclick="sendCartToWhatsApp()" style="flex: 2; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
@@ -128,8 +141,8 @@ function showCartPage() {
     style.textContent = `
         .cart-item {
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
             padding: 15px;
             background: white;
             border-radius: 10px;
@@ -146,8 +159,21 @@ function showCartPage() {
         #cartModal .modal-content {
             animation: slideUp 0.3s ease;
         }
+
+        .item-note:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
     `;
     document.head.appendChild(style);
+}
+
+// حفظ ملاحظة المنتج الفردي
+function saveItemNote(index, note) {
+    if (cart[index]) {
+        cart[index].note = note.trim();
+        localStorage.setItem('abushams_cart', JSON.stringify(cart));
+    }
 }
 
 // تحديث الكمية
@@ -200,7 +226,6 @@ function clearCart() {
     }
 }
 
-// إرسال الطلب عبر واتساب (المرحلة القادمة)
 // إرسال الطلب للمكتب عبر واتساب
 function sendCartToWhatsApp() {
     if (cart.length === 0) {
@@ -223,15 +248,23 @@ function sendCartToWhatsApp() {
     message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
     message += `────────────────\n\n`;
     
-    // إضافة المنتجات
+    // إضافة المنتجات مع ملاحظاتها الخاصة
     cart.forEach((item, index) => {
         const product = products.find(p => p.code === item.code);
         message += `*${index + 1}. ${item.brand}*\n`;
         message += `🔢 ${item.code}\n`;
         message += `📦 ${item.quantity} قطعة\n`;
         if (product?.name) message += `📝 ${product.name}\n`;
+        if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
         message += `\n`;
     });
+    
+    // إضافة الملاحظة العامة إذا كانت موجودة
+    const noteElement = document.getElementById('cartNote');
+    const generalNote = noteElement ? noteElement.value.trim() : '';
+    if (generalNote) {
+        message += `────────────────\n🗒️ *ملاحظات عامة:*\n${generalNote}\n`;
+    }
     
     message += `────────────────\n`;
     message += `🚚 تم الطلب عبر تطبيق المندوبين`;
@@ -541,6 +574,7 @@ function addToCart(productCode, productName = '', productBrand = '') {
             name: productName,
             brand: productBrand,
             quantity: 1,
+            note: '', // إضافة حقل الملاحظة الافتراضي
             addedAt: new Date().toISOString()
         });
     }
@@ -682,6 +716,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 // منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
+
 
 
 
