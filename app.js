@@ -37,6 +37,7 @@ function renderBrands() {
     `).join('');
 }
 // عرض صفحة الطلبات
+// عرض صفحة الطلبات
 function showCartPage() {
     if (cart.length === 0) {
         alert('🚫 سلة الطلبات فارغة\nأضف منتجات أولاً باستخدام زر 🛒');
@@ -95,6 +96,23 @@ function showCartPage() {
                         <button onclick="closeCartModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
                     </div>
                     
+                    <!-- إضافة خانة اسم الزبون -->
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <i class="fas fa-user" style="color: #1a237e;"></i>
+                            <label style="font-weight: bold; color: #1a237e;">اسم الزبون:</label>
+                        </div>
+                        <input type="text" 
+                               id="customerName" 
+                               placeholder="أدخل اسم الزبون هنا..."
+                               style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Cairo'; font-size: 1rem;"
+                               onfocus="this.style.borderColor='#4CAF50'"
+                               onblur="this.style.borderColor='#e0e0e0'; saveCustomerName(this.value)">
+                        <div style="font-size: 0.8rem; color: #666; margin-top: 5px; text-align: right;">
+                            (اختياري - سيظهر في رسالة الطلب)
+                        </div>
+                    </div>
+                    
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
                         <div style="display: flex; justify-content: space-between;">
                             <div>
@@ -136,6 +154,10 @@ function showCartPage() {
     
     document.body.insertAdjacentHTML('beforeend', cartModalHTML);
     
+    // تحميل اسم الزبون المحفوظ مسبقاً
+    const savedCustomerName = localStorage.getItem('abushams_customer_name') || '';
+    document.getElementById('customerName').value = savedCustomerName;
+    
     // إضافة CSS للمودال
     const style = document.createElement('style');
     style.textContent = `
@@ -164,66 +186,18 @@ function showCartPage() {
             border-color: #4CAF50;
             outline: none;
         }
+        
+        #customerName:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
     `;
     document.head.appendChild(style);
 }
 
-// حفظ ملاحظة المنتج الفردي
-function saveItemNote(index, note) {
-    if (cart[index]) {
-        cart[index].note = note.trim();
-        localStorage.setItem('abushams_cart', JSON.stringify(cart));
-    }
-}
-
-// تحديث الكمية
-function updateCartQuantity(index, change) {
-    if (cart[index]) {
-        cart[index].quantity += change;
-        
-        if (cart[index].quantity <= 0) {
-            cart.splice(index, 1);
-        }
-        
-        localStorage.setItem('abushams_cart', JSON.stringify(cart));
-        updateCartBadge();
-        showCartPage(); // تحديث الصفحة
-    }
-}
-
-// حذف من الطلب
-function removeFromCart(index) {
-    if (confirm('هل تريد حذف هذا المنتج من الطلب؟')) {
-        cart.splice(index, 1);
-        localStorage.setItem('abushams_cart', JSON.stringify(cart));
-        updateCartBadge();
-        showCartPage();
-    }
-}
-
-// إغلاق نافذة الطلبات
-function closeCartModal() {
-    const modal = document.getElementById('cartModal');
-    if (modal) {
-        modal.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => modal.remove(), 300);
-    }
-}
-
-// مسح كل الطلبات
-function clearCart() {
-    if (cart.length === 0) {
-        alert('سلة الطلبات فارغة بالفعل!');
-        return;
-    }
-    
-    if (confirm('هل تريد مسح جميع الطلبات؟')) {
-        cart = [];
-        localStorage.setItem('abushams_cart', JSON.stringify(cart));
-        updateCartBadge();
-        closeCartModal();
-        alert('✓ تم مسح جميع الطلبات');
-    }
+// حفظ اسم الزبون
+function saveCustomerName(name) {
+    localStorage.setItem('abushams_customer_name', name.trim());
 }
 
 // إرسال الطلب للمكتب عبر واتساب
@@ -232,6 +206,10 @@ function sendCartToWhatsApp() {
         alert('🚫 سلة الطلبات فارغة!');
         return;
     }
+    
+    // جلب اسم الزبون من الخانة
+    const customerNameElement = document.getElementById('customerName');
+    const customerName = customerNameElement ? customerNameElement.value.trim() : '';
     
     // إعداد نص الطلب
     const currentDate = new Date().toLocaleDateString('ar-EG', {
@@ -243,24 +221,30 @@ function sendCartToWhatsApp() {
         minute: '2-digit'
     });
     
-    // قاعدة الرابط للصور (غيرها إلى رابط عام مثل https://your-domain.com/images/ ليعمل الـ preview في واتساب)
+    // قاعدة الرابط للصور
     const baseUrl = window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + 'images/';
     
     let message = `📋 *طلب جديد - IBC *\n`;
     message += `📅 ${currentDate}\n`;
+    
+    // إضافة اسم الزبون إذا كان موجوداً
+    if (customerName) {
+        message += `👤 الزبون: ${customerName}\n`;
+    }
+    
     message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
     message += `────────────────\n\n`;
     
-    // إضافة المنتجات مع ملاحظاتها الخاصة ورابط الصورة المخفي خلف إيموجي قصير
+    // إضافة المنتجات مع ملاحظاتها الخاصة
     cart.forEach((item, index) => {
         const product = products.find(p => p.code === item.code);
-        const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`; // استخدام الامتداد الأول (webp)
+        const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`;
         message += `*${index + 1}. ${item.brand}*\n`;
         message += `🔢 ${item.code}\n`;
         message += `📦 ${item.quantity} قطعة\n`;
         if (product?.name) message += `📝 ${product.name}\n`;
         if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
-        message += `[📸](${imageUrl})\n`; // إيموجي قصير كأيقونة، يخفي الرابط ويظهر preview
+        message += `[📸](${imageUrl})\n`;
         message += `\n`;
     });
     
@@ -283,7 +267,11 @@ function sendCartToWhatsApp() {
     
     // عرض تأكيد
     setTimeout(() => {
-        alert(`✅ تم إرسال الطلب!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`);
+        const confirmationMsg = customerName 
+            ? `✅ تم إرسال طلب الزبون ${customerName}!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`
+            : `✅ تم إرسال الطلب!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`;
+        
+        alert(confirmationMsg);
     }, 500);
 }
 function renderSubCategories() {
