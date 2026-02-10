@@ -9,8 +9,8 @@
     --danger: #f44336;
     --shadow: 0 2px 10px rgba(0,0,0,0.1);
     --shadow-hover: 0 5px 20px rgba(0,0,0,0.15);
-}
 
+}
 /* أنيميشن لظهور الإشعارات */
 @keyframes slideInRight {
     from {
@@ -43,8 +43,6 @@
         max-width: 100% !important;
     }
 }
-
-
 * {
     margin: 0;
     padding: 0;
@@ -821,6 +819,445 @@ body {
 .cart-add-btn:active {
     transform: scale(0.95);
 }
+// ===============================
+// نظام الإحصائيات والإدارة
+// ===============================
 
+// دالة عرض صفحة الإحصائيات
+function showStatsPage() {
+    const statsModalHTML = `
+        <div class="modal" id="statsModal" style="display: flex; z-index: 100000;">
+            <div class="modal-content" style="max-width: 600px;">
+                <div style="padding: 25px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                        <h3 style="color: #1a237e; margin: 0;">
+                            <i class="fas fa-chart-bar"></i> إحصائيات النظام
+                        </h3>
+                        <button onclick="closeStatsModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
+                    </div>
+                    
+                    <!-- بطاقة إحصائيات المنتجات -->
+                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 1.2rem; opacity: 0.9;">إجمالي المنتجات</div>
+                                <div style="font-size: 2.8rem; font-weight: bold;" id="totalProducts">${products.length}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- بطاقة إحصائيات الصور -->
+                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 1.2rem; opacity: 0.9;">الصور المتاحة</div>
+                                <div style="font-size: 2.8rem; font-weight: bold;" id="availableImages">جاري العد...</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- بطاقة إحصائيات التصنيفات -->
+                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                            <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div>
+                                <div style="font-size: 1.2rem; opacity: 0.9;">العلامات التجارية</div>
+                                <div style="font-size: 2.8rem; font-weight: bold;" id="totalBrands">${new Set(products.map(p => p.brand)).size}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- تفاصيل إحصائية -->
+                    <div style="background: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 20px;">
+                        <h4 style="color: #1a237e; margin-bottom: 15px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px;">
+                            <i class="fas fa-list-alt"></i> تفاصيل الإحصائيات
+                        </h4>
+                        <div id="statsDetails" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                            <!-- سيتم ملؤها بالجافاسكريبت -->
+                        </div>
+                    </div>
+                    
+                    <!-- بطاقة إحصائيات المفضلة والطلبات -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                        <div style="background: #4CAF50; color: white; border-radius: 12px; padding: 20px; text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div style="font-size: 1.2rem; opacity: 0.9;">المفضلة</div>
+                            <div style="font-size: 2.2rem; font-weight: bold;" id="totalFavorites">${favorites.length}</div>
+                        </div>
+                        
+                        <div style="background: #2196F3; color: white; border-radius: 12px; padding: 20px; text-align: center;">
+                            <div style="font-size: 2.5rem; margin-bottom: 10px;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div style="font-size: 1.2rem; opacity: 0.9;">الطلبات الحالية</div>
+                            <div style="font-size: 2.2rem; font-weight: bold;" id="totalCartItems">${cart.reduce((sum, item) => sum + item.quantity, 0)}</div>
+                        </div>
+                    </div>
+                    
+                    <!-- أزرار التحكم -->
+                    <div style="display: flex; gap: 10px; margin-top: 20px;">
+                        <button onclick="checkAllImages()" style="flex: 1; padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 10px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fas fa-sync-alt"></i> فحص الصور
+                        </button>
+                        <button onclick="exportStats()" style="flex: 1; padding: 15px; background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; border: none; border-radius: 10px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fas fa-download"></i> تصدير الإحصائيات
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // إضافة المودال للصفحة
+    if (document.getElementById('statsModal')) {
+        document.getElementById('statsModal').remove();
+    }
+    
+    document.body.insertAdjacentHTML('beforeend', statsModalHTML);
+    
+    // حساب الصور المتاحة
+    countAvailableImages();
+    
+    // عرض تفاصيل الإحصائيات
+    showStatsDetails();
 }
 
+// دالة إغلاق صفحة الإحصائيات
+function closeStatsModal() {
+    const modal = document.getElementById('statsModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// دالة عد الصور المتاحة
+async function countAvailableImages() {
+    let imageCount = 0;
+    let loadingCount = 0;
+    const totalProducts = products.length;
+    
+    // تحديث العداد أثناء العملية
+    const updateCounter = () => {
+        document.getElementById('availableImages').innerHTML = `
+            <span>${imageCount}</span>
+            <small style="font-size: 1rem; opacity: 0.8;"> / ${totalProducts}</small>
+        `;
+    };
+    
+    for (const product of products) {
+        loadingCount++;
+        
+        // تحديث النسبة كل 10 منتجات
+        if (loadingCount % 10 === 0) {
+            updateCounter();
+        }
+        
+        // التحقق من وجود أي صورة للمنتج
+        let hasImage = false;
+        for (const ext of SUPPORTED_EXTENSIONS) {
+            const url = `images/${product.code}.${ext}`;
+            const exists = await checkImageExists(url);
+            if (exists) {
+                hasImage = true;
+                break;
+            }
+        }
+        
+        if (hasImage) {
+            imageCount++;
+        }
+    }
+    
+    // التحديث النهائي
+    updateCounter();
+    
+    // إضافة نسبة مئوية
+    const percentage = Math.round((imageCount / totalProducts) * 100);
+    document.getElementById('availableImages').innerHTML = `
+        <span>${imageCount}</span>
+        <small style="font-size: 1rem; opacity: 0.8;"> / ${totalProducts}</small>
+        <div style="font-size: 1rem; margin-top: 5px; background: rgba(255,255,255,0.3); padding: 3px 10px; border-radius: 20px; display: inline-block;">
+            ${percentage}%
+        </div>
+    `;
+}
+
+// دالة التحقق من وجود صورة
+function checkImageExists(url) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(true);
+        img.onerror = () => {
+            if (url.endsWith('.pdf')) {
+                fetch(url, { method: 'HEAD' })
+                    .then(res => resolve(res.ok))
+                    .catch(() => resolve(false));
+            } else {
+                resolve(false);
+            }
+        };
+        img.src = url;
+    });
+}
+
+// دالة عرض تفاصيل الإحصائيات
+function showStatsDetails() {
+    const statsDetails = document.getElementById('statsDetails');
+    if (!statsDetails) return;
+    
+    // إحصائيات العلامات التجارية
+    const brands = {};
+    products.forEach(product => {
+        brands[product.brand] = (brands[product.brand] || 0) + 1;
+    });
+    
+    // إحصائيات الأقسام
+    const subs = {};
+    products.forEach(product => {
+        if (product.sub) {
+            subs[product.sub] = (subs[product.sub] || 0) + 1;
+        }
+    });
+    
+    // العلامات التجارية الأكثر
+    const topBrands = Object.entries(brands)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+    
+    // الأقسام الأكثر
+    const topSubs = Object.entries(subs)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+    
+    let detailsHTML = '';
+    
+    // العلامات التجارية
+    detailsHTML += `
+        <div style="background: white; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0;">
+            <div style="font-weight: bold; color: #667eea; margin-bottom: 10px;">
+                <i class="fas fa-crown"></i> أشهر الماركات
+            </div>
+    `;
+    
+    topBrands.forEach(([brand, count]) => {
+        const percentage = Math.round((count / products.length) * 100);
+        detailsHTML += `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #eee;">
+                <span style="color: #555;">${brand}</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-weight: bold; color: #333;">${count}</span>
+                    <div style="width: 50px; height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden;">
+                        <div style="width: ${percentage}%; height: 100%; background: #667eea;"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    detailsHTML += `</div>`;
+    
+    // الأقسام
+    detailsHTML += `
+        <div style="background: white; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0;">
+            <div style="font-weight: bold; color: #f5576c; margin-bottom: 10px;">
+                <i class="fas fa-folder"></i> أشهر الأقسام
+            </div>
+    `;
+    
+    topSubs.forEach(([sub, count]) => {
+        const percentage = Math.round((count / products.length) * 100);
+        detailsHTML += `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px dashed #eee;">
+                <span style="color: #555;">${sub}</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span style="font-weight: bold; color: #333;">${count}</span>
+                    <div style="width: 50px; height: 6px; background: #e0e0e0; border-radius: 3px; overflow: hidden;">
+                        <div style="width: ${percentage}%; height: 100%; background: #f5576c;"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    detailsHTML += `</div>`;
+    
+    // معلومات المنتجات بدون صور
+    detailsHTML += `
+        <div style="background: white; padding: 15px; border-radius: 10px; border: 1px solid #e0e0e0; grid-column: 1 / -1;">
+            <div style="font-weight: bold; color: #FF9800; margin-bottom: 10px; display: flex; justify-content: space-between;">
+                <span><i class="fas fa-exclamation-triangle"></i> منتجات تحتاج صور</span>
+                <span id="missingImagesCount">جاري العد...</span>
+            </div>
+            <div id="missingImagesList" style="max-height: 200px; overflow-y: auto;">
+                جاري تحميل القائمة...
+            </div>
+        </div>
+    `;
+    
+    statsDetails.innerHTML = detailsHTML;
+    
+    // حساب المنتجات بدون صور
+    findMissingImages();
+}
+
+// دالة البحث عن المنتجات بدون صور
+async function findMissingImages() {
+    let missingCount = 0;
+    const missingList = [];
+    
+    // التحقق من أول 50 منتج فقط لتجنب التحميل الزائد
+    const productsToCheck = products.slice(0, 50);
+    
+    for (const product of productsToCheck) {
+        let hasImage = false;
+        
+        // التحقق من جميع الامتدادات
+        for (const ext of SUPPORTED_EXTENSIONS) {
+            const url = `images/${product.code}.${ext}`;
+            const exists = await checkImageExists(url);
+            if (exists) {
+                hasImage = true;
+                break;
+            }
+        }
+        
+        if (!hasImage) {
+            missingCount++;
+            missingList.push(product);
+        }
+    }
+    
+    // تحديث العداد والقائمة
+    document.getElementById('missingImagesCount').textContent = `${missingCount} منتج`;
+    
+    let listHTML = '';
+    if (missingList.length > 0) {
+        missingList.slice(0, 10).forEach(product => {
+            listHTML += `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px; background: #FFF3E0; margin-bottom: 5px; border-radius: 6px;">
+                    <div>
+                        <div style="font-family: monospace; color: #FF9800; font-weight: bold;">${product.code}</div>
+                        <div style="font-size: 0.85rem; color: #666;">${product.brand} - ${product.name || 'بدون اسم'}</div>
+                    </div>
+                    <button onclick="copyCode('${product.code}')" style="background: #FF9800; color: white; border: none; border-radius: 5px; padding: 5px 10px; font-size: 0.8rem; cursor: pointer;">
+                        نسخ الكود
+                    </button>
+                </div>
+            `;
+        });
+        
+        if (missingList.length > 10) {
+            listHTML += `<div style="text-align: center; color: #FF9800; padding: 10px; font-size: 0.9rem;">و ${missingList.length - 10} منتج إضافي...</div>`;
+        }
+    } else {
+        listHTML = `<div style="text-align: center; color: #4CAF50; padding: 15px;">
+            <i class="fas fa-check-circle" style="font-size: 2rem; margin-bottom: 10px;"></i>
+            <div>جميع المنتجات لديها صور! 👍</div>
+        </div>`;
+    }
+    
+    document.getElementById('missingImagesList').innerHTML = listHTML;
+}
+
+// دالة نسخ الكود
+function copyCode(code) {
+    navigator.clipboard.writeText(code).then(() => {
+        showSmartNotification('تم النسخ', `تم نسخ الكود: ${code}`, 'success');
+    });
+}
+
+// دالة فحص جميع الصور
+async function checkAllImages() {
+    showSmartNotification('جاري الفحص', 'جاري فحص جميع الصور، قد تستغرق العملية بضع ثواني...', 'info', 5000);
+    
+    // إعادة حساب الصور
+    await countAvailableImages();
+    
+    // إعادة البحث عن المنتجات بدون صور
+    await findMissingImages();
+    
+    showSmartNotification('تم الفحص', 'تم تحديث جميع الإحصائيات بنجاح', 'success');
+}
+
+// دالة تصدير الإحصائيات
+function exportStats() {
+    const stats = {
+        تاريخ_التصدير: new Date().toLocaleString('ar-EG'),
+        إجمالي_المنتجات: products.length,
+        العلامات_التجارية: new Set(products.map(p => p.brand)).size,
+        المنتجات_المفضلة: favorites.length,
+        منتجات_الطلب_الحالي: cart.reduce((sum, item) => sum + item.quantity, 0),
+        تفاصيل_العلامات_التجارية: {}
+    };
+    
+    // إحصاء العلامات التجارية
+    const brands = {};
+    products.forEach(product => {
+        brands[product.brand] = (brands[product.brand] || 0) + 1;
+    });
+    
+    stats.تفاصيل_العلامات_التجارية = brands;
+    
+    // تحويل إلى نص
+    let exportText = `📊 إحصائيات نظام IBC\n`;
+    exportText += `📅 ${stats.تاريخ_التصدير}\n`;
+    exportText += `═══════════════════════════════════\n\n`;
+    exportText += `📦 إجمالي المنتجات: ${stats.إجمالي_المنتجات}\n`;
+    exportText += `🏷️ عدد العلامات التجارية: ${stats.العلامات_التجارية}\n`;
+    exportText += `❤️ المنتجات المفضلة: ${stats.المنتجات_المفضلة}\n`;
+    exportText += `🛒 منتجات الطلب الحالي: ${stats.منتجات_الطلب_الحالي}\n`;
+    exportText += `═══════════════════════════════════\n\n`;
+    exportText += `🏭 توزيع العلامات التجارية:\n`;
+    
+    Object.entries(brands)
+        .sort((a, b) => b[1] - a[1])
+        .forEach(([brand, count]) => {
+            const percentage = Math.round((count / products.length) * 100);
+            exportText += `• ${brand}: ${count} منتج (${percentage}%)\n`;
+        });
+    
+    // نسخ إلى الحافظة
+    navigator.clipboard.writeText(exportText).then(() => {
+        showSmartNotification('تم التصدير', 'تم نسخ الإحصائيات إلى الحافظة', 'success');
+    });
+}
+
+// إضافة زر الإحصائيات في الشريط السفلي
+function addStatsButton() {
+    // التحقق إذا الزر موجود مسبقاً
+    if (document.getElementById('statsNavBtn')) return;
+    
+    // إضافة زر جديد في القائمة السفلية
+    const navContainer = document.querySelector('.bottom-nav');
+    if (!navContainer) return;
+    
+    const statsNavItem = document.createElement('div');
+    statsNavItem.className = 'nav-item';
+    statsNavItem.id = 'statsNavBtn';
+    statsNavItem.innerHTML = `
+        <button onclick="showStatsPage()" style="background: none; border: none; color: #666; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px; width: 100%;">
+            <i class="fas fa-chart-bar" style="font-size: 1.3rem;"></i>
+            <span style="font-size: 0.8rem; font-family: 'Cairo';">الإحصائيات</span>
+        </button>
+    `;
+    
+    navContainer.appendChild(statsNavItem);
+}
+
+// تحديث دالة init لإضافة زر الإحصائيات
+const originalInit = init;
+init = function() {
+    originalInit();
+    addStatsButton();
+};
+}
