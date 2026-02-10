@@ -1294,7 +1294,23 @@ function startScanner() {
         console.error(err);
     });
 }
-
+function stopScanner() {
+    // التأكد أن الكاميرا تعمل أصلاً قبل محاولة إغلاقها
+    if (html5QrCode && html5QrCode.getState() > 1) { 
+        html5QrCode.stop().then(() => {
+            // إخفاء الحاوية بعد الإيقاف بنجاح
+            document.getElementById('reader-container').style.display = 'none';
+            console.log("تم إغلاق الكاميرا بنجاح");
+        }).catch(err => {
+            console.error("فشل إيقاف الكاميرا:", err);
+            // في حال فشل الإيقاف البرمجي، نخفي الحاوية قسراً
+            document.getElementById('reader-container').style.display = 'none';
+        });
+    } else {
+        // إذا لم تكن الكاميرا تعمل، فقط أخفِ الحاوية
+        document.getElementById('reader-container').style.display = 'none';
+    }
+}
 // نافذة الإضافة المباشرة عند المسح الضوئي
 function showQuickAddModal(product, scannedCode) {
     const modalHTML = `
@@ -1521,22 +1537,3 @@ function closeQuickAddModal() {
         }, 300);
     }
 }
-
-function stopScanner() {
-    // التأكد أن الكاميرا تعمل أصلاً قبل محاولة إغلاقها
-    if (html5QrCode && html5QrCode.getState() > 1) { 
-        html5QrCode.stop().then(() => {
-            // إخفاء الحاوية بعد الإيقاف بنجاح
-            document.getElementById('reader-container').style.display = 'none';
-            console.log("تم إغلاق الكاميرا بنجاح");
-        }).catch(err => {
-            console.error("فشل إيقاف الكاميرا:", err);
-            // في حال فشل الإيقاف البرمجي، نخفي الحاوية قسراً
-            document.getElementById('reader-container').style.display = 'none';
-        });
-    } else {
-        // إذا لم تكن الكاميرا تعمل، فقط أخفِ الحاوية
-        document.getElementById('reader-container').style.display = 'none';
-    }
-}
-
