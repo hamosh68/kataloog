@@ -1268,38 +1268,258 @@ function startScanner() {
     html5QrCode.start(
         { facingMode: "environment" }, 
         config,
-        (decodedText) => {
-            // 1. وضع الكود المقروء في خانة البحث
-            searchInput.value = decodedText;
-
-            // 2. إلغاء وضع المفضلة فوراً لضمان البحث في كل المنتجات
-            showOnlyFavorites = false;
-            currentBrand = 'الكل';
-            currentSub = 'الكل';
-
-            // 3. تحديث واجهة الأزرار (الفلاتر) لتعكس وضع "الكل"
-            renderBrands();
-            renderSubCategories();
-            updateActiveNav('home'); // تحديث القائمة السفلية لتظهر أننا في الرئيسية
-
-            // 4. إيقاف الكاميرا
+        async (decodedText) => {
+            // 1. إيقاف الكاميرا أولاً
             stopScanner();
             
-            // 5. استدعاء دالة البحث الأصلية لتحديث قائمة المنتجات
-            if (typeof handleSearch === "function") {
+            // 2. البحث عن المنتج
+            const product = products.find(p => p.code === decodedText);
+            
+            if (!product) {
+                showSmartNotification('لم يتم العثور', `الباركود ${decodedText} غير موجود`, 'error');
+                // إظهار حقل البحث مع الباركود للبحث اليدوي
+                searchInput.value = decodedText;
                 handleSearch();
+                return;
             }
             
-            // إشعار بنجاح المسح
-            showSmartNotification('تم المسح الضوئي', `تم قراءة الكود: ${decodedText}`, 'success');
+            // 3. عرض نافذة الإضافة المباشرة
+            showQuickAddModal(product, decodedText);
             
-            // إهتزاز خفيف للموبايل عند نجاح القراءة
+            // 4. إهتزاز خفيف للموبايل عند نجاح القراءة
             if (navigator.vibrate) navigator.vibrate(100);
         }
     ).catch(err => {
         showSmartNotification('خطأ في الكاميرا', 'يرجى السماح بصلاحية الكاميرا', 'error');
         console.error(err);
     });
+}
+
+// نافذة الإضافة المباشرة عند المسح الضوئي
+function showQuickAddModal(product, scannedCode) {
+    const modalHTML = `
+        <div class="modal" id="quickAddModal" style="display: flex; z-index: 100000;">
+            <div class="modal-content" style="max-width: 400px; animation: slideUp 0.3s ease;">
+                <div style="padding: 25px; text-align: center;">
+                    <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 15px;">
+                        <i class="fas fa-barcode"></i>
+                    </div>
+                    
+                    <h3 style="color: #333; margin-bottom: 10px; font-family: 'Cairo';">تم مسح المنتج بنجاح!</h3>
+                    
+                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px; margin-bottom: 20px; text-align: right;">
+                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <div style="width: 60px; height: 60px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                                <img src="images/${product.code}.webp" 
+                                     style="max-width: 100%; max-height: 100%; object-fit: contain;"
+                                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\"><rect width=\"100%\" height=\"100%\" fill=\"%23eee\"/><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" dy=\".3em\" font-family=\"Cairo\" font-size=\"10\" fill=\"%23999\">${product.code}</text></svg>'">
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: bold; color: #1a237e;">${product.brand}</div>
+                                <div style="font-size: 0.9rem; color: #666;">${product.name || 'منتج'}</div>
+                                <div style="font-family: monospace; font-size: 0.8rem; color: #ff9800;">${scannedCode}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- اختيار الكمية -->
+                    <div style="margin-bottom: 25px;">
+                        <div style="font-weight: bold; color: #666; margin-bottom: 10px;">اختر الكمية المطلوبة:</div>
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                            <button id="decreaseQty" 
+                                    style="width: 50px; height: 50px; border: none; background: #f5f5f5; border-radius: 50%; font-size: 1.5rem; cursor: pointer; color: #666;"
+                                    onmouseover="this.style.background='#e0e0e0'"
+                                    onmouseout="this.style.background='#f5f5f5'">
+                                −
+                            </button>
+                            
+                            <div style="font-size: 2.5rem; font-weight: bold; color: #1a237e; min-width: 60px; text-align: center;" id="quantityDisplay">1</div>
+                            
+                            <button id="increaseQty" 
+                                    style="width: 50px; height: 50px; border: none; background: #4CAF50; border-radius: 50%; font-size: 1.5rem; cursor: pointer; color: white;"
+                                    onmouseover="this.style.background='#45a049'"
+                                    onmouseout="this.style.background='#4CAF50'">
+                                +
+                            </button>
+                        </div>
+                        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                            <button class="quickQtyBtn" data-qty="5">5</button>
+                            <button class="quickQtyBtn" data-qty="10">10</button>
+                            <button class="quickQtyBtn" data-qty="20">20</button>
+                            <button class="quickQtyBtn" data-qty="50">50</button>
+                        </div>
+                    </div>
+                    
+                    <!-- الملاحظة السريعة -->
+                    <div style="margin-bottom: 20px;">
+                        <textarea id="quickNote" 
+                                  placeholder="ملاحظة سريعة (اختياري)..."
+                                  style="width: 100%; height: 60px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: none; font-size: 0.9rem;"></textarea>
+                    </div>
+                    
+                    <!-- أزرار التحكم -->
+                    <div style="display: flex; gap: 10px;">
+                        <button id="cancelQuickAdd" 
+                                style="flex: 1; padding: 15px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer;">
+                            إلغاء
+                        </button>
+                        <button id="addToCartQuick" 
+                                style="flex: 2; padding: 15px; background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                            <i class="fas fa-cart-plus"></i> إضافة للطلب
+                        </button>
+                    </div>
+                    
+                    <!-- الخيارات الإضافية -->
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
+                        <button id="openProductDetails" 
+                                style="background: none; border: none; color: #2196F3; cursor: pointer; font-family: 'Cairo'; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; margin: 0 auto;">
+                            <i class="fas fa-external-link-alt"></i> فتح تفاصيل المنتج
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // إضافة النافذة للصفحة
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // إضافة CSS للكميات السريعة
+    const style = document.createElement('style');
+    style.textContent = `
+        .quickQtyBtn {
+            padding: 8px 15px;
+            background: #E3F2FD;
+            color: #2196F3;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        
+        .quickQtyBtn:hover {
+            background: #2196F3;
+            color: white;
+        }
+        
+        #quickAddModal .modal-content {
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // إدارة الكمية
+    let quantity = 1;
+    const quantityDisplay = document.getElementById('quantityDisplay');
+    const decreaseBtn = document.getElementById('decreaseQty');
+    const increaseBtn = document.getElementById('increaseQty');
+    
+    decreaseBtn.addEventListener('click', () => {
+        if (quantity > 1) {
+            quantity--;
+            quantityDisplay.textContent = quantity;
+        }
+    });
+    
+    increaseBtn.addEventListener('click', () => {
+        if (quantity < 999) {
+            quantity++;
+            quantityDisplay.textContent = quantity;
+        }
+    });
+    
+    // الكميات السريعة
+    document.querySelectorAll('.quickQtyBtn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            quantity = parseInt(btn.dataset.qty);
+            quantityDisplay.textContent = quantity;
+        });
+    });
+    
+    // إضافة للطلب
+    document.getElementById('addToCartQuick').addEventListener('click', () => {
+        const note = document.getElementById('quickNote').value.trim();
+        
+        // البحث عن المنتج في السلة الحالية
+        const existingItem = cart.find(item => item.code === product.code);
+        
+        if (existingItem) {
+            existingItem.quantity += quantity;
+            if (note) existingItem.note = note;
+            showSmartNotification('تم التحديث', `تم إضافة ${quantity} قطعة إلى ${product.name || product.code}`, 'success');
+        } else {
+            cart.push({
+                code: product.code,
+                name: product.name || '',
+                brand: product.brand,
+                quantity: quantity,
+                note: note,
+                addedAt: new Date().toISOString()
+            });
+            showSmartNotification('تم الإضافة', `تم إضافة ${product.name || product.code} للطلب (${quantity} قطعة)`, 'success');
+        }
+        
+        localStorage.setItem('abushams_cart', JSON.stringify(cart));
+        updateCartBadge();
+        closeQuickAddModal();
+    });
+    
+    // إلغاء
+    document.getElementById('cancelQuickAdd').addEventListener('click', closeQuickAddModal);
+    
+    // فتح تفاصيل المنتج
+    document.getElementById('openProductDetails').addEventListener('click', () => {
+        closeQuickAddModal();
+        openProduct(product.code, product.name, product.brand);
+    });
+    
+    // إغلاق بالنقر خارج النافذة
+    const modal = document.getElementById('quickAddModal');
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeQuickAddModal();
+        }
+    });
+    
+    // إغلاق بالزر ESC
+    const handleEsc = (e) => {
+        if (e.key === 'Escape') {
+            closeQuickAddModal();
+        }
+    };
+    document.addEventListener('keydown', handleEsc);
+    
+    // التركيز على حقل الملاحظة
+    setTimeout(() => {
+        document.getElementById('quickNote').focus();
+    }, 300);
+}
+
+// إغلاق نافذة الإضافة السريعة
+function closeQuickAddModal() {
+    const modal = document.getElementById('quickAddModal');
+    if (modal) {
+        modal.style.opacity = '0';
+        modal.style.transform = 'scale(0.95)';
+        
+        setTimeout(() => {
+            modal.remove();
+        }, 300);
+    }
 }
 
 function stopScanner() {
@@ -1319,6 +1539,4 @@ function stopScanner() {
         document.getElementById('reader-container').style.display = 'none';
     }
 }
-
-
 
