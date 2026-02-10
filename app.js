@@ -194,7 +194,12 @@ function showCartPage() {
     `;
     document.head.appendChild(style);
 }
-
+function closeCartModal() {
+    const modal = document.getElementById('cartModal');
+    if (modal) {
+        modal.remove();
+    }
+}
 // حفظ اسم الزبون
 function saveCustomerName(name) {
     localStorage.setItem('abushams_customer_name', name.trim());
@@ -780,6 +785,7 @@ function stopScanner() {
         document.getElementById('reader-container').style.display = 'none';
     }
 }
+
 
 
 
