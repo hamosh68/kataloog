@@ -26,6 +26,333 @@ function init() {
     showAll();
 }
 
+// ===============================
+// نظام الإشعارات الذكي
+// ===============================
+
+// دالة الإشعارات الذكية
+function showSmartNotification(title, message, type = 'success', duration = 3000) {
+    // منع تكرار الإشعارات المتطابقة
+    const existingNotifications = document.querySelectorAll('.smart-notification');
+    existingNotifications.forEach(notification => {
+        if (notification.querySelector('.notification-body').textContent.includes(message.substring(0, 50))) {
+            notification.remove();
+        }
+    });
+    
+    // تحديد الألوان حسب النوع
+    const colors = {
+        success: { bg: '#4CAF50', icon: '✅', titleColor: '#2E7D32' },
+        warning: { bg: '#FF9800', icon: '⚠️', titleColor: '#EF6C00' },
+        error: { bg: '#F44336', icon: '❌', titleColor: '#C62828' },
+        info: { bg: '#2196F3', icon: 'ℹ️', titleColor: '#1565C0' }
+    };
+    
+    const config = colors[type] || colors.info;
+    
+    // إنشاء الإشعار
+    const notification = document.createElement('div');
+    notification.className = `smart-notification ${type}`;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 350px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        z-index: 99999;
+        transform: translateX(400px);
+        transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        overflow: hidden;
+        border-left: 5px solid ${config.bg};
+        font-family: 'Cairo', sans-serif;
+        direction: rtl;
+    `;
+    
+    notification.innerHTML = `
+        <div style="display: flex; align-items: center; padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #eee;">
+            <span style="font-size: 1.3rem; margin-left: 10px;">${config.icon}</span>
+            <span style="font-weight: bold; font-size: 1rem; color: ${config.titleColor}; flex: 1;">${title}</span>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="background: none; border: none; font-size: 1.2rem; color: #666; cursor: pointer; padding: 0; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"
+                    onmouseover="this.style.background='rgba(0,0,0,0.1)'; this.style.color='#333'"
+                    onmouseout="this.style.background='none'; this.style.color='#666'">
+                ✕
+            </button>
+        </div>
+        <div style="padding: 20px; font-size: 0.95rem; color: #555; line-height: 1.5;">
+            ${message}
+        </div>
+        <div class="notification-progress" style="height: 4px; background: ${config.bg}; width: 100%;"></div>
+    `;
+    
+    // إضافة للصفحة
+    document.body.appendChild(notification);
+    
+    // ظهور سلس
+    setTimeout(() => {
+        notification.style.transform = 'translateX(0)';
+    }, 10);
+    
+    // التقدم الزمني
+    const progressBar = notification.querySelector('.notification-progress');
+    setTimeout(() => {
+        progressBar.style.transition = `width ${duration}ms linear`;
+        progressBar.style.width = '0%';
+    }, 10);
+    
+    // الإزالة التلقائية
+    const removeTimer = setTimeout(() => {
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 300);
+    }, duration + 10);
+    
+    // إيقاف المؤقت عند التمرير فوق الإشعار
+    notification.addEventListener('mouseenter', () => {
+        clearTimeout(removeTimer);
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '100%';
+    });
+    
+    notification.addEventListener('mouseleave', () => {
+        progressBar.style.transition = `width ${duration}ms linear`;
+        progressBar.style.width = '0%';
+        setTimeout(() => {
+            notification.style.transform = 'translateX(400px)';
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 300);
+        }, duration);
+    });
+    
+    // زر الإغلاق
+    notification.querySelector('button').addEventListener('click', () => {
+        clearTimeout(removeTimer);
+        notification.style.transform = 'translateX(400px)';
+        setTimeout(() => {
+            if (notification.parentNode) notification.remove();
+        }, 300);
+    });
+}
+
+// ===============================
+// استبدال جميع الـ alerts القديمة
+// ===============================
+
+// 1. في دالة addToCart
+function addToCart(productCode, productName = '', productBrand = '') {
+    const existingItem = cart.find(item => item.code === productCode);
+    
+    if (existingItem) {
+        existingItem.quantity += 1;
+        showSmartNotification('تم التحديث', `تم زيادة كمية ${productName || productCode} إلى ${existingItem.quantity}`, 'success');
+    } else {
+        cart.push({
+            code: productCode,
+            name: productName,
+            brand: productBrand,
+            quantity: 1,
+            note: '',
+            addedAt: new Date().toISOString()
+        });
+        showSmartNotification('تم الإضافة', `تم إضافة ${productName || productCode} للطلب`, 'success');
+    }
+    
+    localStorage.setItem('abushams_cart', JSON.stringify(cart));
+    updateCartBadge();
+}
+
+// 2. في دالة sendCartToWhatsApp (بدل alert)
+function sendCartToWhatsApp() {
+    if (cart.length === 0) {
+        showSmartNotification('سلة فارغة', 'أضف منتجات أولاً قبل الإرسال', 'warning');
+        return;
+    }
+    
+    // ... باقي الكود
+    
+    // بدل alert التاكيد
+    setTimeout(() => {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        showSmartNotification(
+            'تم الإرسال بنجاح', 
+            `تم إرسال ${cart.length} منتج (${totalItems} قطعة) للمكتب`,
+            'success',
+            5000
+        );
+    }, 500);
+}
+
+// 3. في دالة clearCart
+function clearCart() {
+    if (cart.length === 0) {
+        showSmartNotification('لا يوجد طلبات', 'سلة الطلبات فارغة بالفعل', 'info');
+        return;
+    }
+    
+    // استخدام confirm محسن
+    showConfirmModal(
+        'مسح جميع الطلبات',
+        'هل أنت متأكد من مسح جميع الطلبات؟ لا يمكن التراجع عن هذا الإجراء.',
+        'warning',
+        () => {
+            cart = [];
+            localStorage.setItem('abushams_cart', JSON.stringify(cart));
+            updateCartBadge();
+            closeCartModal();
+            showSmartNotification('تم المسح', 'تم مسح جميع الطلبات بنجاح', 'success');
+        }
+    );
+}
+
+// 4. في دالة clearFavorites
+function clearFavorites() {
+    if (favorites.length === 0) {
+        showSmartNotification('لا يوجد مفضلة', 'قائمة المفضلة فارغة', 'info');
+        return;
+    }
+    
+    showConfirmModal(
+        'مسح المفضلة',
+        'هل أنت متأكد من مسح جميع المنتجات من المفضلة؟',
+        'warning',
+        () => {
+            favorites = [];
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            if (showOnlyFavorites) renderProducts();
+            showSmartNotification('تم المسح', 'تم مسح جميع المفضلة بنجاح', 'success');
+        }
+    );
+}
+
+// 5. في دالة removeFromCart
+function removeFromCart(index) {
+    const itemName = cart[index]?.name || cart[index]?.code || 'المنتج';
+    
+    showConfirmModal(
+        'حذف المنتج',
+        `هل تريد حذف "${itemName}" من الطلب؟`,
+        'warning',
+        () => {
+            cart.splice(index, 1);
+            localStorage.setItem('abushams_cart', JSON.stringify(cart));
+            updateCartBadge();
+            showCartPage();
+            showSmartNotification('تم الحذف', `تم حذف ${itemName} من الطلب`, 'success');
+        }
+    );
+}
+
+// 6. في دالة startScanner عند الخطأ
+function startScanner() {
+    // ... الكود الحالي
+    
+    html5QrCode.start(
+        { facingMode: "environment" }, 
+        config,
+        (decodedText) => {
+            // ... الكود الحالي
+            showSmartNotification('تم المسح الضوئي', `تم قراءة الكود: ${decodedText}`, 'success');
+        }
+    ).catch(err => {
+        showSmartNotification('خطأ في الكاميرا', 'يرجى السماح بصلاحية الكاميرا', 'error');
+        console.error(err);
+    });
+}
+
+// 7. في دالة toggleFavorite
+function toggleFavorite(code, event) {
+    if (event) event.stopPropagation();
+    const index = favorites.indexOf(code);
+    const product = products.find(p => p.code === code);
+    const productName = product?.name || code;
+    
+    if (index > -1) {
+        favorites.splice(index, 1);
+        showSmartNotification('تم الإزالة', `تم إزالة ${productName} من المفضلة`, 'info');
+    } else {
+        favorites.push(code);
+        showSmartNotification('تم الإضافة', `تم إضافة ${productName} للمفضلة`, 'success');
+    }
+    
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    renderProducts();
+}
+
+// ===============================
+// نظام تأكيد محسن بدل confirm العادي
+// ===============================
+
+function showConfirmModal(title, message, type = 'warning', onConfirm) {
+    // إزالة أي مودال تأكيد سابق
+    const oldModal = document.getElementById('confirmModal');
+    if (oldModal) oldModal.remove();
+    
+    const colors = {
+        warning: { bg: '#FF9800', icon: '⚠️' },
+        danger: { bg: '#F44336', icon: '❌' },
+        info: { bg: '#2196F3', icon: 'ℹ️' }
+    };
+    
+    const config = colors[type] || colors.warning;
+    
+    const modalHTML = `
+        <div class="modal" id="confirmModal" style="display: flex; z-index: 100000;">
+            <div class="modal-content" style="max-width: 400px; animation: slideUp 0.3s ease;">
+                <div style="padding: 25px; text-align: center;">
+                    <div style="font-size: 3rem; color: ${config.bg}; margin-bottom: 15px;">
+                        ${config.icon}
+                    </div>
+                    <h3 style="color: #333; margin-bottom: 15px; font-family: 'Cairo';">${title}</h3>
+                    <p style="color: #666; line-height: 1.6; margin-bottom: 25px; font-family: 'Cairo';">
+                        ${message}
+                    </p>
+                    <div style="display: flex; gap: 10px; justify-content: center;">
+                        <button onclick="document.getElementById('confirmModal').remove()" 
+                                style="padding: 12px 30px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; cursor: pointer; font-weight: bold; flex: 1;">
+                            إلغاء
+                        </button>
+                        <button onclick="document.getElementById('confirmModal').remove(); ${onConfirm.toString().replace(/\n/g, ' ')}" 
+                                style="padding: 12px 30px; background: ${config.bg}; color: white; border: none; border-radius: 8px; font-family: 'Cairo'; cursor: pointer; font-weight: bold; flex: 1;">
+                            تأكيد
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // إغلاق بالنقر خارج المودال
+    const modal = document.getElementById('confirmModal');
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+    
+    // إغلاض بالزر ESC
+    const handleEsc = (e) => {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', handleEsc);
+        }
+    };
+    document.addEventListener('keydown', handleEsc);
+}
+
+// ===============================
+// تحديث دالة showCartNotification القديمة
+// ===============================
+
+function showCartNotification(productName) {
+    showSmartNotification('تمت الإضافة للطلب', productName, 'success');
+}
+
 // التصنيفات
 function renderBrands() {
     const brands = ['الكل', ...new Set(products.map(p => p.brand))];
@@ -206,6 +533,7 @@ function saveCustomerName(name) {
 }
 
 // إرسال الطلب للمكتب عبر واتساب
+// إرسال الطلب للمكتب عبر واتساب
 function sendCartToWhatsApp() {
     if (cart.length === 0) {
         alert('🚫 سلة الطلبات فارغة!');
@@ -229,39 +557,64 @@ function sendCartToWhatsApp() {
     // قاعدة الرابط للصور
     const baseUrl = window.location.origin + window.location.pathname.replace(/[^\/]*$/, '') + 'images/';
     
-    let message = `📋 *طلب جديد - IBC *\n`;
-    message += `📅 ${currentDate}\n`;
+    let message = `🛒 *طلب جديد - IBC*\n`;
+    message += `═══════════════════════════════════\n`;
+    message += `📅 التاريخ: ${currentDate}\n`;
     
     // إضافة اسم الزبون إذا كان موجوداً
     if (customerName) {
         message += `👤 الزبون: ${customerName}\n`;
     }
     
-    message += `📊 ${cart.length} نوع | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
-    message += `────────────────\n\n`;
+    message += `📊 الإحصائيات: ${cart.length} منتج | ${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة\n`;
+    message += `═══════════════════════════════════\n\n`;
     
     // إضافة المنتجات مع ملاحظاتها الخاصة
     cart.forEach((item, index) => {
         const product = products.find(p => p.code === item.code);
         const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`;
-        message += `*${index + 1}. ${item.brand}*\n`;
-        message += `🔢 ${item.code}\n`;
-        message += `📦 ${item.quantity} قطعة\n`;
-        if (product?.name) message += `📝 ${product.name}\n`;
-        if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
-        message += `[📸](${imageUrl})\n`;
-        message += `\n`;
+        
+        message += `*${index + 1}. المنتج*\n`;
+        message += `🔢 *الكود:* ${item.code}\n`;
+        message += `🏭 *الفرع:* ${item.brand}\n`;
+        
+        // إضافة اسم الصنف إذا كان موجوداً
+        if (product?.sub) {
+            message += `🏷️ *الصنف:* ${product.sub}\n`;
+        }
+        
+        // اسم المنتج إذا كان موجوداً
+        if (product?.name) {
+            message += `📝 *الاسم:* ${product.name}\n`;
+        }
+        
+        message += `📦 *الكمية:* ${item.quantity} قطعة\n`;
+        
+        // ملاحظة المنتج الخاصة
+        if (item.note) {
+            message += `🗒️ *ملاحظة المنتج:* ${item.note}\n`;
+        }
+        
+        message += `🖼️ *الصورة:* [اضغط هنا للعرض](${imageUrl})\n`;
+        
+        // إضافة سطر فاصل أطول بين المنتجات (ما عدا المنتج الأخير)
+        if (index < cart.length - 1) {
+            message += `─────────────────────────────────────\n\n`;
+        }
     });
     
     // إضافة الملاحظة العامة إذا كانت موجودة
     const noteElement = document.getElementById('cartNote');
     const generalNote = noteElement ? noteElement.value.trim() : '';
     if (generalNote) {
-        message += `────────────────\n🗒️ *ملاحظات عامة:*\n${generalNote}\n`;
+        message += `─────────────────────────────────────\n`;
+        message += `🗒️ *ملاحظات عامة:*\n${generalNote}\n`;
     }
     
-    message += `────────────────\n`;
-    message += `🚚 تم الطلب عبر تطبيق المندوبين`;
+    message += `═══════════════════════════════════\n`;
+    message += `🤖 *تم إنشاء الطلب بواسطة: كين*\n`;
+    message += `📱 *نظام إدارة طلبات IBC*\n`;
+    message += `🚚 *شكراً لثقتكم بنا*`;
     
     // تشفير الرسالة للرابط
     const encodedMessage = encodeURIComponent(message);
@@ -278,8 +631,7 @@ function sendCartToWhatsApp() {
         
         alert(confirmationMsg);
     }, 500);
-}
-function renderSubCategories() {
+}function renderSubCategories() {
     let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
     const subs = ['الكل', ...new Set(filtered.map(p => p.sub))];
     subTabs.innerHTML = subs.map(sub => `
@@ -785,8 +1137,6 @@ function stopScanner() {
         document.getElementById('reader-container').style.display = 'none';
     }
 }
-
-
 
 
 
