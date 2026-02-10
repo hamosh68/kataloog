@@ -57,10 +57,34 @@
             <i class="fas fa-heart"></i>
             المفضلة
         </button>
+
         <button class="action-btn" id="clearFavBtn">
             <i class="fas fa-trash-alt"></i>
             مسح المفضلة
         </button>
+<button onclick="showStatsPage()" 
+        id="statsButton"
+        style="
+            background: linear-gradient(135deg, #4CAF50, #8BC34A);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            height: 45px;
+            transition: all 0.3s;
+        "
+        onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 5px 15px rgba(76, 175, 80, 0.3)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+    <i class="fas fa-chart-bar"></i>
+    <span>الإحصائيات</span>
+</button>
     </div>
 
     <!-- الفلاتر -->
