@@ -294,7 +294,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'برايات', code: '6021112341113..2', name: 'براية IBC' },
   { brand: 'Stationery IBC', sub: 'برايات', code: '6021112341113..3', name: 'براية IBC' },
   { brand: 'Stationery IBC', sub: 'برايات', code: '6021112341113..4', name: 'براية IBC' },
-  { brand: 'Toy Color', sub: 'الوان', code: '6021112341113', name: 'الوان توي كولور' },
+  { brand: 'Stationery IBC', sub: 'برايات', code: '6021112341113', name: 'براية IBC' },
   { brand: 'Toy Color', sub: 'الوان', code: '8015189000477', name: 'الوان توي كولور' },
   { brand: 'Toy Color', sub: 'الوان', code: '8015189000484', name: 'الوان توي كولور' },
   { brand: 'Toy Color', sub: 'الوان', code: '8015189001900', name: 'الوان توي كولور' },
@@ -306,5 +306,6 @@ const products = [
   { brand: 'Toy Color', sub: 'الوان', code: '8015189007049', name: 'الوان توي كولور' },
   { brand: 'Toy Color', sub: 'الوان', code: '8015189007674', name: 'الوان توي كولور' }
 ];
+
 
 
