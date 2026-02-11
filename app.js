@@ -328,6 +328,7 @@ function updateCartQuantity(index, change) {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         showCartPage(); // تحديث الصفحة
+        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
     }
 }
 
@@ -338,6 +339,7 @@ function removeFromCart(index) {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         showCartPage();
+        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
         showSmartNotification('تم الحذف', 'تم حذف المنتج من الطلب', 'success');
     }
 }
@@ -348,6 +350,7 @@ function closeCartModal() {
     if (modal) {
         modal.remove();
     }
+    renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية بعد الإغلاق
 }
 
 // مسح كل الطلبات
@@ -362,6 +365,7 @@ function clearCart() {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         closeCartModal();
+        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
         showSmartNotification('تم المسح', 'تم مسح جميع الطلبات بنجاح', 'success');
     }
 }
@@ -555,6 +559,29 @@ function loadMoreItems() {
 function createProductCard(product) {
     const isFavorite = favorites.includes(product.code);
     const productName = product.name || 'منتج';
+    const cartItem = cart.find(item => item.code === product.code);
+    const quantityBadge = cartItem ? `
+        <div class="quantity-badge" 
+             style="
+                 position: absolute;
+                 top: 8px;
+                 left: 50px;
+                 width: 30px;
+                 height: 30px;
+                 background: #4CAF50;
+                 color: white;
+                 border-radius: 50%;
+                 display: flex;
+                 align-items: center;
+                 justify-content: center;
+                 font-size: 0.9rem;
+                 font-weight: bold;
+                 box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                 z-index: 11;
+             ">
+            ${cartItem.quantity}
+        </div>
+    ` : '';
     
     return `
         <div class="product-card" data-code="${product.code}">
@@ -588,6 +615,7 @@ function createProductCard(product) {
                     ">
                 <i class="fas fa-cart-plus"></i>
             </button>
+            ${quantityBadge}
             
             <div class="product-image-container" onclick="openProduct('${product.code}', '${productName}', '${product.brand}')">
                 <img src="images/${product.code}.webp" 
@@ -777,6 +805,7 @@ function addToCart(productCode, productName = '', productBrand = '') {
     
     localStorage.setItem('abushams_cart', JSON.stringify(cart));
     updateCartBadge();
+    renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
 }
 
 function showAll() {
@@ -1492,6 +1521,7 @@ function showQuickAddModal(product, scannedCode) {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         closeQuickAddModal();
+        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
     });
     
     // إلغاء
@@ -1537,3 +1567,4 @@ function closeQuickAddModal() {
         }, 300);
     }
 }
+
