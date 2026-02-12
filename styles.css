@@ -9,7 +9,43 @@
     --danger: #f44336;
     --shadow: 0 2px 10px rgba(0,0,0,0.1);
     --shadow-hover: 0 5px 20px rgba(0,0,0,0.15);
+.upper-style {
+    background: #f5f5f5; /* رمادي خفيف متسق مع القائمة العلوية */
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0; /* حدود خفيفة للتميز */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* ظل ناعم */
+    transition: all 0.3s;
+}
 
+.upper-style:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* تأثير عند التحويم */
+}
+
+.filter-dropdown {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    font-family: 'Cairo';
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-dropdown:focus {
+    border-color: #2196F3; /* هايلايت أزرق عند التركيز (على الحواف) */
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.3);
+    outline: none;
+}
+
+.filter-dropdown option:checked {
+    background: #2196F3 !important; /* خلفية زرقاء كاملة للخيار المختار (على الكلام) */
+    color: white !important; /* نص أبيض للتباين */
+    font-weight: bold; /* جعل النص المختار أغلظ للتميز */
+}
 }
 .filter-dropdown {
     width: 100%;
@@ -27,6 +63,7 @@
     border-color: #1a237e;
     outline: none;
 }
+
 /* أنيميشن لظهور الإشعارات */
 @keyframes slideInRight {
     from {
