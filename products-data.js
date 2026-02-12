@@ -398,9 +398,45 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949865', name: 'نوت باد A5' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949872', name: 'نوت باد A7' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949889', name: 'نوت باد A6' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949896', name: 'نوت باد B5' }
-
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949896', name: 'نوت باد B5' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900007596-1', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900007596', name: 'مسطرة ' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900018226', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900040876', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900053135', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900054330-1', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900054330', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900062984', name: 'مسطرة' },
+  { brand: 'KUM', sub: 'مساطر', code: '4064900064810', name: 'مسطرة' },
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6002110180010-1', name: 'ليبل مدرسي' },
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6002110180010-2', name: 'ليبل مدرسي' },
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6002110180010-3', name: 'ليبل مدرسي' },
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6002110180010-4', name: 'ليبل مدرسي' },
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6002110180010-5', name: 'ليبل مدرسي' },
+  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6002110180010', name: 'ليبل مدرسي' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-1', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-2', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-3', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-4', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-5', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-6', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-7', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689-8', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674035689', name: 'ورق جدران' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674056790-10', name: 'ورق جدران سادة' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674056790-11', name: 'ورق جدران سادة' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674056790-9', name: 'ورق جدران سادة' },
+  { brand: 'Stationery IBC', sub: 'جلاد', code: '6932674056790', name: 'جلاد شفاف رول' },
+  { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '6971064210886', name: 'دفتر رسم' },
+  { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '6971064210893', name: 'دفتر رسم' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '697106421135', name: 'لوحة رسم قماش' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '933665685944', name: 'لوحة رسم قماش' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685968', name: 'لوحة رسم قماش' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685975', name: 'لوحة رسم قماش' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685982', name: 'لوحة رسم قماش' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685999', name: 'لوحة رسم قماش' }
 ];
+
 
 
 
