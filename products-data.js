@@ -504,7 +504,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871286', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293-1', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293', name: 'مقص مدرسي' },
-  { brand: 'Stationery IBC', sub: 'دفار مدرسية', code: '955233875416', name: 'دفتر رسم بياني' }
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955233875416', name: 'دفتر رسم بياني' }
   ];
 
 
