@@ -48,22 +48,22 @@
 <script src="https://unpkg.com/html5-qrcode"></script>
 
     <!-- الأزرار السريعة -->
-<div class="quick-actions" style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 8px; margin: 10px 0;">
-    <button class="action-btn" id="showAllBtn" style="background: linear-gradient(135deg, #2196F3, #21CBF3); color: white; border: none; border-radius: 20px; padding: 8px 16px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 6px; height: 40px; transition: all 0.3s; font-size: 0.9rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(33, 150, 243, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-        <i class="fas fa-th-large" style="font-size: 1.1rem;"></i>
+<div class="quick-actions" style="display: flex; justify-content: space-between; flex-wrap: nowrap; overflow-x: auto; gap: 6px; margin: 10px 0; padding: 0 5px;">
+    <button class="action-btn" id="showAllBtn" style="background: linear-gradient(135deg, #2196F3, #21CBF3); color: white; border: none; border-radius: 18px; padding: 6px 12px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 4px; height: 36px; transition: all 0.3s; font-size: 0.85rem; min-width: 80px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 3px 8px rgba(33, 150, 243, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <i class="fas fa-th-large" style="font-size: 1rem;"></i>
         الكل
     </button>
-    <button class="action-btn fav" id="showFavBtn" style="background: linear-gradient(135deg, #f44336, #e57373); color: white; border: none; border-radius: 20px; padding: 8px 16px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 6px; height: 40px; transition: all 0.3s; font-size: 0.9rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(244, 67, 54, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-        <i class="fas fa-heart" style="font-size: 1.1rem;"></i>
+    <button class="action-btn fav" id="showFavBtn" style="background: linear-gradient(135deg, #f44336, #e57373); color: white; border: none; border-radius: 18px; padding: 6px 12px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 4px; height: 36px; transition: all 0.3s; font-size: 0.85rem; min-width: 80px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 3px 8px rgba(244, 67, 54, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <i class="fas fa-heart" style="font-size: 1rem;"></i>
         مفضلة
     </button>
-    <button class="action-btn" id="clearFavBtn" style="background: linear-gradient(135deg, #ff9800, #ffb74d); color: white; border: none; border-radius: 20px; padding: 8px 16px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 6px; height: 40px; transition: all 0.3s; font-size: 0.9rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(255, 152, 0, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-        <i class="fas fa-trash-alt" style="font-size: 1.1rem;"></i>
-        مسح مفضلة
+    <button class="action-btn" id="clearFavBtn" style="background: linear-gradient(135deg, #ff9800, #ffb74d); color: white; border: none; border-radius: 18px; padding: 6px 12px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 4px; height: 36px; transition: all 0.3s; font-size: 0.85rem; min-width: 80px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 3px 8px rgba(255, 152, 0, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <i class="fas fa-trash-alt" style="font-size: 1rem;"></i>
+        مسح
     </button>
-    <button onclick="showStatsPage()" id="statsButton" style="background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; border: none; border-radius: 20px; padding: 8px 16px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 6px; height: 40px; transition: all 0.3s; font-size: 0.9rem;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 10px rgba(76, 175, 80, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
-        <i class="fas fa-chart-bar" style="font-size: 1.1rem;"></i>
-        <span>احصائية</span>
+    <button onclick="showStatsPage()" id="statsButton" style="background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; border: none; border-radius: 18px; padding: 6px 12px; cursor: pointer; font-family: 'Cairo'; font-weight: bold; display: flex; align-items: center; gap: 4px; height: 36px; transition: all 0.3s; font-size: 0.85rem; min-width: 80px;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 3px 8px rgba(76, 175, 80, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+        <i class="fas fa-chart-bar" style="font-size: 1rem;"></i>
+        احصائية
     </button>
 </div>
 
@@ -117,5 +117,6 @@
     <script src="app.js"></script>
 </body>
 </html>
+
 
 
