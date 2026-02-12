@@ -88,47 +88,48 @@
     </div>
 
     <!-- الفلاتر -->
-    <div class="filters-container">
-        <div class="filter-tabs" id="brandTabs"></div>
+   <div class="filters-container">
+    <select id="brandDropdown" class="filter-dropdown" onchange="setBrand(this.value)">
+        <!-- سيتم ملؤها جافاسكريبت -->
+    </select>
+</div>
+<div class="filters-container">
+    <select id="subDropdown" class="filter-dropdown" onchange="setSub(this.value)">
+        <!-- سيتم ملؤها جافاسكريبت -->
+    </select>
+</div>
+<!-- المنتجات -->
+<div class="products-container">
+    <div class="products-grid" id="productsGrid">
+        <!-- سيتم ملؤها جافاسكريبت -->
     </div>
-
-    <div class="filters-container">
-        <div class="filter-tabs" id="subTabs"></div>
-    </div>
-
-    <!-- المنتجات -->
-    <div class="products-container">
-        <div class="products-grid" id="productsGrid">
-            <!-- سيتم ملؤها جافاسكريبت -->
+    <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-state-icon">
+            <i class="fas fa-search"></i>
         </div>
-        <div class="empty-state" id="emptyState" style="display: none;">
-            <div class="empty-state-icon">
-                <i class="fas fa-search"></i>
-            </div>
-            <div class="empty-state-text">لا توجد منتجات مطابقة</div>
-            <div class="empty-state-subtext">جرب تغيير البحث أو الفلاتر</div>
-        </div>
+        <div class="empty-state-text">لا توجد منتجات مطابقة</div>
+        <div class="empty-state-subtext">جرب تغيير البحث أو الفلاتر</div>
     </div>
-
-    <!-- القائمة السفلية -->
-    <nav class="bottom-nav">
-        <a href="#" class="nav-item active" onclick="showAll()">
-            <i class="fas fa-th-large"></i>
-            <span>الرئيسية</span>
-        </a>
-        <a href="#" class="nav-item" onclick="showFavorites()">
-            <i class="fas fa-heart"></i>
-            <span>المفضلة</span>
-        </a>
-        <a href="#" class="nav-item" onclick="clearFavorites()">
-            <i class="fas fa-trash-alt"></i>
-            <span>مسح الكل</span>
-        </a>
-        <a href="#" class="nav-item" onclick="refreshPage()">
-            <i class="fas fa-redo-alt"></i>
-            <span>تحديث</span>
-        </a>
-    </nav>
+</div>
+<!-- القائمة السفلية -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item active" onclick="showAll()">
+        <i class="fas fa-th-large"></i>
+        <span>الرئيسية</span>
+    </a>
+    <a href="#" class="nav-item" onclick="showFavorites()">
+        <i class="fas fa-heart"></i>
+        <span>المفضلة</span>
+    </a>
+    <a href="#" class="nav-item" onclick="clearFavorites()">
+        <i class="fas fa-trash-alt"></i>
+        <span>مسح الكل</span>
+    </a>
+    <a href="#" class="nav-item" onclick="refreshPage()">
+        <i class="fas fa-redo-alt"></i>
+        <span>تحديث</span>
+    </a>
+</nav>
 
     <!-- السكريبتات -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
@@ -136,6 +137,4 @@
     <script src="app.js"></script>
 </body>
 </html>
-
-
 
