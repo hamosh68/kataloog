@@ -345,8 +345,21 @@ const products = [
   { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217872825..1', name: 'سلايم' },
   { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217872825..2', name: 'سلايم' },
   { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217872825..3', name: 'سلايم' },
-  { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217872825', name: 'سلايم' }
+  { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217872825', name: 'سلايم' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366756', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366763', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366770', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366824', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366831', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366848', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366855', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366862', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366879', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366916', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366923', name: 'قفل' },
+  { brand: 'GBACK', sub: 'اقفال', code: '2000700366962', name: 'قفل' }
 ];
+
 
 
 
