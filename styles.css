@@ -11,6 +11,22 @@
     --shadow-hover: 0 5px 20px rgba(0,0,0,0.15);
 
 }
+.filter-dropdown {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    font-family: 'Cairo';
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    appearance: none; /* لإزالة السهم الافتراضي إذا أردت تصميم مخصص */
+    cursor: pointer;
+}
+
+.filter-dropdown:focus {
+    border-color: #1a237e;
+    outline: none;
+}
 /* أنيميشن لظهور الإشعارات */
 @keyframes slideInRight {
     from {
