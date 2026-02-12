@@ -1567,4 +1567,50 @@ function closeQuickAddModal() {
         }, 300);
     }
 }
+// عرض العلامات التجارية كقائمة منسدلة
+function renderBrands() {
+    const brands = ['ماركات', ...new Set(products.map(p => p.brand))];
+    const brandDropdown = document.getElementById('brandDropdown');
+    brandDropdown.innerHTML = brands.map(brand => `
+        <option value="${brand}" ${currentBrand === brand ? 'selected' : ''}>
+            ${brand}
+        </option>
+    `).join('');
+}
+
+// عرض التصنيفات الفرعية كقائمة منسدلة
+function renderSubCategories() {
+    let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
+    const subs = ['الافرع', ...new Set(filtered.map(p => p.sub))];
+    const subDropdown = document.getElementById('subDropdown');
+    subDropdown.innerHTML = subs.map(sub => `
+        <option value="${sub}" ${currentSub === sub ? 'selected' : ''}>
+            ${sub}
+        </option>
+    `).join('');
+    subDropdown.parentElement.style.display = subs.length <= 1 ? 'none' : 'block';
+}
+
+// عند تغيير العلامة التجارية
+function setBrand(brand) {
+    currentBrand = brand;
+    currentSub = 'الكل';
+    showOnlyFavorites = false;
+    showAllBtn.classList.remove('active');
+    showFavBtn.classList.remove('active');
+    renderSubCategories();
+    renderProducts();
+    updateActiveNav();
+}
+
+// عند تغيير التصنيف الفرعي
+function setSub(sub) {
+    currentSub = sub;
+    showOnlyFavorites = false;
+    showAllBtn.classList.remove('active');
+    showFavBtn.classList.remove('active');
+    renderProducts();
+    updateActiveNav();
+}
+
 
