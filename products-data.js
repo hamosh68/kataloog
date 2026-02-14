@@ -62,7 +62,7 @@ const products = [
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217873280', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217873297', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217873303', name: '' },
-    { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-1', name: '' },
+    { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-1', name: 'شنطة مدرسية' , price: '1.750', barcode: 'G.12548' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-2', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-3', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303', name: '' },
@@ -507,6 +507,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955233875416', name: 'دفتر رسم بياني' },
     { brand: 'ارت لاين', sub: 'اقلام ', code: '3700206704517', name: 'قلم ناشف', price: '0.525', barcode: '0521525' }
   ];
+
 
 
 
