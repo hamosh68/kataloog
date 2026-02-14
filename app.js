@@ -628,7 +628,7 @@ function createProductCard(product) {
                      alt="${productName}">
             </div>
             
-            <div class="product-info">
+            <div class="product-info" style="display: flex; flex-direction: column; gap: 2px; padding: 5px;">
                 <div class="product-brand">🏭 ${product.brand}</div>
                 <div class="product-name">📝 ${productName}</div>
                 ${productBarcode}
@@ -1602,5 +1602,6 @@ function setSub(sub) {
     renderProducts();
     updateActiveNav();
 }
+
 
 
