@@ -446,10 +446,14 @@ function sendCartToWhatsApp() {
         message += `*${index + 1}. المنتج*\n`;
         message += `🔢 *باركود:* ${item.code}\n`;
         message += `🏭 *الفرع:* ${item.brand}\n`;
-             message += `🔢 *الكود:* ${item.product}\n`;
-        
+                  
         // إضافة اسم الصنف إذا كان موجوداً
-        if (product?.sub) {
+       if (product?.barcode) {
+            message += `🏷️ *الكود:* ${product.barcode}\n`;
+        }
+
+          
+            if (product?.sub) {
             message += `🏷️ *الصنف:* ${product.sub}\n`;
         }
         
