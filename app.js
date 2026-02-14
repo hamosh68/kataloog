@@ -371,11 +371,42 @@ function clearCart() {
 }
 
 // إرسال الطلب للمكتب عبر واتساب
+// =======================
+// نظام ترقيم الطلبات
+// =======================
+
+function generateOrderNumber() {
+    // التاريخ: 20250214
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    const dateStr = `${year}${month}${day}`;
+    
+    // جلب آخر رقم لليوم
+    let lastToday = localStorage.getItem(`lastOrder_${dateStr}`) || '0';
+    let nextNumber = parseInt(lastToday) + 1;
+    
+    // حفظ الرقم الجديد
+    localStorage.setItem(`lastOrder_${dateStr}`, nextNumber.toString());
+    
+    // تنسيق: ORD-20250214-001
+    let formattedNumber = nextNumber.toString().padStart(3, '0');
+    return `ORD-${dateStr}-${formattedNumber}`;
+}
+
+// =======================
+// إرسال الطلب للمكتب عبر واتساب
+// =======================
+
 function sendCartToWhatsApp() {
     if (cart.length === 0) {
         showSmartNotification('سلة فارغة', 'أضف منتجات أولاً قبل الإرسال', 'warning');
         return;
     }
+    
+    // 🔴 توليد رقم الطلب
+    const orderNumber = generateOrderNumber();
     
     // جلب اسم الزبون من الخانة
     const customerNameElement = document.getElementById('customerName');
@@ -396,7 +427,8 @@ function sendCartToWhatsApp() {
     
     let message = `🛒 *طلب جديد - IBC*\n`;
     message += `═══════════════════════════════════\n`;
-    message += `📅 التاريخ: ${currentDate}\n`;
+    message += `📋 *رقم الطلب:* ${orderNumber}\n`; // 🔴 رقم الطلب
+    message += `📅 : ${currentDate}\n`;
     
     // إضافة اسم الزبون إذا كان موجوداً
     if (customerName) {
@@ -412,8 +444,9 @@ function sendCartToWhatsApp() {
         const imageUrl = `${baseUrl}${item.code}.${SUPPORTED_EXTENSIONS[0]}`;
         
         message += `*${index + 1}. المنتج*\n`;
-        message += `🔢 *الكود:* ${item.code}\n`;
+        message += `🔢 *باركود:* ${item.code}\n`;
         message += `🏭 *الفرع:* ${item.brand}\n`;
+             message += `🔢 *الكود:* ${item.product}\n`;
         
         // إضافة اسم الصنف إذا كان موجوداً
         if (product?.sub) {
@@ -460,6 +493,12 @@ function sendCartToWhatsApp() {
     // فتح واتساب
     window.open(whatsappUrl, '_blank');
     
+    // 🔴 مسح اسم الزبون بعد الإرسال
+    if (customerNameElement) {
+        customerNameElement.value = '';
+        localStorage.setItem('abushams_customer_name', '');
+    }
+    
     // عرض تأكيد
     setTimeout(() => {
         const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -471,7 +510,6 @@ function sendCartToWhatsApp() {
         );
     }, 500);
 }
-
 function renderSubCategories() {
     let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
     const subs = ['الكل', ...new Set(filtered.map(p => p.sub))];
@@ -634,6 +672,7 @@ function createProductCard(product) {
                 ${productBarcode}
                 <div class="product-code">🔢 ${product.code}</div>
                 ${productPrice}
+                          
             </div>
         </div>
     `;
@@ -1602,6 +1641,7 @@ function setSub(sub) {
     renderProducts();
     updateActiveNav();
 }
+
 
 
 
