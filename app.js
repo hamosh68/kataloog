@@ -17,114 +17,6 @@ const showAllBtn = document.getElementById('showAllBtn');
 const showFavBtn = document.getElementById('showFavBtn');
 const clearFavBtn = document.getElementById('clearFavBtn');
 
-// نظام الإشعارات الذكية
-function showSmartNotification(title, message, type = 'success', duration = 3000) {
-    // إزالة أي إشعار قديم
-    const oldNotification = document.querySelector('.smart-notification');
-    if (oldNotification) {
-        oldNotification.remove();
-    }
-    
-    // تحديد الألوان حسب النوع
-    const colors = {
-        success: { bg: '#4CAF50', icon: '✅' },
-        warning: { bg: '#FF9800', icon: '⚠️' },
-        error: { bg: '#F44336', icon: '❌' },
-        info: { bg: '#2196F3', icon: 'ℹ️' }
-    };
-    
-    const config = colors[type] || colors.info;
-    
-    // إنشاء الإشعار
-    const notification = document.createElement('div');
-    notification.className = 'smart-notification';
-    notification.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 350px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            z-index: 99999;
-            transform: translateX(400px);
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            border-left: 5px solid ${config.bg};
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-        ">
-            <div style="display: flex; align-items: center; padding: 15px 20px; background: #f8f9fa; border-bottom: 1px solid #eee;">
-                <span style="font-size: 1.3rem; margin-left: 10px;">${config.icon}</span>
-                <span style="font-weight: bold; font-size: 1rem; color: #333; flex: 1;">${title}</span>
-                <button class="notification-close" 
-                        style="background: none; border: none; font-size: 1.2rem; color: #666; cursor: pointer; padding: 0; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    ✕
-                </button>
-            </div>
-            <div style="padding: 20px; font-size: 0.95rem; color: #555; line-height: 1.5;">
-                ${message}
-            </div>
-            <div class="notification-progress" style="height: 4px; background: ${config.bg}; width: 100%;"></div>
-        </div>
-    `;
-    
-    // إضافة للصفحة
-    document.body.appendChild(notification);
-    
-    // الحصول على العناصر
-    const notificationDiv = notification.querySelector('div');
-    const closeBtn = notification.querySelector('.notification-close');
-    const progressBar = notification.querySelector('.notification-progress');
-    
-    // ظهور سلس
-    setTimeout(() => {
-        notificationDiv.style.transform = 'translateX(0)';
-    }, 10);
-    
-    // التقدم الزمني
-    setTimeout(() => {
-        progressBar.style.transition = `width ${duration}ms linear`;
-        progressBar.style.width = '0%';
-    }, 10);
-    
-    // الإزالة التلقائية
-    const removeTimer = setTimeout(() => {
-        notificationDiv.style.transform = 'translateX(400px)';
-        setTimeout(() => {
-            if (notification.parentNode) notification.remove();
-        }, 300);
-    }, duration + 10);
-    
-    // زر الإغلاق
-    closeBtn.addEventListener('click', () => {
-        clearTimeout(removeTimer);
-        notificationDiv.style.transform = 'translateX(400px)';
-        setTimeout(() => {
-            if (notification.parentNode) notification.remove();
-        }, 300);
-    });
-    
-    // إيقاف المؤقت عند التمرير فوق الإشعار
-    notification.addEventListener('mouseenter', () => {
-        clearTimeout(removeTimer);
-        progressBar.style.transition = 'none';
-        progressBar.style.width = '100%';
-    });
-    
-    notification.addEventListener('mouseleave', () => {
-        progressBar.style.transition = `width ${duration}ms linear`;
-        progressBar.style.width = '0%';
-        setTimeout(() => {
-            notificationDiv.style.transform = 'translateX(400px)';
-            setTimeout(() => {
-                if (notification.parentNode) notification.remove();
-            }, 300);
-        }, duration);
-    });
-}
-
 // التهيئة
 function init() {
     renderBrands();
@@ -148,7 +40,7 @@ function renderBrands() {
 // عرض صفحة الطلبات
 function showCartPage() {
     if (cart.length === 0) {
-        showSmartNotification('سلة فارغة', 'أضف منتجات أولاً باستخدام زر 🛒', 'warning');
+        alert('🚫 سلة الطلبات فارغة\nأضف منتجات أولاً باستخدام زر 🛒');
         return;
     }
     
@@ -204,23 +96,6 @@ function showCartPage() {
                         <button onclick="closeCartModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
                     </div>
                     
-                    <!-- إضافة خانة اسم الزبون -->
-                    <div style="margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <i class="fas fa-user" style="color: #1a237e;"></i>
-                            <label style="font-weight: bold; color: #1a237e;">اسم الزبون:</label>
-                        </div>
-                        <input type="text" 
-                               id="customerName" 
-                               placeholder="أدخل اسم الزبون هنا..."
-                               style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Cairo'; font-size: 1rem;"
-                               onfocus="this.style.borderColor='#4CAF50'"
-                               onblur="this.style.borderColor='#e0e0e0'; saveCustomerName(this.value)">
-                        <div style="font-size: 0.8rem; color: #666; margin-top: 5px; text-align: right;">
-                            (اختياري - سيظهر في رسالة الطلب)
-                        </div>
-                    </div>
-                    
                     <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;">
                         <div style="display: flex; justify-content: space-between;">
                             <div>
@@ -262,10 +137,6 @@ function showCartPage() {
     
     document.body.insertAdjacentHTML('beforeend', cartModalHTML);
     
-    // تحميل اسم الزبون المحفوظ مسبقاً
-    const savedCustomerName = localStorage.getItem('abushams_customer_name') || '';
-    document.getElementById('customerName').value = savedCustomerName;
-    
     // إضافة CSS للمودال
     const style = document.createElement('style');
     style.textContent = `
@@ -294,18 +165,8 @@ function showCartPage() {
             border-color: #4CAF50;
             outline: none;
         }
-        
-        #customerName:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
     `;
     document.head.appendChild(style);
-}
-
-// حفظ اسم الزبون
-function saveCustomerName(name) {
-    localStorage.setItem('abushams_customer_name', name.trim());
 }
 
 // حفظ ملاحظة المنتج الفردي
@@ -328,7 +189,6 @@ function updateCartQuantity(index, change) {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         showCartPage(); // تحديث الصفحة
-        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
     }
 }
 
@@ -339,8 +199,6 @@ function removeFromCart(index) {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         showCartPage();
-        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
-        showSmartNotification('تم الحذف', 'تم حذف المنتج من الطلب', 'success');
     }
 }
 
@@ -350,13 +208,12 @@ function closeCartModal() {
     if (modal) {
         modal.remove();
     }
-    renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية بعد الإغلاق
 }
 
 // مسح كل الطلبات
 function clearCart() {
     if (cart.length === 0) {
-        showSmartNotification('لا يوجد طلبات', 'سلة الطلبات فارغة بالفعل', 'info');
+        alert('سلة الطلبات فارغة بالفعل!');
         return;
     }
     
@@ -365,15 +222,14 @@ function clearCart() {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         closeCartModal();
-        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
-        showSmartNotification('تم المسح', 'تم مسح جميع الطلبات بنجاح', 'success');
+        alert('✓ تم مسح جميع الطلبات');
     }
 }
 
 // إرسال الطلب للمكتب عبر واتساب
 function sendCartToWhatsApp() {
     if (cart.length === 0) {
-        showSmartNotification('سلة فارغة', 'أضف منتجات أولاً قبل الإرسال', 'warning');
+        alert('🚫 سلة الطلبات فارغة!');
         return;
     }
     
@@ -462,13 +318,11 @@ function sendCartToWhatsApp() {
     
     // عرض تأكيد
     setTimeout(() => {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        showSmartNotification(
-            'تم الإرسال بنجاح', 
-            `تم إرسال ${cart.length} منتج (${totalItems} قطعة) للمكتب`,
-            'success',
-            5000
-        );
+        const confirmationMsg = customerName 
+            ? `✅ تم إرسال طلب الزبون ${customerName}!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`
+            : `✅ تم إرسال الطلب!\n\n${cart.length} منتج\n${cart.reduce((sum, item) => sum + item.quantity, 0)} قطعة`;
+        
+        alert(confirmationMsg);
     }, 500);
 }
 
@@ -559,29 +413,6 @@ function loadMoreItems() {
 function createProductCard(product) {
     const isFavorite = favorites.includes(product.code);
     const productName = product.name || 'منتج';
-    const cartItem = cart.find(item => item.code === product.code);
-    const quantityBadge = cartItem ? `
-        <div class="quantity-badge" 
-             style="
-                 position: absolute;
-                 top: 8px;
-                 left: 50px;
-                 width: 30px;
-                 height: 30px;
-                 background: #4CAF50;
-                 color: white;
-                 border-radius: 50%;
-                 display: flex;
-                 align-items: center;
-                 justify-content: center;
-                 font-size: 0.9rem;
-                 font-weight: bold;
-                 box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-                 z-index: 11;
-             ">
-            ${cartItem.quantity}
-        </div>
-    ` : '';
     
     return `
         <div class="product-card" data-code="${product.code}">
@@ -615,7 +446,6 @@ function createProductCard(product) {
                     ">
                 <i class="fas fa-cart-plus"></i>
             </button>
-            ${quantityBadge}
             
             <div class="product-image-container" onclick="openProduct('${product.code}', '${productName}', '${product.brand}')">
                 <img src="images/${product.code}.webp" 
@@ -706,7 +536,7 @@ async function openProduct(code, name, brand, event) {
         }
     }
     
-    showSmartNotification('لم يتم العثور', 'لم يتم العثور على ملف لهذا المنتج', 'error');
+    alert('لم يتم العثور على ملف لهذا المنتج');
 }
 
 function fileExists(url) {
@@ -730,15 +560,11 @@ function fileExists(url) {
 function toggleFavorite(code, event) {
     if (event) event.stopPropagation();
     const index = favorites.indexOf(code);
-    const product = products.find(p => p.code === code);
-    const productName = product?.name || code;
     
     if (index > -1) {
         favorites.splice(index, 1);
-        showSmartNotification('تم الإزالة', `تم إزالة ${productName} من المفضلة`, 'info');
     } else {
         favorites.push(code);
-        showSmartNotification('تم الإضافة', `تم إضافة ${productName} للمفضلة`, 'success');
     }
     
     localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -766,7 +592,6 @@ function clearFavorites() {
         if (showOnlyFavorites) {
             renderProducts();
         }
-        showSmartNotification('تم المسح', 'تم مسح جميع المفضلة بنجاح', 'success');
     }
 }
 
@@ -790,22 +615,56 @@ function addToCart(productCode, productName = '', productBrand = '') {
     
     if (existingItem) {
         existingItem.quantity += 1;
-        showSmartNotification('تم التحديث', `تم زيادة كمية ${productName || productCode} إلى ${existingItem.quantity}`, 'success');
     } else {
         cart.push({
             code: productCode,
             name: productName,
             brand: productBrand,
             quantity: 1,
-            note: '',
+            note: '', // إضافة حقل الملاحظة الافتراضي
             addedAt: new Date().toISOString()
         });
-        showSmartNotification('تم الإضافة', `تم إضافة ${productName || productCode} للطلب`, 'success');
     }
     
     localStorage.setItem('abushams_cart', JSON.stringify(cart));
     updateCartBadge();
-    renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
+    showCartNotification(productName || productCode);
+}
+
+// إشعار إضافة للطلب
+function showCartNotification(productName) {
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 9999;
+            animation: slideIn 0.3s ease;
+            font-family: 'Cairo';
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        ">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <div style="font-weight: bold;">تمت الإضافة للطلب</div>
+                <div style="font-size: 0.9rem;">${productName}</div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+    }, 2000);
 }
 
 function showAll() {
@@ -900,373 +759,6 @@ function setupEventListeners() {
     });
 }
 
-// نظام الإحصائيات والإدارة
-function showStatsPage() {
-    const statsModalHTML = `
-        <div class="modal" id="statsModal" style="display: flex; z-index: 100000;">
-            <div class="modal-content" style="max-width: 700px;">
-                <div style="padding: 25px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
-                        <h3 style="color: #1a237e; margin: 0;">
-                            <i class="fas fa-chart-bar"></i> إحصائيات النظام
-                        </h3>
-                        <button onclick="closeStatsModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
-                    </div>
-                    
-                    <!-- بطاقة إحصائيات المنتجات -->
-                    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-box"></i>
-                            </div>
-                            <div>
-                                <div style="font-size: 1.2rem; opacity: 0.9;">إجمالي المنتجات</div>
-                                <div style="font-size: 2.8rem; font-weight: bold;" id="totalProducts">${products.length}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- بطاقة إحصائية الصور لكل براند -->
-                    <div style="background: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 20px;">
-                        <h4 style="color: #4CAF50; margin-bottom: 15px; border-bottom: 2px solid #E8F5E9; padding-bottom: 10px;">
-                            <i class="fas fa-camera"></i> إحصائية الصور لكل ماركة
-                        </h4>
-                        <div id="brandImagesStats" style="max-height: 400px; overflow-y: auto;">
-                            <div style="text-align: center; padding: 30px; color: #666;">
-                                <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px;"></i>
-                                <div style="font-size: 1.1rem;">جاري حساب إحصائية الصور لكل ماركة...</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- بطاقة إحصائيات الصور -->
-                    <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-images"></i>
-                            </div>
-                            <div>
-                                <div style="font-size: 1.2rem; opacity: 0.9;">الصور المتاحة</div>
-                                <div style="font-size: 2.8rem; font-weight: bold;" id="availableImages">جاري العد...</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- بطاقة إحصائيات التصنيفات -->
-                    <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
-                            <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-tags"></i>
-                            </div>
-                            <div>
-                                <div style="font-size: 1.2rem; opacity: 0.9;">العلامات التجارية</div>
-                                <div style="font-size: 2.8rem; font-weight: bold;" id="totalBrands">${new Set(products.map(p => p.brand)).size}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- بطاقة إحصائيات المفضلة والطلبات -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
-                        <div style="background: #FF4081; color: white; border-radius: 12px; padding: 20px; text-align: center;">
-                            <div style="font-size: 2.5rem; margin-bottom: 10px;">
-                                <i class="fas fa-heart"></i>
-                            </div>
-                            <div style="font-size: 1.2rem; opacity: 0.9;">المفضلة</div>
-                            <div style="font-size: 2.2rem; font-weight: bold;" id="totalFavorites">${favorites.length}</div>
-                        </div>
-                        
-                        <div style="background: #2196F3; color: white; border-radius: 12px; padding: 20px; text-align: center;">
-                            <div style="font-size: 2.5rem; margin-bottom: 10px;">
-                                <i class="fas fa-shopping-cart"></i>
-                            </div>
-                            <div style="font-size: 1.2rem; opacity: 0.9;">الطلبات الحالية</div>
-                            <div style="font-size: 2.2rem; font-weight: bold;" id="totalCartItems">${cart.reduce((sum, item) => sum + item.quantity, 0)}</div>
-                        </div>
-                    </div>
-                    
-                    <!-- أزرار التحكم -->
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button onclick="checkAllImages()" style="flex: 1; padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 10px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                            <i class="fas fa-sync-alt"></i> تحديث الإحصائيات
-                        </button>
-                        <button onclick="exportStats()" style="flex: 1; padding: 15px; background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; border: none; border-radius: 10px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
-                            <i class="fas fa-download"></i> تصدير الإحصائيات
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // إضافة المودال للصفحة
-    if (document.getElementById('statsModal')) {
-        document.getElementById('statsModal').remove();
-    }
-    
-    document.body.insertAdjacentHTML('beforeend', statsModalHTML);
-    
-    // حساب الصور المتاحة
-    countAvailableImages();
-    
-    // حساب إحصائية الصور لكل براند
-    showBrandImagesStats();
-}
-
-// دالة إغلاق صفحة الإحصائيات
-function closeStatsModal() {
-    const modal = document.getElementById('statsModal');
-    if (modal) {
-        modal.remove();
-    }
-}
-
-// دالة عد الصور المتاحة
-async function countAvailableImages() {
-    let imageCount = 0;
-    let loadingCount = 0;
-    const totalProducts = products.length;
-    
-    // تحديث العداد أثناء العملية
-    const updateCounter = () => {
-        document.getElementById('availableImages').innerHTML = `
-            <span>${imageCount}</span>
-            <small style="font-size: 1rem; opacity: 0.8;"> / ${totalProducts}</small>
-        `;
-    };
-    
-    for (const product of products) {
-        loadingCount++;
-        
-        // تحديث النسبة كل 10 منتجات
-        if (loadingCount % 10 === 0) {
-            updateCounter();
-        }
-        
-        // التحقق من وجود أي صورة للمنتج
-        let hasImage = false;
-        for (const ext of SUPPORTED_EXTENSIONS) {
-            const url = `images/${product.code}.${ext}`;
-            const exists = await checkImageExists(url);
-            if (exists) {
-                hasImage = true;
-                break;
-            }
-        }
-        
-        if (hasImage) {
-            imageCount++;
-        }
-    }
-    
-    // التحديث النهائي
-    updateCounter();
-    
-    // إضافة نسبة مئوية
-    const percentage = Math.round((imageCount / totalProducts) * 100);
-    document.getElementById('availableImages').innerHTML = `
-        <span>${imageCount}</span>
-        <small style="font-size: 1rem; opacity: 0.8;"> / ${totalProducts}</small>
-        <div style="font-size: 1rem; margin-top: 5px; background: rgba(255,255,255,0.3); padding: 3px 10px; border-radius: 20px; display: inline-block;">
-            ${percentage}%
-        </div>
-    `;
-}
-
-// دالة التحقق من وجود صورة
-function checkImageExists(url) {
-    return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => {
-            if (url.endsWith('.pdf')) {
-                fetch(url, { method: 'HEAD' })
-                    .then(res => resolve(res.ok))
-                    .catch(() => resolve(false));
-            } else {
-                resolve(false);
-            }
-        };
-        img.src = url;
-    });
-}
-
-// دالة حساب وإظهار إحصائية الصور لكل براند
-async function showBrandImagesStats() {
-    const container = document.getElementById('brandImagesStats');
-    if (!container) return;
-    
-    // إحصائية البراندات
-    const brandStats = {};
-    
-    // تجميع إحصائية لكل براند
-    products.forEach(product => {
-        if (!brandStats[product.brand]) {
-            brandStats[product.brand] = {
-                total: 0,
-                withImages: 0,
-                percentage: 0
-            };
-        }
-        brandStats[product.brand].total++;
-    });
-    
-    // حساب الصور لكل براند (نفحص عينة)
-    for (const brand in brandStats) {
-        const brandProducts = products.filter(p => p.brand === brand);
-        const sampleSize = Math.min(10, brandProducts.length); // فحص 10 منتجات كحد أقصى لكل براند
-        
-        let imagesCount = 0;
-        
-        for (let i = 0; i < sampleSize; i++) {
-            const product = brandProducts[i];
-            let hasImage = false;
-            
-            // التحقق من وجود أي صورة
-            for (const ext of SUPPORTED_EXTENSIONS) {
-                const url = `images/${product.code}.${ext}`;
-                const exists = await checkImageExists(url);
-                if (exists) {
-                    hasImage = true;
-                    break;
-                }
-            }
-            
-            if (hasImage) {
-                imagesCount++;
-            }
-        }
-        
-        // حساب نسبة تقديرية
-        const estimatedWithImages = Math.round((imagesCount / sampleSize) * brandStats[brand].total);
-        brandStats[brand].withImages = estimatedWithImages;
-        brandStats[brand].percentage = brandStats[brand].total > 0 ? 
-            Math.round((estimatedWithImages / brandStats[brand].total) * 100) : 0;
-    }
-    
-    // ترتيب البراندات حسب عدد المنتجات
-    const sortedBrands = Object.entries(brandStats).sort((a, b) => b[1].total - a[1].total);
-    
-    // إنشاء الجدول
-    let html = `
-        <div style="display: flex; justify-content: space-between; padding: 12px 15px; background: #E8F5E9; border-radius: 8px; margin-bottom: 10px; font-weight: bold; color: #2E7D32;">
-            <div style="flex: 4;">العلامة التجارية</div>
-            <div style="flex: 2; text-align: center;">المنتجات</div>
-            <div style="flex: 2; text-align: center;">الصور</div>
-            <div style="flex: 2; text-align: center;">النسبة</div>
-        </div>
-    `;
-    
-    // إضافة كل براند
-    sortedBrands.forEach(([brand, stats]) => {
-        const colorClass = stats.percentage >= 80 ? 'success' : 
-                          stats.percentage >= 50 ? 'warning' : 'danger';
-        
-        const colors = {
-            success: { bg: '#E8F5E9', text: '#2E7D32', icon: '✅' },
-            warning: { bg: '#FFF3E0', text: '#EF6C00', icon: '⚠️' },
-            danger: { bg: '#FFEBEE', text: '#C62828', icon: '❌' }
-        };
-        
-        const config = colors[colorClass];
-        
-        html += `
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 15px; background: ${config.bg}; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid ${config.text};">
-                <div style="flex: 4; font-weight: bold; color: #333; display: flex; align-items: center; gap: 8px;">
-                    <span style="color: ${config.text};">${config.icon}</span>
-                    ${brand}
-                </div>
-                <div style="flex: 2; text-align: center; font-weight: bold; color: #333;">
-                    ${stats.total}
-                </div>
-                <div style="flex: 2; text-align: center; font-weight: bold; color: ${config.text};">
-                    ${stats.withImages}
-                </div>
-                <div style="flex: 2; text-align: center;">
-                    <div style="display: inline-block; background: white; padding: 5px 12px; border-radius: 20px; font-weight: bold; color: ${config.text}; border: 1px solid ${config.text};">
-                        ${stats.percentage}%
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-    
-    // إضافة الإجماليات
-    const totalProducts = Object.values(brandStats).reduce((sum, stat) => sum + stat.total, 0);
-    const totalImages = Object.values(brandStats).reduce((sum, stat) => sum + stat.withImages, 0);
-    const overallPercentage = totalProducts > 0 ? Math.round((totalImages / totalProducts) * 100) : 0;
-    
-    html += `
-        <div style="display: flex; justify-content: space-between; padding: 15px; background: linear-gradient(135deg, #4CAF50, #8BC34A); border-radius: 8px; margin-top: 15px; color: white; font-weight: bold;">
-            <div style="flex: 4;">الإجمالي</div>
-            <div style="flex: 2; text-align: center;">${totalProducts}</div>
-            <div style="flex: 2; text-align: center;">${totalImages}</div>
-            <div style="flex: 2; text-align: center;">
-                <div style="display: inline-block; background: white; padding: 5px 12px; border-radius: 20px; color: #4CAF50; font-weight: bold;">
-                    ${overallPercentage}%
-                </div>
-            </div>
-        </div>
-    `;
-    
-    container.innerHTML = html;
-}
-
-// دالة فحص جميع الصور
-async function checkAllImages() {
-    showSmartNotification('جاري التحديث', 'جاري تحديث إحصائيات الصور، قد تستغرق العملية بضع ثواني...', 'info', 5000);
-    
-    // إعادة حساب الصور
-    await countAvailableImages();
-    
-    // إعادة حساب إحصائية الصور لكل براند
-    await showBrandImagesStats();
-    
-    showSmartNotification('تم التحديث', 'تم تحديث جميع الإحصائيات بنجاح', 'success');
-}
-
-// دالة تصدير الإحصائيات
-function exportStats() {
-    const stats = {
-        تاريخ_التصدير: new Date().toLocaleString('ar-EG'),
-        إجمالي_المنتجات: products.length,
-        العلامات_التجارية: new Set(products.map(p => p.brand)).size,
-        المنتجات_المفضلة: favorites.length,
-        منتجات_الطلب_الحالي: cart.reduce((sum, item) => sum + item.quantity, 0),
-        تفاصيل_العلامات_التجارية: {}
-    };
-    
-    // إحصاء العلامات التجارية
-    const brands = {};
-    products.forEach(product => {
-        brands[product.brand] = (brands[product.brand] || 0) + 1;
-    });
-    
-    stats.تفاصيل_العلامات_التجارية = brands;
-    
-    // تحويل إلى نص
-    let exportText = `📊 إحصائيات نظام IBC\n`;
-    exportText += `📅 ${stats.تاريخ_التصدير}\n`;
-    exportText += `═══════════════════════════════════\n\n`;
-    exportText += `📦 إجمالي المنتجات: ${stats.إجمالي_المنتجات}\n`;
-    exportText += `🏷️ عدد العلامات التجارية: ${stats.العلامات_التجارية}\n`;
-    exportText += `❤️ المنتجات المفضلة: ${stats.المنتجات_المفضلة}\n`;
-    exportText += `🛒 منتجات الطلب الحالي: ${stats.منتجات_الطلب_الحالي}\n`;
-    exportText += `═══════════════════════════════════\n\n`;
-    exportText += `🏭 توزيع العلامات التجارية:\n`;
-    
-    Object.entries(brands)
-        .sort((a, b) => b[1] - a[1])
-        .forEach(([brand, count]) => {
-            const percentage = Math.round((count / products.length) * 100);
-            exportText += `• ${brand}: ${count} منتج (${percentage}%)\n`;
-        });
-    
-    // نسخ إلى الحافظة
-    navigator.clipboard.writeText(exportText).then(() => {
-        showSmartNotification('تم التصدير', 'تم نسخ الإحصائيات إلى الحافظة', 'success');
-    });
-}
-
 // تشغيل التطبيق
 document.addEventListener('DOMContentLoaded', init);
 
@@ -1297,32 +789,37 @@ function startScanner() {
     html5QrCode.start(
         { facingMode: "environment" }, 
         config,
-        async (decodedText) => {
-            // 1. إيقاف الكاميرا أولاً
+        (decodedText) => {
+            // 1. وضع الكود المقروء في خانة البحث
+            searchInput.value = decodedText;
+
+            // 2. إلغاء وضع المفضلة فوراً لضمان البحث في كل المنتجات
+            showOnlyFavorites = false;
+            currentBrand = 'الكل';
+            currentSub = 'الكل';
+
+            // 3. تحديث واجهة الأزرار (الفلاتر) لتعكس وضع "الكل"
+            renderBrands();
+            renderSubCategories();
+            updateActiveNav('home'); // تحديث القائمة السفلية لتظهر أننا في الرئيسية
+
+            // 4. إيقاف الكاميرا
             stopScanner();
             
-            // 2. البحث عن المنتج
-            const product = products.find(p => p.code === decodedText);
-            
-            if (!product) {
-                showSmartNotification('لم يتم العثور', `الباركود ${decodedText} غير موجود`, 'error');
-                // إظهار حقل البحث مع الباركود للبحث اليدوي
-                searchInput.value = decodedText;
+            // 5. استدعاء دالة البحث الأصلية لتحديث قائمة المنتجات
+            if (typeof handleSearch === "function") {
                 handleSearch();
-                return;
             }
             
-            // 3. عرض نافذة الإضافة المباشرة
-            showQuickAddModal(product, decodedText);
-            
-            // 4. إهتزاز خفيف للموبايل عند نجاح القراءة
+            // إهتزاز خفيف للموبايل عند نجاح القراءة
             if (navigator.vibrate) navigator.vibrate(100);
         }
     ).catch(err => {
-        showSmartNotification('خطأ في الكاميرا', 'يرجى السماح بصلاحية الكاميرا', 'error');
+        alert("يرجى السماح بصلاحية الكاميرا");
         console.error(err);
     });
 }
+
 function stopScanner() {
     // التأكد أن الكاميرا تعمل أصلاً قبل محاولة إغلاقها
     if (html5QrCode && html5QrCode.getState() > 1) { 
@@ -1340,277 +837,36 @@ function stopScanner() {
         document.getElementById('reader-container').style.display = 'none';
     }
 }
-// نافذة الإضافة المباشرة عند المسح الضوئي
-function showQuickAddModal(product, scannedCode) {
-    const modalHTML = `
-        <div class="modal" id="quickAddModal" style="display: flex; z-index: 100000;">
-            <div class="modal-content" style="max-width: 400px; animation: slideUp 0.3s ease;">
-                <div style="padding: 25px; text-align: center;">
-                    <div style="font-size: 3rem; color: #4CAF50; margin-bottom: 15px;">
-                        <i class="fas fa-barcode"></i>
-                    </div>
-                    
-                    <h3 style="color: #333; margin-bottom: 10px; font-family: 'Cairo';">تم مسح المنتج بنجاح!</h3>
-                    
-                    <div style="background: #f8f9fa; border-radius: 10px; padding: 15px; margin-bottom: 20px; text-align: right;">
-                        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <div style="width: 60px; height: 60px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                                <img src="images/${product.code}.webp" 
-                                     style="max-width: 100%; max-height: 100%; object-fit: contain;"
-                                     onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60\" height=\"60\"><rect width=\"100%\" height=\"100%\" fill=\"%23eee\"/><text x=\"50%\" y=\"50%\" text-anchor=\"middle\" dy=\".3em\" font-family=\"Cairo\" font-size=\"10\" fill=\"%23999\">${product.code}</text></svg>'">
-                            </div>
-                            <div style="flex: 1;">
-                                <div style="font-weight: bold; color: #1a237e;">${product.brand}</div>
-                                <div style="font-size: 0.9rem; color: #666;">${product.name || 'منتج'}</div>
-                                <div style="font-family: monospace; font-size: 0.8rem; color: #ff9800;">${scannedCode}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- اختيار الكمية -->
-                    <div style="margin-bottom: 25px;">
-                        <div style="font-weight: bold; color: #666; margin-bottom: 10px;">اختر الكمية المطلوبة:</div>
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-                            <button id="decreaseQty" 
-                                    style="width: 50px; height: 50px; border: none; background: #f5f5f5; border-radius: 50%; font-size: 1.5rem; cursor: pointer; color: #666;"
-                                    onmouseover="this.style.background='#e0e0e0'"
-                                    onmouseout="this.style.background='#f5f5f5'">
-                                −
-                            </button>
-                            
-                            <div style="font-size: 2.5rem; font-weight: bold; color: #1a237e; min-width: 60px; text-align: center;" id="quantityDisplay">1</div>
-                            
-                            <button id="increaseQty" 
-                                    style="width: 50px; height: 50px; border: none; background: #4CAF50; border-radius: 50%; font-size: 1.5rem; cursor: pointer; color: white;"
-                                    onmouseover="this.style.background='#45a049'"
-                                    onmouseout="this.style.background='#4CAF50'">
-                                +
-                            </button>
-                        </div>
-                        <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
-                            <button class="quickQtyBtn" data-qty="5">5</button>
-                            <button class="quickQtyBtn" data-qty="10">10</button>
-                            <button class="quickQtyBtn" data-qty="20">20</button>
-                            <button class="quickQtyBtn" data-qty="50">50</button>
-                        </div>
-                    </div>
-                    
-                    <!-- الملاحظة السريعة -->
-                    <div style="margin-bottom: 20px;">
-                        <textarea id="quickNote" 
-                                  placeholder="ملاحظة سريعة (اختياري)..."
-                                  style="width: 100%; height: 60px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: none; font-size: 0.9rem;"></textarea>
-                    </div>
-                    
-                    <!-- أزرار التحكم -->
-                    <div style="display: flex; gap: 10px;">
-                        <button id="cancelQuickAdd" 
-                                style="flex: 1; padding: 15px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer;">
-                            إلغاء
-                        </button>
-                        <button id="addToCartQuick" 
-                                style="flex: 2; padding: 15px; background: linear-gradient(135deg, #4CAF50, #8BC34A); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <i class="fas fa-cart-plus"></i> إضافة للطلب
-                        </button>
-                    </div>
-                    
-                    <!-- الخيارات الإضافية -->
-                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
-                        <button id="openProductDetails" 
-                                style="background: none; border: none; color: #2196F3; cursor: pointer; font-family: 'Cairo'; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; margin: 0 auto;">
-                            <i class="fas fa-external-link-alt"></i> فتح تفاصيل المنتج
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // إضافة النافذة للصفحة
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-    
-    // إضافة CSS للكميات السريعة
-    const style = document.createElement('style');
-    style.textContent = `
-        .quickQtyBtn {
-            padding: 8px 15px;
-            background: #E3F2FD;
-            color: #2196F3;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-family: 'Cairo';
-            font-weight: bold;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        
-        .quickQtyBtn:hover {
-            background: #2196F3;
-            color: white;
-        }
-        
-        #quickAddModal .modal-content {
-            animation: slideUp 0.3s ease;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // إدارة الكمية
-    let quantity = 1;
-    const quantityDisplay = document.getElementById('quantityDisplay');
-    const decreaseBtn = document.getElementById('decreaseQty');
-    const increaseBtn = document.getElementById('increaseQty');
-    
-    decreaseBtn.addEventListener('click', () => {
-        if (quantity > 1) {
-            quantity--;
-            quantityDisplay.textContent = quantity;
-        }
-    });
-    
-    increaseBtn.addEventListener('click', () => {
-        if (quantity < 999) {
-            quantity++;
-            quantityDisplay.textContent = quantity;
-        }
-    });
-    
-    // الكميات السريعة
-    document.querySelectorAll('.quickQtyBtn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            quantity = parseInt(btn.dataset.qty);
-            quantityDisplay.textContent = quantity;
-        });
-    });
-    
-    // إضافة للطلب
-    document.getElementById('addToCartQuick').addEventListener('click', () => {
-        const note = document.getElementById('quickNote').value.trim();
-        
-        // البحث عن المنتج في السلة الحالية
-        const existingItem = cart.find(item => item.code === product.code);
-        
-        if (existingItem) {
-            existingItem.quantity += quantity;
-            if (note) existingItem.note = note;
-            showSmartNotification('تم التحديث', `تم إضافة ${quantity} قطعة إلى ${product.name || product.code}`, 'success');
-        } else {
-            cart.push({
-                code: product.code,
-                name: product.name || '',
-                brand: product.brand,
-                quantity: quantity,
-                note: note,
-                addedAt: new Date().toISOString()
-            });
-            showSmartNotification('تم الإضافة', `تم إضافة ${product.name || product.code} للطلب (${quantity} قطعة)`, 'success');
-        }
-        
-        localStorage.setItem('abushams_cart', JSON.stringify(cart));
-        updateCartBadge();
-        closeQuickAddModal();
-        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
-    });
-    
-    // إلغاء
-    document.getElementById('cancelQuickAdd').addEventListener('click', closeQuickAddModal);
-    
-    // فتح تفاصيل المنتج
-    document.getElementById('openProductDetails').addEventListener('click', () => {
-        closeQuickAddModal();
-        openProduct(product.code, product.name, product.brand);
-    });
-    
-    // إغلاق بالنقر خارج النافذة
-    const modal = document.getElementById('quickAddModal');
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeQuickAddModal();
-        }
-    });
-    
-    // إغلاق بالزر ESC
-    const handleEsc = (e) => {
-        if (e.key === 'Escape') {
-            closeQuickAddModal();
-        }
-    };
-    document.addEventListener('keydown', handleEsc);
-    
-    // التركيز على حقل الملاحظة
-    setTimeout(() => {
-        document.getElementById('quickNote').focus();
-    }, 300);
+
+// حفظ اسم الزبون (إضافة جديدة)
+function saveCustomerName(name) {
+    localStorage.setItem('abushams_customer_name', name.trim());
 }
 
-// إغلاق نافذة الإضافة السريعة
-function closeQuickAddModal() {
-    const modal = document.getElementById('quickAddModal');
-    if (modal) {
-        modal.style.opacity = '0';
-        modal.style.transform = 'scale(0.95)';
-        
-        setTimeout(() => {
-            modal.remove();
-        }, 300);
-    }
-}
-// عرض العلامات التجارية كقائمة منسدلة
-function renderBrands() {
-    const brands = ['ماركات', ...new Set(products.map(p => p.brand))];
-    const brandDropdown = document.getElementById('brandDropdown');
-    brandDropdown.innerHTML = brands.map(brand => `
-        <option value="${brand}" ${currentBrand === brand ? 'selected' : ''}>
-            ${brand}
-        </option>
-    `).join('');
-}
+// إضافة خانة اسم الزبون في showCartPage (تعديل)
+// في دالة showCartPage، أضف هذا بعد زر الإغلاق (×):
+/*
+<!-- إضافة خانة اسم الزبون -->
+<div style="margin-bottom: 20px;">
+    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+        <i class="fas fa-user" style="color: #1a237e;"></i>
+        <label style="font-weight: bold; color: #1a237e;">اسم الزبون:</label>
+    </div>
+    <input type="text" 
+           id="customerName" 
+           placeholder="أدخل اسم الزبون هنا..."
+           style="width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Cairo'; font-size: 1rem;"
+           onfocus="this.style.borderColor='#4CAF50'"
+           onblur="this.style.borderColor='#e0e0e0'; saveCustomerName(this.value)">
+    <div style="font-size: 0.8rem; color: #666; margin-top: 5px; text-align: right;">
+        (اختياري - سيظهر في رسالة الطلب)
+    </div>
+</div>
+*/
 
-// عرض التصنيفات الفرعية كقائمة منسدلة
-function renderSubCategories() {
-    let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
-    const subs = ['الافرع', ...new Set(filtered.map(p => p.sub))];
-    const subDropdown = document.getElementById('subDropdown');
-    subDropdown.innerHTML = subs.map(sub => `
-        <option value="${sub}" ${currentSub === sub ? 'selected' : ''}>
-            ${sub}
-        </option>
-    `).join('');
-    subDropdown.parentElement.style.display = subs.length <= 1 ? 'none' : 'block';
-}
-
-// عند تغيير العلامة التجارية
-function setBrand(brand) {
-    currentBrand = brand;
-    currentSub = 'الكل';
-    showOnlyFavorites = false;
-    showAllBtn.classList.remove('active');
-    showFavBtn.classList.remove('active');
-    renderSubCategories();
-    renderProducts();
-    updateActiveNav();
-}
-
-// عند تغيير التصنيف الفرعي
-function setSub(sub) {
-    currentSub = sub;
-    showOnlyFavorites = false;
-    showAllBtn.classList.remove('active');
-    showFavBtn.classList.remove('active');
-    renderProducts();
-    updateActiveNav();
-}
-
-
+// وفي نهاية showCartPage، أضف هذا قبل إضافة الـ CSS:
+/*
+// تحميل اسم الزبون المحفوظ مسبقاً
+const savedCustomerName = localStorage.getItem('abushams_customer_name') || '';
+document.getElementById('customerName').value = savedCustomerName;
+*/
