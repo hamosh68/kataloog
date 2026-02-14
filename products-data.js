@@ -1,7 +1,8 @@
 // بيانات المنتجات
 const products = [
-    { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381215718', name: '' },
-    { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333634', name: '' },
+       
+    { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381215718', name: 'قلم فوسفوري' , price: '0.525', barcode: '22102' },
+    { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333634', name: 'قلم فوسفوري' , price: '0.750', barcode: '22515' }, 
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333641', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333658', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333665', name: '' },
@@ -504,8 +505,10 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871286', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293-1', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293', name: 'مقص مدرسي' },
-  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955233875416', name: 'دفتر رسم بياني' }
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955233875416', name: 'دفتر رسم بياني' },
+    { brand: 'ارت لاين', sub: 'اقلام ', code: '3700206704517', name: 'قلم ناشف', price: '0.525', barcode: '0521525' }
   ];
+
 
 
 
