@@ -559,6 +559,8 @@ function loadMoreItems() {
 function createProductCard(product) {
     const isFavorite = favorites.includes(product.code);
     const productName = product.name || 'منتج';
+    const productPrice = product.price ? `<div class="product-price">💰 ${product.price} د.ك</div>` : '';
+    const productBarcode = product.barcode ? `<div class="product-barcode">🔲 ${product.barcode}</div>` : '';
     const cartItem = cart.find(item => item.code === product.code);
     const quantityBadge = cartItem ? `
         <div class="quantity-badge" 
@@ -615,6 +617,7 @@ function createProductCard(product) {
                     ">
                 <i class="fas fa-cart-plus"></i>
             </button>
+            
             ${quantityBadge}
             
             <div class="product-image-container" onclick="openProduct('${product.code}', '${productName}', '${product.brand}')">
@@ -626,24 +629,11 @@ function createProductCard(product) {
             </div>
             
             <div class="product-info">
-                <div class="product-code">${product.code}</div>
-                <div class="product-name">${productName}</div>
-                <div class="product-brand">${product.brand}</div>
-            </div>
-            
-            <div class="product-actions">
-                <button class="action-button view" onclick="openProduct('${product.code}', '${productName}', '${product.brand}', event)">
-                    <i class="fas fa-eye"></i> عرض
-                </button>
-                <button class="action-button share" onclick="shareProduct('${product.code}', '${productName}', '${product.brand}', event)">
-                    <i class="fab fa-whatsapp"></i> مشاركة
-                </button>
-                <a href="images/${product.code}.webp" 
-                   download="${product.code}.webp" 
-                   class="action-button download" 
-                   onclick="event.stopPropagation();">
-                    <i class="fas fa-download"></i> حفظ
-                </a>
+                <div class="product-brand">🏭 ${product.brand}</div>
+                <div class="product-name">📝 ${productName}</div>
+                ${productBarcode}
+                <div class="product-code">🔢 ${product.code}</div>
+                ${productPrice}
             </div>
         </div>
     `;
@@ -1612,4 +1602,5 @@ function setSub(sub) {
     renderProducts();
     updateActiveNav();
 }
+
 
