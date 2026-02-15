@@ -175,6 +175,7 @@ function showCartPage() {
                 <div style="display: flex; align-items: center; gap: 15px;">
                     <div style="display: flex; align-items: center; gap: 10px; background: #f5f5f5; padding: 5px 10px; border-radius: 20px;">
                         <button onclick="updateCartQuantity(${index}, -1)" style="width: 25px; height: 25px; border: none; background: #ddd; border-radius: 50%; cursor: pointer; font-weight: bold;">−</button>
+
                         <span style="font-weight: bold; min-width: 30px; text-align: center;">${item.quantity}</span>
                         <button onclick="updateCartQuantity(${index}, 1)" style="width: 25px; height: 25px; border: none; background: #4CAF50; color: white; border-radius: 50%; cursor: pointer; font-weight: bold;">+</button>
                     </div>
@@ -245,6 +246,10 @@ function showCartPage() {
                     <div style="display: flex; gap: 10px;">
                         <button onclick="sendCartToWhatsApp()" style="flex: 2; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
                             <i class="fab fa-whatsapp"></i> إرسال الطلب للمكتب
+<button onclick="showOrderReport()" 
+        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #9C27B0, #673AB7); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <i class="fas fa-file-alt"></i> تقرير
+</button>
                         </button>
                         <button onclick="clearCart()" style="flex: 1; padding: 12px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; cursor: pointer;">
                             مسح الكل
@@ -1644,6 +1649,276 @@ function setSub(sub) {
     showFavBtn.classList.remove('active');
     renderProducts();
     updateActiveNav();
+}
+// ===============================
+// نظام التقرير المنبثق
+// ===============================
+
+function showOrderReport() {
+    if (cart.length === 0) {
+        showSmartNotification('سلة فارغة', 'لا توجد منتجات لعرضها', 'warning');
+        return;
+    }
+
+    // توليد رقم الطلب
+    const orderNumber = generateOrderNumber();
+    const currentDate = new Date().toLocaleDateString('ar-EG');
+    const currentTime = new Date().toLocaleTimeString('ar-EG');
+    const customerName = document.getElementById('customerName')?.value || 'غير محدد';
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // بناء جدول المنتجات
+    let productsTable = '';
+    cart.forEach((item, index) => {
+        const product = products.find(p => p.code === item.code);
+        productsTable += `
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${index + 1}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">${item.brand}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">${product?.name || 'منتج'}</td>
+                <td style="padding: 10px; border: 1px solid #ddd; direction: ltr; text-align: left;">${item.code}</td>
+                <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">${item.quantity}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">${item.note || '-'}</td>
+            </tr>
+        `;
+    });
+
+    const generalNote = document.getElementById('cartNote')?.value || '';
+
+    // نافذة التقرير
+    const reportWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes');
+    
+    reportWindow.document.write(`
+        <!DOCTYPE html>
+        <html dir="rtl" lang="ar">
+        <head>
+            <meta charset="UTF-8">
+            <title>تقرير الطلب - IBC</title>
+            <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: 'Cairo', sans-serif;
+                }
+                body {
+                    background: #f5f5f5;
+                    padding: 30px;
+                }
+                .report-container {
+                    max-width: 1100px;
+                    margin: 0 auto;
+                    background: white;
+                    border-radius: 20px;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                    overflow: hidden;
+                }
+                .report-header {
+                    background: linear-gradient(135deg, #1a237e, #3949ab);
+                    color: white;
+                    padding: 30px;
+                    text-align: center;
+                }
+                .report-header h1 {
+                    font-size: 2.5rem;
+                    margin-bottom: 10px;
+                }
+                .report-header h3 {
+                    font-size: 1.2rem;
+                    opacity: 0.9;
+                }
+                .report-info {
+                    padding: 25px;
+                    background: #f8f9fa;
+                    border-bottom: 1px solid #eee;
+                }
+                .info-grid {
+                    display: grid;
+                    grid-template-columns: repeat(4, 1fr);
+                    gap: 20px;
+                }
+                .info-item {
+                    text-align: center;
+                }
+                .info-label {
+                    font-size: 0.9rem;
+                    color: #666;
+                    margin-bottom: 5px;
+                }
+                .info-value {
+                    font-size: 1.3rem;
+                    font-weight: bold;
+                    color: #1a237e;
+                }
+                .products-section {
+                    padding: 25px;
+                }
+                .products-section h2 {
+                    color: #1a237e;
+                    margin-bottom: 20px;
+                    border-bottom: 2px solid #e0e0e0;
+                    padding-bottom: 10px;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 25px;
+                }
+                th {
+                    background: #1a237e;
+                    color: white;
+                    padding: 12px;
+                    font-weight: 600;
+                }
+                td {
+                    padding: 12px;
+                    border: 1px solid #ddd;
+                }
+                tr:nth-child(even) {
+                    background: #f8f9fa;
+                }
+                .notes-section {
+                    padding: 0 25px 25px 25px;
+                }
+                .notes-box {
+                    background: #fff9e6;
+                    border: 1px solid #ffd700;
+                    border-radius: 10px;
+                    padding: 20px;
+                    margin-top: 10px;
+                }
+                .report-footer {
+                    background: #f8f9fa;
+                    padding: 20px;
+                    text-align: center;
+                    border-top: 1px solid #eee;
+                    color: #666;
+                }
+                .action-buttons {
+                    padding: 25px;
+                    display: flex;
+                    gap: 15px;
+                    justify-content: center;
+                    border-top: 1px solid #eee;
+                }
+                .btn {
+                    padding: 12px 30px;
+                    border: none;
+                    border-radius: 8px;
+                    font-family: 'Cairo';
+                    font-weight: bold;
+                    cursor: pointer;
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 1rem;
+                    transition: all 0.3s;
+                }
+                .btn-print {
+                    background: linear-gradient(135deg, #2196F3, #1976D2);
+                    color: white;
+                }
+                .btn-print:hover {
+                    transform: translateY(-2px);
+                    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+                }
+                .btn-close {
+                    background: #f5f5f5;
+                    color: #666;
+                    border: 1px solid #ddd;
+                }
+                .btn-close:hover {
+                    background: #eee;
+                }
+                @media print {
+                    body { background: white; padding: 0; }
+                    .report-container { box-shadow: none; }
+                    .action-buttons { display: none; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="report-container">
+                <div class="report-header">
+                    <h1>📋 تقرير الطلب</h1>
+                    <h3>نظام إدارة طلبات IBC</h3>
+                </div>
+                
+                <div class="report-info">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">رقم الطلب</div>
+                            <div class="info-value">${orderNumber}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">التاريخ</div>
+                            <div class="info-value">${currentDate}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">الوقت</div>
+                            <div class="info-value">${currentTime}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">الزبون</div>
+                            <div class="info-value">${customerName}</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="products-section">
+                    <h2>🛒 تفاصيل المنتجات</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>الماركة</th>
+                                <th>المنتج</th>
+                                <th>الكود</th>
+                                <th>الكمية</th>
+                                <th>ملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${productsTable}
+                        </tbody>
+                    </table>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 10px;">
+                        <span style="font-weight: bold; color: #1a237e;">إجمالي المنتجات:</span>
+                        <span style="font-size: 1.3rem; font-weight: bold; color: #4CAF50;">${cart.length}</span>
+                        <span style="font-weight: bold; color: #1a237e;">إجمالي القطع:</span>
+                        <span style="font-size: 1.3rem; font-weight: bold; color: #4CAF50;">${totalItems}</span>
+                    </div>
+                </div>
+                
+                ${generalNote ? `
+                <div class="notes-section">
+                    <h2 style="color: #1a237e; margin-bottom: 10px;">📝 ملاحظات عامة</h2>
+                    <div class="notes-box">
+                        ${generalNote}
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="report-footer">
+                    <p>تم إنشاء هذا التقرير بواسطة نظام IBC - جميع الحقوق محفوظة © ${new Date().getFullYear()}</p>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="btn btn-print" onclick="window.print()">
+                        <i class="fas fa-print"></i> طباعة التقرير
+                    </button>
+                    <button class="btn btn-close" onclick="window.close()">
+                        <i class="fas fa-times"></i> إغلاق
+                    </button>
+                </div>
+            </div>
+        </body>
+        </html>
+    `);
+    
+    reportWindow.document.close();
 }
 
 
