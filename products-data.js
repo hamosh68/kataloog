@@ -539,8 +539,8 @@ const products = [
   { brand: 'Stationery IBC', sub: 'اقلام', code: '69841287402146-2', name: 'اقلام 5*1 شفاف', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '69841287402146', name: 'اقلام 5*1 شفاف', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233842357', name: 'دفتر ورق ملون', price: '', barcode: '' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855241', name: 'دفتر جامعة 5 موضوع', price: '', barcode: '' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855258', name: 'دفتر جامعة 5 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9556233855241', name: 'دفتر جامعة 5 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9556233855258', name: 'دفتر جامعة 5 موضوع', price: '', barcode: '' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855265-1', name: '', price: '', barcode: '' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855265', name: '', price: '', barcode: '' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855272', name: '', price: '', barcode: '' },
@@ -576,6 +576,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233994155-2', name: 'دفتر اجتماعيات', price: '', barcode: '' },
   { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233994155', name: 'دفتر اجتماعيات', price: '', barcode: '' }
   ];
+
 
 
 
