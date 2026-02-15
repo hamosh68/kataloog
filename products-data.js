@@ -1,5 +1,5 @@
 // بيانات المنتجات
-const products = [  
+const products = [
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381215718', name: 'قلم فوسفوري' , price: '0.525', barcode: '22102' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333634', name: 'قلم فوسفوري' , price: '0.750', barcode: '22515' }, 
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381333641', name: '' },
@@ -62,7 +62,7 @@ const products = [
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217873280', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217873297', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217873303', name: '' },
-    { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-1', name: 'شنطة مدرسية' , price: '1.750', barcode: 'G.12548' },
+    { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-1', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-2', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-3', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303', name: '' },
@@ -505,13 +505,37 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293-1', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955233875416', name: 'دفتر رسم بياني' },
-    { brand: 'ارت لاين', sub: 'اقلام ', code: '3700206704517', name: 'قلم ناشف', price: '0.525', barcode: '0521525' }
+  { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-1', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-2', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-3', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-4', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-5', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-1', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc200802' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-2', name: 'دفتر تلوين مع يد A4 ', price: '0.800', barcode: 'ibc20080' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-3', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc20080' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-4', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc20080' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-5', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc20080' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-6', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc200802' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-7', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc200802' },
+  { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc200802' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-1', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-10', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-11', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-12', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-13', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-14', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-15', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-2', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-3', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-4', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-5', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-6', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-7', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-8', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912-9', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233865912', name: 'دفتر PP سادة 80 ورقة سلك 70GM A4 مشكل', price: '', barcode: '' }
   ];
-
-
-
-
-
 
 
 
