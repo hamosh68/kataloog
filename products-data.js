@@ -574,8 +574,28 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994117', name: 'اندكس كارد 50', price: '', barcode: '' },
   { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233994155-1', name: 'دفتر اجتماعيات', price: '', barcode: '' },
   { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233994155-2', name: 'دفتر اجتماعيات', price: '', barcode: '' },
-  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233994155', name: 'دفتر اجتماعيات', price: '', barcode: '' }
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233994155', name: 'دفتر اجتماعيات', price: '', barcode: '' },
+ { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004012151-1', name: 'دفتر اسلامية', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004012151-2', name: 'دفتر اسلامية', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004012151', name: 'دفتر اسلامية', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004012168-1', name: 'دفتر اسلامية', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004012168-2', name: 'دفتر اسلامية', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004012168', name: 'دفتر اسلامية', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012175', name: 'دفتر جامعة 1 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012182', name: 'دفتر جامعة 2 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012199', name: 'دفتر جامعة 3 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012205', name: 'دفتر جامعة 4 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012212', name: 'دفتر جامعة 5 موضوع', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012502', name: 'دفتر جامعة', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012519', name: 'دفتر جامعة', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012526', name: 'دفتر جامعة', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012533-1', name: 'دفتر جامعة', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012533', name: 'دفتر جامعة', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012540-1', name: 'دفتر جامعة', price: '', barcode: '' },
+  { brand: 'Stationery IBC', sub: 'دفاتر جامعة', code: '9551004012540', name: 'دفتر جامعة', price: '', barcode: '' }
+
   ];
+
 
 
 
