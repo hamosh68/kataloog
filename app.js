@@ -638,32 +638,34 @@ function createProductCard(product) {
                 <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
             </button>
             
-            <!-- زر الطلب المعدل -->
-            <button class="cart-add-btn" onclick="addToCart('${product.code}', '${productName}', '${product.brand}')" 
-                    title="أضف للطلب"
-                    style="
-                        position: absolute;
-                        top: 8px;
-                        left: 8px;
-                        width: 34px;
-                        height: 34px;
-                        background: linear-gradient(135deg, #2196F3, #21CBF3);
-                        border: 2px solid white;
-                        border-radius: 50%;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        font-size: 0.95rem;
-                        color: white;
-                        cursor: pointer;
-                        z-index: 10;
-                        box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4), 0 0 0 3px rgba(33, 150, 243, 0.1);
-                        transition: all 0.3s ease;
-                        margin: 0;
-                        padding: 0;
-                    ">
-                <i class="fas fa-cart-plus"></i>
-            </button>
+            <!-- زر الطلب المعدل - أكبر مع دائرة صفراء -->
+<button class="cart-add-btn" onclick="addToCart('${product.code}', '${productName}', '${product.brand}')" 
+        title="أضف للطلب"
+        style="
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 40px;  /* أكبر */
+            height: 40px; /* أكبر */
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+            border: 3px solid #FFD700; /* دائرة صفراء */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem; /* أيقونة أكبر */
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5), 0 0 0 4px rgba(255, 215, 0, 0.3); /* توهج أصفر */
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+        "
+        onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 8px 20px rgba(33, 150, 243, 0.6), 0 0 0 6px rgba(255, 215, 0, 0.4)'"
+        onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 15px rgba(33, 150, 243, 0.5), 0 0 0 4px rgba(255, 215, 0, 0.3)'">
+    <i class="fas fa-cart-plus" style="filter: drop-shadow(0 2px 3px rgba(0,0,0,0.2));"></i>
+</button>
             
             ${quantityBadge}
             
