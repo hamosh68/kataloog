@@ -681,10 +681,29 @@ function createProductCard(product) {
                 ${productBarcode}
                 <div class="product-code">🔢 ${product.code}</div>
                 ${productPrice}
-                          
+                  <!-- هنا الأزرار تحت السعر 👇 -->
+            <div style="display: flex; justify-content: space-between; gap: 4px; margin-top: 8px;">
+                <button onclick="openProduct('${product.code}', '${productName}', '${product.brand}', event)" 
+                        style="flex: 1; background: #2196F3; color: white; border: none; border-radius: 6px; padding: 6px 4px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 3px;">
+                    <i class="fas fa-eye" style="font-size: 0.7rem;"></i> عرض
+                </button>
+                
+                <button onclick="shareProduct('${product.code}', '${productName}', '${product.brand}', event)" 
+                        style="flex: 1; background: #25D366; color: white; border: none; border-radius: 6px; padding: 6px 4px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 3px;">
+                    <i class="fab fa-whatsapp" style="font-size: 0.7rem;"></i> مشاركة
+                </button>
+                
+                <a href="images/${product.code}.webp" 
+                   download="${product.code}.webp" 
+                   onclick="event.stopPropagation()"
+                   style="flex: 1; background: #FF9800; color: white; border: none; border-radius: 6px; padding: 6px 4px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 3px; text-decoration: none;">
+                    <i class="fas fa-download" style="font-size: 0.7rem;"></i> حفظ
+                </a>
             </div>
         </div>
-    `;
+    </div>
+`;        
+      
 }
 
 function tryNextExtension(img, code) {
@@ -1920,5 +1939,49 @@ function showOrderReport() {
     
     reportWindow.document.close();
 }
+// ===============================
+// إرسال التقرير عبر واتساب
+// ===============================
 
+function sendReportToWhatsApp() {
+    if (cart.length === 0) {
+        showSmartNotification('السلة فارغة', 'لا يمكن إرسال تقرير فارغ', 'warning');
+        return;
+    }
 
+    const orderNumber = generateOrderNumber();
+    const customerName = document.getElementById('customerName')?.value || 'غير محدد';
+    const date = new Date().toLocaleDateString('ar-EG');
+    const totalItems = cart.reduce((sum, i) => sum + i.quantity, 0);
+
+    let message = `📋 *تقرير الطلب - IBC*\n`;
+    message += `══════════════════════\n`;
+    message += `📋 رقم الطلب: ${orderNumber}\n`;
+    message += `👤 الزبون: ${customerName}\n`;
+    message += `📅 التاريخ: ${date}\n`;
+    message += `📊 إجمالي: ${cart.length} منتج | ${totalItems} قطعة\n`;
+    message += `══════════════════════\n\n`;
+
+    cart.forEach((item, i) => {
+        const product = products.find(p => p.code === item.code);
+        message += `*${i + 1}. ${item.brand}*\n`;
+        message += `🔢 الكود: ${item.code}\n`;
+        if (product?.barcode) message += `🔲 باركود: ${product.barcode}\n`;
+        if (product?.name) message += `📝 المنتج: ${product.name}\n`;
+        message += `📦 الكمية: ${item.quantity}\n`;
+        if (item.note) message += `🗒️ ملاحظة: ${item.note}\n`;
+        message += `──────────\n\n`;
+    });
+
+    const generalNote = document.getElementById('cartNote')?.value;
+    if (generalNote) {
+        message += `📝 *ملاحظات عامة:*\n${generalNote}\n\n`;
+    }
+
+    message += `══════════════════════\n🚀 نظام IBC`;
+
+    const encoded = encodeURIComponent(message);
+    window.open(`https://wa.me/?text=${encoded}`, '_blank');
+
+    showSmartNotification('تم الإرسال', 'تم إرسال التقرير عبر واتساب', 'success');
+}
