@@ -95,9 +95,6 @@ const products = [
 { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974517870616', name: '', price: '0.000', barcode: '' },
 { brand: 'IL COLORI', sub: 'ادوات رسم', code: '8693245702109', name: '', price: '0.000', barcode: '' },
 { brand: 'IL COLORI', sub: 'ادوات رسم', code: '8693245702208', name: '', price: '0.000', barcode: '' },
-{ brand: 'IL COLORI', sub: 'ادوات رسم', code: '8809022631535', name: '', price: '0.000', barcode: '' },
-{ brand: 'IL COLORI', sub: 'ادوات رسم', code: '8809022631542', name: '', price: '0.000', barcode: '' },
-{ brand: 'IL COLORI', sub: 'ادوات رسم', code: '8809022631634', name: '', price: '0.000', barcode: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-1', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-2', name: '' },
     { brand: 'NO-1', sub: 'حقائب مدرسية ومقالم', code: '627202211303-3', name: '' },
@@ -722,6 +719,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'سبورة مدرسية', code: '6985680122669', name: 'سبورة مدرسية', price: '', barcode: '' }
 
   ];
+
 
 
 
