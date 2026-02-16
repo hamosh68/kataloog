@@ -19,10 +19,45 @@
             <div class="subtitle">للمنتجات العالمية</div>
         </div>
         <div style="display: flex; align-items: center; gap: 10px;">
-            <div class="cart-btn" onclick="showCartPage()">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-badge" id="cartBadge"></span>
-            </div>
+            <div class="cart-btn" onclick="showCartPage()" 
+     style="
+        position: relative;
+        cursor: pointer;
+        width: 50px;           /* عرض أكبر */
+        height: 50px;          /* ارتفاع أكبر */
+        background: linear-gradient(135deg, #1a237e, #3949ab);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(26, 35, 126, 0.4);
+        transition: all 0.3s;
+        margin: 0 5px;
+     "
+     onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 16px rgba(26, 35, 126, 0.6)'"
+     onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(26, 35, 126, 0.4)'">
+    
+    <i class="fas fa-shopping-cart" style="font-size: 1.5rem; color: white;"></i>
+    
+    <span class="cart-badge" id="cartBadge" 
+          style="
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: #FF9800;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+          "></span>
+</div>
             <div class="badge">مندوبين</div><!-- زر إرسال رسالة --><!-- زر إرسال رسالة عامة (للمدير) -->
 <button onclick="sendPublicMessage()" 
         style="
@@ -165,6 +200,5 @@
     <script src="app.js"></script>
 </body>
 </html>
-
 
 
