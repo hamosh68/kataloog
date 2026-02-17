@@ -2003,7 +2003,7 @@ function sendReportToWhatsApp() {
     showSmartNotification('تم الإرسال', 'تم إرسال التقرير عبر واتساب', 'success');
 }
 // ===============================
-// نظام الرسالة المعلقة
+// نظام الرسالة المعلقة (محلي لكل مستخدم)
 // ===============================
 
 const PRIVATE_PASSWORD = "251968asd";
@@ -2015,7 +2015,6 @@ let pinnedMessage = JSON.parse(localStorage.getItem('pinnedMessage')) || null;
 function showPinnedMessage() {
     if (!pinnedMessage) return;
     
-    // إزالة أي رسالة معلقة قديمة
     const oldMessage = document.getElementById('pinnedMessage');
     if (oldMessage) oldMessage.remove();
     
@@ -2073,7 +2072,7 @@ function showPinnedMessage() {
     document.body.prepend(messageDiv);
 }
 
-// إخفاء الرسالة (للمندوب)
+// إخفاء الرسالة
 function hidePinnedMessage() {
     const messageDiv = document.getElementById('pinnedMessage');
     if (messageDiv) messageDiv.remove();
@@ -2088,7 +2087,7 @@ function sendPublicMessage() {
         return;
     }
     
-    const message = prompt("✍️ اكتب الرسالة العامة للمندوبين:", "");
+    const message = prompt("✍️ اكتب الرسالة العامة:", "");
     if (!message || message.trim() === '') return;
     
     const now = new Date();
@@ -2101,9 +2100,7 @@ function sendPublicMessage() {
     
     localStorage.setItem('pinnedMessage', JSON.stringify(pinnedMessage));
     
-    showSmartNotification('✅ تم', 'الرسالة معلقة الآن للجميع', 'success');
-    
-    // عرضها فورًا للمدير
+    showSmartNotification('✅ تم', 'الرسالة معلقة الآن', 'success');
     showPinnedMessage();
 }
 
@@ -2122,7 +2119,7 @@ function deletePublicMessage() {
     const messageDiv = document.getElementById('pinnedMessage');
     if (messageDiv) messageDiv.remove();
     
-    showSmartNotification('✅ تم', 'تم إلغاء الرسالة للجميع', 'success');
+    showSmartNotification('✅ تم', 'تم إلغاء الرسالة', 'success');
 }
 function init() {
     renderBrands();
@@ -2131,7 +2128,7 @@ function init() {
     setupEventListeners();
     showAll();
     
-    // عرض الرسالة المعلقة إذا موجودة
+    // عرض الرسالة إذا كانت موجودة
     showPinnedMessage();
 }
 // ===============================
