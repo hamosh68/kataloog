@@ -243,28 +243,32 @@ function showCartPage() {
                         <textarea id="cartNote" placeholder="اكتب ملاحظاتك على الطلبية هنا (اختياري)  (تختفي بعد كل اغلاق)..." style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: vertical;"></textarea>
                     </div>
                     
-                    <div style="display: flex; gap: 10px;">
-                        <button onclick="sendCartToWhatsApp()" style="flex: 2; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                            <i class="fab fa-whatsapp"></i> إرسال الطلب للمكتب
-<button onclick="showOrderReport()" 
-        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #9C27B0, #673AB7); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-    <i class="fas fa-file-alt"></i> تقرير
-</button>
-<!-- زر PDF للواتساب -->
-<button onclick="shareReportAsPDF()" 
-        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-    <i class="fab fa-whatsapp"></i> PDF عبر واتساب
-</button>
+                   <div style="display: flex; flex-direction: column; gap: 10px;">
+    
+    <button onclick="sendCartToWhatsApp()" style="width: 100%; padding: 12px; background: #4CAF50; color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <i class="fab fa-whatsapp"></i> إرسال الطلبية واتساب
+    </button>
 
-<!-- زر PDF للبريد (إذا تحب) -->
-<button onclick="shareReportAsPDF()" 
-        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #2196F3, #1976D2); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
-    <i class="fas fa-envelope"></i> PDF للبريد
-</button>
-                        </button>
-                        <button onclick="clearCart()" style="flex: 1; padding: 12px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; cursor: pointer;">
-                            مسح الكل
-                        </button>
+    <button onclick="showOrderReport()" 
+            style="width: 100%; padding: 12px; background: linear-gradient(135deg, #9C27B0, #673AB7); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <i class="fas fa-file-alt"></i> تقرير الطلبية
+    </button>
+
+    <button onclick="shareReportAsPDF()" 
+            style="width: 100%; padding: 12px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <i class="fab fa-whatsapp"></i> ارسال الطلبية PDF واتساب
+    </button>
+
+    <button onclick="shareReportAsPDF()" 
+            style="width: 100%; padding: 12px; background: linear-gradient(135deg, #2196F3, #1976D2); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+        <i class="fas fa-envelope"></i> ارسال الطلبية EMAL
+    </button>
+
+    <button onclick="clearCart()" style="width: 100%; padding: 12px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; cursor: pointer;">
+        مسح الكل
+    </button>
+    
+</div>
                     </div>
                 </div>
             </div>
