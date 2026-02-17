@@ -2003,89 +2003,80 @@ function sendReportToWhatsApp() {
     showSmartNotification('تم الإرسال', 'تم إرسال التقرير عبر واتساب', 'success');
 }
 // ===============================
-// نظام الرسائل عبر الصفحة (نسخة مبسطة)
+// نظام الرسالة المعلقة
 // ===============================
 
 const PRIVATE_PASSWORD = "251968asd";
 
-// آخر رسالة
-let latestMessage = JSON.parse(localStorage.getItem('latestMessage')) || null;
+// الرسالة الحالية
+let pinnedMessage = JSON.parse(localStorage.getItem('pinnedMessage')) || null;
 
-// آخر مرة شاف فيها المستخدم رسالة
-let lastSeen = localStorage.getItem('lastSeen') || '0';
-
-// فحص الرسائل الجديدة (تشتغل كل 10 ثواني)
-function checkForNewMessage() {
-    const currentMessage = JSON.parse(localStorage.getItem('latestMessage'));
+// دالة عرض الرسالة المعلقة
+function showPinnedMessage() {
+    if (!pinnedMessage) return;
     
-    if (!currentMessage) return;
+    // إزالة أي رسالة معلقة قديمة
+    const oldMessage = document.getElementById('pinnedMessage');
+    if (oldMessage) oldMessage.remove();
     
-    // إذا فيه رسالة أحدث من آخر رسالة شافها
-    if (currentMessage.timestamp > lastSeen) {
-        showMessagePopup(currentMessage);
-        lastSeen = currentMessage.timestamp;
-        localStorage.setItem('lastSeen', lastSeen);
-    }
-}
-
-// عرض نافذة الرسالة
-function showMessagePopup(message) {
-    // إزالة أي نافذة قديمة
-    const oldPopup = document.getElementById('messagePopup');
-    if (oldPopup) oldPopup.remove();
-    
-    const popup = document.createElement('div');
-    popup.id = 'messagePopup';
-    popup.style.cssText = `
-        position: fixed;
-        top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: linear-gradient(135deg, #1a237e, #0d1757);
-        color: white;
-        padding: 25px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        z-index: 10000;
-        width: 90%;
-        max-width: 450px;
-        border: 3px solid white;
-        direction: rtl;
-        font-family: 'Cairo';
-        animation: slideDown 0.3s ease;
-    `;
-    
-    popup.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+    const messageDiv = document.createElement('div');
+    messageDiv.id = 'pinnedMessage';
+    messageDiv.innerHTML = `
+        <div style="
+            background: linear-gradient(135deg, #FF9800, #F44336);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(255,65,108,0.3);
+            border-bottom: 3px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-family: 'Cairo';
+        ">
             <div style="display: flex; align-items: center; gap: 10px;">
-                <i class="fas fa-bullhorn" style="font-size: 2rem; color: #FFD700;"></i>
-                <span style="font-size: 1.3rem; font-weight: bold;">رسالة من الإدارة</span>
+                <span style="background: white; color: #F44336; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;">
+                    <i class="fas fa-bullhorn"></i>
+                </span>
+                <div style="text-align: right;">
+                    <div style="font-weight: bold; margin-bottom: 3px;">📢 إعلان هام</div>
+                    <div style="font-size: 1rem;">${pinnedMessage.text}</div>
+                    <div style="font-size: 0.8rem; opacity: 0.9; margin-top: 5px;">
+                        ${pinnedMessage.date}
+                    </div>
+                </div>
             </div>
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer;">×</button>
-        </div>
-        
-        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 15px 0; font-size: 1.1rem; line-height: 1.6;">
-            ${message.text}
-        </div>
-        
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
-            <div style="font-size: 0.9rem; opacity: 0.8;">
-                <i class="far fa-clock"></i> ${message.date} - ${message.time}
-            </div>
-            <button onclick="this.parentElement.parentElement.remove()" 
-                    style="background: #4CAF50; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold;">
+            <button onclick="hidePinnedMessage()" 
+                    style="
+                        background: rgba(255,255,255,0.2);
+                        color: white;
+                        border: 1px solid white;
+                        border-radius: 20px;
+                        padding: 8px 20px;
+                        cursor: pointer;
+                        font-family: 'Cairo';
+                        font-size: 0.9rem;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                    ">
                 <i class="fas fa-check"></i> تمت القراءة
             </button>
         </div>
     `;
     
-    document.body.appendChild(popup);
-    
-    // اختفاء تلقائي بعد دقيقة
-    setTimeout(() => {
-        if (popup.parentNode) popup.remove();
-    }, 60000);
+    document.body.prepend(messageDiv);
+}
+
+// إخفاء الرسالة (للمندوب)
+function hidePinnedMessage() {
+    const messageDiv = document.getElementById('pinnedMessage');
+    if (messageDiv) messageDiv.remove();
 }
 
 // إرسال رسالة عامة (للمدير)
@@ -2101,20 +2092,19 @@ function sendPublicMessage() {
     if (!message || message.trim() === '') return;
     
     const now = new Date();
-    const messageData = {
+    pinnedMessage = {
         id: Date.now(),
         text: message,
         date: now.toLocaleDateString('ar-EG'),
-        time: now.toLocaleTimeString('ar-EG'),
-        timestamp: Date.now().toString()
+        time: now.toLocaleTimeString('ar-EG')
     };
     
-    localStorage.setItem('latestMessage', JSON.stringify(messageData));
+    localStorage.setItem('pinnedMessage', JSON.stringify(pinnedMessage));
     
-    showSmartNotification('✅ تم الإرسال', 'الرسالة وصلت لكل المندوبين', 'success');
+    showSmartNotification('✅ تم', 'الرسالة معلقة الآن للجميع', 'success');
     
-    // إذا المدير شايف الصفحة، تظهر له مباشرة
-    setTimeout(checkForNewMessage, 500);
+    // عرضها فورًا للمدير
+    showPinnedMessage();
 }
 
 // إلغاء الرسالة (للمدير)
@@ -2126,7 +2116,12 @@ function deletePublicMessage() {
         return;
     }
     
-    localStorage.removeItem('latestMessage');
+    pinnedMessage = null;
+    localStorage.removeItem('pinnedMessage');
+    
+    const messageDiv = document.getElementById('pinnedMessage');
+    if (messageDiv) messageDiv.remove();
+    
     showSmartNotification('✅ تم', 'تم إلغاء الرسالة للجميع', 'success');
 }
 function init() {
@@ -2136,11 +2131,8 @@ function init() {
     setupEventListeners();
     showAll();
     
-    // فحص كل 5 ثواني
-    setInterval(checkForNewMessage, 5000);
-    
-    // فحص أول مرة
-    setTimeout(checkForNewMessage, 1000);
+    // عرض الرسالة المعلقة إذا موجودة
+    showPinnedMessage();
 }
 // ===============================
 // إرسال التقرير PDF عبر واتساب أو بريد
