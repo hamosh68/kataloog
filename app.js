@@ -2003,353 +2003,144 @@ function sendReportToWhatsApp() {
     showSmartNotification('تم الإرسال', 'تم إرسال التقرير عبر واتساب', 'success');
 }
 // ===============================
-// نظام الرسائل المحفوظة (تبقى للأبد)
+// نظام الرسائل عبر الصفحة (نسخة مبسطة)
 // ===============================
 
-const PRIVATE_PASSWORD = "251968asd"; // كلمة السر
-let privateMessages = JSON.parse(localStorage.getItem('privateMessages')) || [];
+const PRIVATE_PASSWORD = "251968asd";
 
-// إرسال رسالة (للمندوبين)
-function sendPrivateMessage() {
-    const message = prompt("✍️ اكتب رسالتك للإدارة:", "");
+// آخر رسالة
+let latestMessage = JSON.parse(localStorage.getItem('latestMessage')) || null;
+
+// آخر مرة شاف فيها المستخدم رسالة
+let lastSeen = localStorage.getItem('lastSeen') || '0';
+
+// فحص الرسائل الجديدة (تشتغل كل 10 ثواني)
+function checkForNewMessage() {
+    const currentMessage = JSON.parse(localStorage.getItem('latestMessage'));
     
-    if (!message || message.trim() === '') return;
+    if (!currentMessage) return;
     
-    const now = new Date();
-    const time = now.toLocaleTimeString('ar-EG');
-    const date = now.toLocaleDateString('ar-EG');
-    const salesman = new URLSearchParams(window.location.search).get('salesman') || 'مندوب';
-    
-    privateMessages.push({
-        id: Date.now(),
-        from: salesman,
-        message: message,
-        date: date,
-        time: time,
-        read: false
-    });
-    
-    localStorage.setItem('privateMessages', JSON.stringify(privateMessages));
-    
-    showSmartNotification('✅ تم الإرسال', 'رسالتك وصلت للإدارة', 'success');
-    updateMessageBadge();
+    // إذا فيه رسالة أحدث من آخر رسالة شافها
+    if (currentMessage.timestamp > lastSeen) {
+        showMessagePopup(currentMessage);
+        lastSeen = currentMessage.timestamp;
+        localStorage.setItem('lastSeen', lastSeen);
+    }
 }
 
-// عرض كل الرسائل (للمدير)
-function showPrivateInbox() {
-    const password = prompt("🔐 خاص بالادارة كلمة السر لعرض الرسائل:", "");
+// عرض نافذة الرسالة
+function showMessagePopup(message) {
+    // إزالة أي نافذة قديمة
+    const oldPopup = document.getElementById('messagePopup');
+    if (oldPopup) oldPopup.remove();
     
-    if (password !== PRIVATE_PASSWORD) {
-        showSmartNotification('❌ خطأ', 'كلمة سر غير صحيحة', 'error');
-        return;
-    }
-    
-    if (privateMessages.length === 0) {
-        showSmartNotification('📭 فارغ', 'لا توجد رسائل', 'info');
-        return;
-    }
-    
-    let messagesHTML = '';
-    privateMessages.slice().reverse().forEach(msg => {
-        messagesHTML += `
-            <div style="background: ${msg.read ? '#f8f9fa' : '#fff9e6'}; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-right: 4px solid ${msg.read ? '#ccc' : '#FF9800'}; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                    <div>
-                        <span style="font-weight: bold; color: #1a237e; background: #e8eaf6; padding: 4px 10px; border-radius: 20px;">
-                            👤 ${msg.from}
-                        </span>
-                    </div>
-                    <div style="font-size: 0.8rem; color: #666;">
-                        <i class="far fa-clock"></i> ${msg.date} ${msg.time}
-                    </div>
-                </div>
-                
-                <div style="background: white; padding: 15px; border-radius: 10px; margin: 10px 0; font-size: 1rem;">
-                    ${msg.message}
-                </div>
-                
-                <div style="display: flex; gap: 10px; margin-top: 10px;">
-                    <button onclick="markMessageAsRead(${msg.id})" style="flex: 1; background: #4CAF50; color: white; border: none; border-radius: 6px; padding: 8px; font-size: 0.85rem; cursor: pointer;">
-                        <i class="fas fa-check"></i> ${msg.read ? 'مقروءة' : 'تحديد كمقروءة'}
-                    </button>
-                    <button onclick="deleteMessage(${msg.id})" style="flex: 1; background: #f44336; color: white; border: none; border-radius: 6px; padding: 8px; font-size: 0.85rem; cursor: pointer;">
-                        <i class="fas fa-trash"></i> حذف
-                    </button>
-                </div>
-            </div>
-        `;
-    });
-    
-    const modalHTML = `
-        <div class="modal" id="messagesModal" style="display: flex; z-index: 100000;">
-            <div class="modal-content" style="max-width: 550px; max-height: 80vh;">
-                <div style="padding: 25px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <h3 style="color: #1a237e; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-envelope" style="color: #FF9800;"></i>
-                            صندوق الرسائل
-                            <span style="background: #FF9800; color: white; border-radius: 50px; padding: 3px 12px; font-size: 0.85rem;">
-                                ${privateMessages.filter(m => !m.read).length} جديد
-                            </span>
-                        </h3>
-                        <button onclick="closeMessagesModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">×</button>
-                    </div>
-                    
-                    <div style="max-height: 500px; overflow-y: auto; padding: 5px;">
-                        ${messagesHTML}
-                    </div>
-                    
-                    <div style="display: flex; gap: 10px; margin-top: 20px;">
-                        <button onclick="markAllAsRead()" style="flex: 1; padding: 12px; background: #2196F3; color: white; border: none; border-radius: 8px; cursor: pointer;">
-                            <i class="fas fa-check-double"></i> تحديد الكل كمقروء
-                        </button>
-                        <button onclick="deleteAllMessages()" style="flex: 1; padding: 12px; background: #f44336; color: white; border: none; border-radius: 8px; cursor: pointer;">
-                            <i class="fas fa-trash"></i> حذف الكل
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    const popup = document.createElement('div');
+    popup.id = 'messagePopup';
+    popup.style.cssText = `
+        position: fixed;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #1a237e, #0d1757);
+        color: white;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        z-index: 10000;
+        width: 90%;
+        max-width: 450px;
+        border: 3px solid white;
+        direction: rtl;
+        font-family: 'Cairo';
+        animation: slideDown 0.3s ease;
     `;
     
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
-}
-
-// تحديد رسالة كمقروءة
-function markMessageAsRead(id) {
-    const msg = privateMessages.find(m => m.id === id);
-    if (msg) {
-        msg.read = true;
-        localStorage.setItem('privateMessages', JSON.stringify(privateMessages));
-        closeMessagesModal();
-        showPrivateInbox();
-        updateMessageBadge();
-    }
-}
-
-// تحديد الكل كمقروء
-function markAllAsRead() {
-    privateMessages.forEach(msg => msg.read = true);
-    localStorage.setItem('privateMessages', JSON.stringify(privateMessages));
-    closeMessagesModal();
-    showPrivateInbox();
-    updateMessageBadge();
-}
-
-// حذف رسالة
-function deleteMessage(id) {
-    if (confirm('هل تريد حذف هذه الرسالة؟')) {
-        privateMessages = privateMessages.filter(m => m.id !== id);
-        localStorage.setItem('privateMessages', JSON.stringify(privateMessages));
-        closeMessagesModal();
-        showPrivateInbox();
-        updateMessageBadge();
-    }
-}
-
-// حذف الكل
-function deleteAllMessages() {
-    if (confirm('هل تريد حذف جميع الرسائل؟')) {
-        privateMessages = [];
-        localStorage.setItem('privateMessages', JSON.stringify(privateMessages));
-        closeMessagesModal();
-        showSmartNotification('✅ تم', 'تم حذف جميع الرسائل', 'success');
-        updateMessageBadge();
-    }
-}
-
-// إغلاق النافذة
-function closeMessagesModal() {
-    const modal = document.getElementById('messagesModal');
-    if (modal) modal.remove();
-}
-
-// تحديث عداد الرسائل
-function updateMessageBadge() {
-    const badge = document.getElementById('messageBadge');
-    if (badge) {
-        const unread = privateMessages.filter(m => !m.read).length;
-        if (unread > 0) {
-            badge.textContent = unread;
-            badge.style.display = 'flex';
-        } else {
-            badge.style.display = 'none';
-        }
-    }
-}
-
-// تشغيل العداد
-setInterval(updateMessageBadge, 1000);
-// ===============================
-// نظام الرسائل العامة مع إخفاء فردي
-// ===============================
-
-let publicMessage = JSON.parse(localStorage.getItem('publicMessage')) || null;
-let hiddenMessages = JSON.parse(localStorage.getItem('hiddenMessages')) || [];
-
-// إرسال رسالة عامة (للمدير)
-function sendPublicMessage() {
-    const password = prompt("🔐 خاص بالادارة كلمة السر لإرسال رسالة عامة:", "");
-    
-    if (password !== PRIVATE_PASSWORD) {
-        showSmartNotification('❌ خطأ', 'كلمة سر غير صحيحة', 'error');
-        return;
-    }
-    
-    const message = prompt("✍️ خاص بالادارة رسالة العامة للمندوبين:", "");
-    
-    if (!message || message.trim() === '') return;
-    
-    const now = new Date();
-    const time = now.toLocaleTimeString('ar-EG');
-    const date = now.toLocaleDateString('ar-EG');
-    
-    publicMessage = {
-        id: Date.now(),
-        message: message,
-        date: date,
-        time: time,
-        active: true
-    };
-    
-    // مسح قائمة الإخفاء القديمة عند إرسال رسالة جديدة
-    hiddenMessages = [];
-    localStorage.setItem('hiddenMessages', JSON.stringify(hiddenMessages));
-    localStorage.setItem('publicMessage', JSON.stringify(publicMessage));
-    
-    showSmartNotification('✅ تم الإرسال', 'الرسالة العامة وصلت لكل المندوبين', 'success');
-    
-    // عرض الرسالة
-    showPublicMessageBanner();
-}
-
-// إخفاء الرسالة (للمندوب)
-function hidePublicMessage() {
-    if (!publicMessage) return;
-    
-    // خلي المندوب الحالي يشوفها مقفولة
-    const salesman = new URLSearchParams(window.location.search).get('salesman') || 'مندوب';
-    
-    hiddenMessages.push({
-        messageId: publicMessage.id,
-        salesman: salesman
-    });
-    
-    localStorage.setItem('hiddenMessages', JSON.stringify(hiddenMessages));
-    
-    // إخفاء البانر
-    const banner = document.getElementById('publicMessageBanner');
-    if (banner) banner.remove();
-    
-    showSmartNotification('✅ تم', 'تم إخفاء الإعلان', 'success');
-}
-
-// عرض الرسالة العامة
-function showPublicMessageBanner() {
-    if (!publicMessage) return;
-    
-    // جلب اسم المندوب الحالي
-    const salesman = new URLSearchParams(window.location.search).get('salesman') || 'مندوب';
-    
-    // تحقق إذا المندوب هذا أخفى الرسالة
-    const isHidden = hiddenMessages.some(h => 
-        h.messageId === publicMessage.id && h.salesman === salesman
-    );
-    
-    if (isHidden) return; // لا تظهر له
-    
-    // إزالة أي بانر قديم
-    const oldBanner = document.getElementById('publicMessageBanner');
-    if (oldBanner) oldBanner.remove();
-    
-    const banner = document.createElement('div');
-    banner.id = 'publicMessageBanner';
-    banner.innerHTML = `
-        <div style="
-            background: linear-gradient(135deg, #2196F3, #1a237e);
-            color: white;
-            padding: 12px 20px;
-            margin: 10px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(33,150,243,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            border: 2px solid white;
-            position: relative;
-            z-index: 9999;
-        ">
-            <div style="display: flex; align-items: center; gap: 15px; flex: 1;">
-                <div style="background: white; color: #1a237e; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem;">
-                    <i class="fas fa-bullhorn"></i>
-                </div>
-                <div style="flex: 1;">
-                    <div style="font-size: 0.85rem; opacity: 0.9;">📢 إعلان من الإدارة</div>
-                    <div style="font-weight: bold; margin: 3px 0;">${publicMessage.message}</div>
-                    <div style="font-size: 0.75rem; opacity: 0.8;">${publicMessage.date}</div>
-                </div>
+    popup.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-bullhorn" style="font-size: 2rem; color: #FFD700;"></i>
+                <span style="font-size: 1.3rem; font-weight: bold;">رسالة من الإدارة</span>
             </div>
-            
-            <!-- زر إخفاء لكل مندوب -->
-            <button onclick="hidePublicMessage()" 
-                    style="
-                        background: rgba(255,255,255,0.2);
-                        color: white;
-                        border: 1px solid rgba(255,255,255,0.5);
-                        border-radius: 20px;
-                        padding: 8px 15px;
-                        cursor: pointer;
-                        font-family: 'Cairo';
-                        font-size: 0.85rem;
-                        display: flex;
-                        align-items: center;
-                        gap: 5px;
-                        transition: all 0.3s;
-                    "
-                    onmouseover="this.style.background='rgba(255,255,255,0.3)'"
-                    onmouseout="this.style.background='rgba(255,255,255,0.2)'">
-                <i class="fas fa-times"></i>
-                <span>إخفاء</span>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="background: none; border: none; color: white; font-size: 1.8rem; cursor: pointer;">×</button>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 15px; margin: 15px 0; font-size: 1.1rem; line-height: 1.6;">
+            ${message.text}
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+            <div style="font-size: 0.9rem; opacity: 0.8;">
+                <i class="far fa-clock"></i> ${message.date} - ${message.time}
+            </div>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    style="background: #4CAF50; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; font-family: 'Cairo'; font-weight: bold;">
+                <i class="fas fa-check"></i> تمت القراءة
             </button>
         </div>
     `;
     
-    // حط البانر تحت الهيدر مباشرة
-    const header = document.querySelector('.app-header');
-    if (header) {
-        header.insertAdjacentElement('afterend', banner);
-    } else {
-        document.body.prepend(banner);
-    }
+    document.body.appendChild(popup);
+    
+    // اختفاء تلقائي بعد دقيقة
+    setTimeout(() => {
+        if (popup.parentNode) popup.remove();
+    }, 60000);
 }
 
-// إلغاء الرسالة نهائيًا (للمدير فقط)
-function deletePublicMessage() {
-    const password = prompt("🔐 خاص بالادارة كلمة السر لإلغاء الرسالة:", "");
+// إرسال رسالة عامة (للمدير)
+function sendPublicMessage() {
+    const password = prompt("🔐 كلمة السر لإرسال رسالة عامة:", "");
     
     if (password !== PRIVATE_PASSWORD) {
         showSmartNotification('❌ خطأ', 'كلمة سر غير صحيحة', 'error');
         return;
     }
     
-    publicMessage = null;
-    hiddenMessages = [];
-    localStorage.removeItem('publicMessage');
-    localStorage.removeItem('hiddenMessages');
+    const message = prompt("✍️ اكتب الرسالة العامة للمندوبين:", "");
+    if (!message || message.trim() === '') return;
     
-    const banner = document.getElementById('publicMessageBanner');
-    if (banner) banner.remove();
+    const now = new Date();
+    const messageData = {
+        id: Date.now(),
+        text: message,
+        date: now.toLocaleDateString('ar-EG'),
+        time: now.toLocaleTimeString('ar-EG'),
+        timestamp: Date.now().toString()
+    };
     
-    showSmartNotification('✅ تم', 'تم إلغاء الرسالة للجميع', 'success');
+    localStorage.setItem('latestMessage', JSON.stringify(messageData));
+    
+    showSmartNotification('✅ تم الإرسال', 'الرسالة وصلت لكل المندوبين', 'success');
+    
+    // إذا المدير شايف الصفحة، تظهر له مباشرة
+    setTimeout(checkForNewMessage, 500);
 }
 
-// التحقق من وجود رسالة
-function checkPublicMessage() {
-    publicMessage = JSON.parse(localStorage.getItem('publicMessage')) || null;
-    if (publicMessage) {
-        showPublicMessageBanner();
+// إلغاء الرسالة (للمدير)
+function deletePublicMessage() {
+    const password = prompt("🔐 كلمة السر لإلغاء الرسالة:", "");
+    
+    if (password !== PRIVATE_PASSWORD) {
+        showSmartNotification('❌ خطأ', 'كلمة سر غير صحيحة', 'error');
+        return;
     }
+    
+    localStorage.removeItem('latestMessage');
+    showSmartNotification('✅ تم', 'تم إلغاء الرسالة للجميع', 'success');
+}
+function init() {
+    renderBrands();
+    renderSubCategories();
+    renderProducts();
+    setupEventListeners();
+    showAll();
+    
+    // فحص كل 5 ثواني
+    setInterval(checkForNewMessage, 5000);
+    
+    // فحص أول مرة
+    setTimeout(checkForNewMessage, 1000);
 }
 // ===============================
 // إرسال التقرير PDF عبر واتساب أو بريد
