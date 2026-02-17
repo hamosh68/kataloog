@@ -240,7 +240,7 @@ function showCartPage() {
                     </div>
 
                     <div style="margin-bottom: 20px;">
-                        <textarea id="cartNote" placeholder="اكتب ملاحظاتك هنا (اختياري)..." style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: vertical;"></textarea>
+                        <textarea id="cartNote" placeholder="اكتب ملاحظاتك على الطلبية هنا (اختياري)  (تختفي بعد كل اغلاق)..." style="width: 100%; height: 100px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: vertical;"></textarea>
                     </div>
                     
                     <div style="display: flex; gap: 10px;">
@@ -249,6 +249,17 @@ function showCartPage() {
 <button onclick="showOrderReport()" 
         style="flex: 1; padding: 12px; background: linear-gradient(135deg, #9C27B0, #673AB7); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
     <i class="fas fa-file-alt"></i> تقرير
+</button>
+<!-- زر PDF للواتساب -->
+<button onclick="shareReportAsPDF()" 
+        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <i class="fab fa-whatsapp"></i> PDF عبر واتساب
+</button>
+
+<!-- زر PDF للبريد (إذا تحب) -->
+<button onclick="shareReportAsPDF()" 
+        style="flex: 1; padding: 12px; background: linear-gradient(135deg, #2196F3, #1976D2); color: white; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <i class="fas fa-envelope"></i> PDF للبريد
 </button>
                         </button>
                         <button onclick="clearCart()" style="flex: 1; padding: 12px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; cursor: pointer;">
@@ -2434,4 +2445,3 @@ async function shareReportAsPDF() {
         alert("حدث خطأ، حاول مرة أخرى.");
     }
 }
-
