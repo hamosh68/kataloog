@@ -2336,3 +2336,102 @@ function checkPublicMessage() {
         showPublicMessageBanner();
     }
 }
+// ===============================
+// إرسال التقرير PDF عبر واتساب أو بريد
+// ===============================
+
+async function shareReportAsPDF() {
+    if (cart.length === 0) {
+        showSmartNotification('⚠️ السلة فارغة', 'لا توجد منتجات لتصديرها', 'warning');
+        return;
+    }
+
+    const orderNumber = generateOrderNumber();
+    const customerName = document.getElementById('customerName')?.value || 'غير محدد';
+    const date = new Date().toLocaleDateString('ar-EG');
+    
+    // سحب الملاحظة العامة من الحقل (تأكد أن الـ ID هو cartNote)
+    const generalNote = document.getElementById('cartNote')?.value || '';
+
+    const element = document.createElement('div');
+    element.style.width = '750px'; 
+    element.innerHTML = `
+        <div dir="rtl" style="font-family: Arial, sans-serif; padding: 30px; background: #fff;">
+            <div style="text-align: center; border-bottom: 3px solid #1a237e; padding-bottom: 10px; margin-bottom: 20px;">
+                <h1 style="color: #1a237e; margin: 0;">📋 تقرير طلب - IBC</h1>
+            </div>
+            
+            <table style="width: 100%; margin-bottom: 20px; font-size: 14px;">
+                <tr>
+                    <td><strong>رقم الطلب:</strong> ${orderNumber}</td>
+                    <td style="text-align: left;"><strong>التاريخ:</strong> ${date}</td>
+                </tr>
+                <tr>
+                    <td><strong>الزبون:</strong> ${customerName}</td>
+                </tr>
+            </table>
+
+            <table style="width: 100%; border-collapse: collapse; text-align: center; font-size: 12px;">
+                <thead>
+                    <tr style="background-color: #1a237e; color: white;">
+                        <th style="border: 1px solid #ddd; padding: 10px; width: 40px;">#</th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">الماركة</th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">المنتج</th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">الكود</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; width: 60px;">كمية حبة</th>
+                        <th style="border: 1px solid #ddd; padding: 10px;">ملاحظة  الصنف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${cart.map((item, i) => {
+                        const product = products.find(p => p.code === item.code);
+                        return `
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${i + 1}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${item.brand}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${product?.name || '-'}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${item.code}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${item.quantity}</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">${item.note || '-'}</td>
+                            </tr>`;
+                    }).join('')}
+                </tbody>
+            </table>
+
+            ${generalNote ? `
+            <div style="margin-top: 20px; padding: 15px; border: 1px solid #ff0000; border-radius: 8px; background-color: #ffebee;">
+                <strong style="color: #b71c1c; display: block; margin-bottom: 5px;">📝 ملاحظات عامة على الطلب:</strong>
+                <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #000;">${generalNote}</p>
+            </div>
+            ` : ''}
+           
+            
+            <div style="margin-top: 30px; text-align: center; font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
+                تم توليد هذا التقرير عبر نظام IBC الذكي جميع الحقوق محفوظة 
+            </div>
+        </div>
+    `;
+
+    const opt = {
+        margin:       [10, 5],
+        filename:     `IBC_Order_${orderNumber}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { 
+            scale: 2, 
+            useCORS: true, 
+            letterRendering: true,
+            scrollX: 0,
+            scrollY: 0
+        },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    try {
+        await html2pdf().set(opt).from(element).save();
+        showSmartNotification('✅ تم الحفظ', 'تم استخراج التقرير كاملاً مع الملاحظات العامة', 'success');
+    } catch (error) {
+        console.error("PDF Error:", error);
+        alert("حدث خطأ، حاول مرة أخرى.");
+    }
+}
+
