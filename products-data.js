@@ -44,12 +44,17 @@ const products = [
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6970391868135', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6970391868142', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6970391868159', name: '' },
-    { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870081', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870289', name: '' },
-    { brand: 'IL COLORI', sub: 'الوان خشبية', code: '6974217870326', name: 'iL Colori الوان سداسي خشبي /36 علبة كرتون IBC-X750N-36CB New', price: '1.650', barcode: 'IBC-X750N-36CB' },
+    { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870326', name: 'iL Colori الوان سداسي خشبي /36 علبة كرتون IBC-X750N-36CB New', price: '1.650', barcode: 'IBC-X750N-36CB' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870616', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870623', name: '' },
-    { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870661', name: '' },
+    { brand: 'IL COLORI', sub: 'الوان مائية', code: '6974217870081', name: 'IL COLORI - IBC الوان مائي علبة بلاستيك / 8 + فرشاة Promo IBC-9008-23', price: '0.360', barcode: 'IBC-9008-23' },
+{ brand: 'IL COLORI', sub: 'الوان مائية', code: '6974217870098', name: 'IL Colori - IBC الوان مائي ميني علبة كرتون / 8 + فرشاة IBC-8008-23', price: '0.450', barcode: 'IBC-8008-23' },
+{ brand: 'IL COLORI', sub: 'الوان مائية', code: '6926586608123', name: 'IL Colori - IBC الوان مائي ميني / 12 + فرشاة IBC-8012-23', price: '0.650', barcode: 'IBC-8012-23' },
+{ brand: 'IL COLORI', sub: 'الوان مائية', code: '6926586608222', name: 'IL Colori - IBC الوان مائي / 12 + فرشاة IBC-8012-28', price: '0.850', barcode: 'IBC-8012-28' },
+{ brand: 'IL COLORI', sub: 'الوان مائية', code: '6926586608147', name: 'IL Colori - IBC الوان مائي / 21 + 2 فرشاة IBC-8021-28', price: '1.250', barcode: 'IBC-8021-28' },
+{ brand: 'IL COLORI', sub: 'الوان مائية', code: '6974217870661', name: 'IL Colori - IBC الوان مائي ميني / 12 Palette Mini IBC-12S-PWR DIA.25.0MM', price: '0.800', barcode: 'IBC-12S-PWR' },
+{ brand: 'IL COLORI', sub: 'الوان مائية', code: '6971064211067', name: 'IL Colori - IBC الوان مائي / 12 Palette IBC-12-PWR DIA.30.0MM', price: '0.900', barcode: 'IBC-12-PWR' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870678', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870685', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870937', name: '' },
@@ -814,8 +819,6 @@ const products = [
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK', code: '6014562024125', name: 'مقلمة GPACK', price: '0.000', barcode: '' }
 
   ];
-
-
 
 
 
