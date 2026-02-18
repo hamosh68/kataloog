@@ -405,11 +405,11 @@ const products = [
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6985680122843', name: 'وايت بورد' },
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6985680122850', name: 'وايت بورد' },
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6985680122881', name: 'وايت بورد' },
-  { brand: 'TWINY COLORI', sub: 'اقلام', code: '6291107412170', name: 'اقلام TWINY COLORI 6/ راسين IBC-TW-06', price: '1.350', barcode: 'IBC-TW-10' },
-{ brand: 'TWINY COLORI', sub: 'اقلام', code: 'IBC-TW-10', name: 'اقلام TWINY COLORI 10/ راسين IBC-TW-10', price: '2.250', barcode: '6291107412187' },
-{ brand: 'TWINY COLORI', sub: 'اقلام', code: 'IBC-TW-15', name: 'اقلام TWINY COLORI 15/ راسين IBC-TW-15', price: '3.375', barcode: '6291107412194' },
-{ brand: 'TWINY COLORI', sub: 'اقلام', code: 'IBC-TW-20', name: 'اقلام TWINY COLORI 20/ راسين IBC-TW-20', price: '4.500', barcode: '6291107412200' },
-{ brand: 'TWINY COLORI', sub: 'اقلام', code: 'IBC-TW-25', name: 'اقلام TWINY COLORI 25/ راسين IBC-TW-25', price: '5.625', barcode: '6291107412217' },
+  { brand: 'TWINY COLORI', sub: 'اقلام', code: '6291107412170', name: 'اقلام TWINY COLORI 6/ راسين IBC-TW-06', price: '1.350', barcode: 'IBC-TW-06' },
+{ brand: 'TWINY COLORI', sub: 'اقلام', code: '6291107412187', name: 'اقلام TWINY COLORI 10/ راسين IBC-TW-10', price: '2.250', barcode: 'IBC-TW-10' },
+{ brand: 'TWINY COLORI', sub: 'اقلام', code: '6291107412194', name: 'اقلام TWINY COLORI 15/ راسين IBC-TW-15', price: '3.375', barcode: 'IBC-TW-15' },
+{ brand: 'TWINY COLORI', sub: 'اقلام', code: '6291107412200', name: 'اقلام TWINY COLORI 20/ راسين IBC-TW-20', price: '4.500', barcode: 'IBC-TW-20' },
+{ brand: 'TWINY COLORI', sub: 'اقلام', code: '6291107412217', name: 'اقلام TWINY COLORI 25/ راسين IBC-TW-25', price: '5.625', barcode: 'IBC-TW-25' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010003', name: 'دفتر تلوين للكبار' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010027', name: 'دفتر تلوين للكبار' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010041', name: 'دفتر تلوين للكبار' },
@@ -814,6 +814,7 @@ const products = [
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK', code: '6014562024125', name: 'مقلمة GPACK', price: '0.000', barcode: '' }
 
   ];
+
 
 
 
