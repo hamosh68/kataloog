@@ -567,6 +567,7 @@ function setSub(sub) {
 }
 
 // عرض المنتجات
+// عرض المنتجات
 function renderProducts() {
     if (!productsGrid || !searchInput) return;
 
@@ -577,17 +578,27 @@ function renderProducts() {
         const brandMatch = currentBrand === 'الكل' || product.brand === currentBrand;
         const subMatch = (typeof currentSub === 'undefined' || currentSub === 'الكل') || product.sub === currentSub;
         
+        // ✅ توسيع البحث ليشمل كل شي
         const searchMatch = !query || 
-            product.code.toLowerCase().includes(query) || 
-            (product.name && product.name.toLowerCase().includes(query)) || 
-            (product.brand && product.brand.toLowerCase().includes(query)) || 
-            (product.sub && product.sub.toLowerCase().includes(query));
+            // الحقول الأساسية
+            product.code?.toLowerCase().includes(query) || 
+            product.name?.toLowerCase().includes(query) || 
+            product.brand?.toLowerCase().includes(query) || 
+            product.sub?.toLowerCase().includes(query) ||
+            
+            // ✅ الحقول الجديدة
+            product.barcode?.toLowerCase().includes(query) ||  // الباركود
+            product.price?.toString().toLowerCase().includes(query) ||  // السعر (كرقم)
+            `💰 ${product.price}`.toLowerCase().includes(query) ||  // السعر مع الرمز
+            product.note?.toLowerCase().includes(query);  // الملاحظات
         
         const isFavMode = typeof showOnlyFavorites !== 'undefined' && showOnlyFavorites;
         const favMatch = !isFavMode || favorites.includes(product.code);
         
         return brandMatch && subMatch && searchMatch && favMatch;
     });
+
+
 
     // عرض النتائج
     if (filtered.length === 0) {
