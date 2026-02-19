@@ -39,7 +39,6 @@ const products = [
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '674217870098', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6874217873273', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6925444095273', name: '' },
-    { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6926586608123', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6970391868029', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6970391868135', name: '' },
     { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6970391868142', name: '' },
@@ -824,5 +823,6 @@ const products = [
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK', code: '6014562024125', name: 'مقلمة GPACK', price: '0.000', barcode: '' }
 
   ];
+
 
 
