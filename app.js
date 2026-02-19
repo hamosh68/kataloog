@@ -738,24 +738,34 @@ function tryNextExtension(img, code) {
     const currentSrc = img.src;
     const currentExt = currentSrc.split('.').pop().toLowerCase();
     const currentIndex = SUPPORTED_EXTENSIONS.indexOf(currentExt);
-    
+   
     if (currentIndex < SUPPORTED_EXTENSIONS.length - 1) {
         const nextExt = SUPPORTED_EXTENSIONS[currentIndex + 1];
         const newPath = `images/${code}.${nextExt}`;
-        
+       
         img.src = newPath;
-        
+       
         const downloadBtn = document.getElementById(`dl-${code}`);
         if (downloadBtn) {
             downloadBtn.href = newPath;
             downloadBtn.setAttribute('download', `${code}.${nextExt}`);
         }
-
         img.onerror = function() {
             tryNextExtension(this, code);
         };
     } else {
-        img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150"><rect width="100%" height="100%" fill="%23eee"/><text x="50%" y="50%" text-anchor="middle" font-family="Cairo" font-size="12" fill="%23999">${code}</text></svg>';
+        // صورة افتراضية مع جملة تعبر عن عدم وجود الصورة
+        // هذه ستختفي تلقائياً عند إضافة الصورة الحقيقية وإعادة تحميل الصفحة
+        img.src = 'https://www.appsheet.com/image/getimageurl?appName=ibcno1-3381183&tableName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852&fileName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852_Images%2F2596%D8%B5%D9%88%D8%B1%D8%A9%20%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A%D8%A9.imge.071853.jpg&appVersion=1.002911&signature=3ee63307bee2b069afefefb553ff0d913075dc9addaca6d07f75d438d6250698';
+        
+        // اختياري: إذا أردت صورة افتراضية خارجية بدلاً من SVG، استخدم هذا:
+        // img.src = 'images/default-placeholder.jpg';  // تأكد من وجود الملف هذا
+        
+        // إذا أردت إخفاء زر التحميل أو تعديله عند الفشل
+        const downloadBtn = document.getElementById(`dl-${code}`);
+        if (downloadBtn) {
+            downloadBtn.style.display = 'none';  // إخفاء الزر إذا لم تكن الصورة موجودة
+        }
     }
 }
 
@@ -2111,3 +2121,4 @@ async function shareReportAsPDF() {
         alert("حدث خطأ، حاول مرة أخرى.");
     }
 }
+
