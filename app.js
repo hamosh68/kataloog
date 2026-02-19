@@ -756,7 +756,7 @@ function tryNextExtension(img, code) {
     } else {
         // صورة افتراضية مع جملة تعبر عن عدم وجود الصورة
         // هذه ستختفي تلقائياً عند إضافة الصورة الحقيقية وإعادة تحميل الصفحة
-        img.src = 'https://www.appsheet.com/image/getimageurl?appName=ibcno1-3381183&tableName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852&fileName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852_Images%2F2596%D8%B5%D9%88%D8%B1%D8%A9%20%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A%D8%A9.imge.071853.jpg&appVersion=1.002911&signature=3ee63307bee2b069afefefb553ff0d913075dc9addaca6d07f75d438d6250698';
+        img.src = 'https://www.appsheet.com/image/getimageurl?appName=ibcno1-3381183&tableName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852&fileName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852_Images%2F2596%D8%B5%D9%88%D8%B1%D8%A9%20%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A%D8%A9.imge.072756.jpg&appVersion=1.002911&signature=db0575ab63e3d8ad6f8c650dd1339a1304e66ad34c5fab15127f90ee4f6f085a';
         
         // اختياري: إذا أردت صورة افتراضية خارجية بدلاً من SVG، استخدم هذا:
         // img.src = 'images/default-placeholder.jpg';  // تأكد من وجود الملف هذا
@@ -2121,4 +2121,5 @@ async function shareReportAsPDF() {
         alert("حدث خطأ، حاول مرة أخرى.");
     }
 }
+
 
