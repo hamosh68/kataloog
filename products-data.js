@@ -231,7 +231,14 @@ const products = [
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381592246', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381592307', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381597180', name: '' },
-    { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219094750', name: 'صمغ عرض /3' },
+    { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219094750', name: 'IBC صمغ شمعي 8 جرام طقم / 3 IBC-GL8/3N (BD) Y4', price: '0.325', barcode: 'IBC-GL8/3N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084072', name: 'IBC صمغ شمعي 8 جرام طقم / 4 IBC-GL8/4N (BD) Y3', price: '0.400', barcode: 'IBC-GL8/4N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219000850', name: 'IBC صمغ شمعي 8 جرام طقم / 5 IBC-GL8/5N (BD) Y3', price: '0.500', barcode: 'IBC-GL8/5N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219094767', name: 'IBC صمغ شمعي 15 جرام طقم / 2 IBC-GL15/2N (BD) Y4', price: '0.350', barcode: 'IBC-GL15/2N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084096', name: 'IBC صمغ شمعي 15 جرام طقم / 3 IBC-GL15/3N (BD) Y3', price: '0.450', barcode: 'IBC-GL15/3N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219001000', name: 'IBC صمغ ابيض (غراء) 100 جرام مع ريشة IBC-WGL-100', price: '0.250', barcode: 'IBC-WGL-100' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219002502', name: 'IBC صمغ ابيض (غراء) 250 جرام مع ريشة IBC-WGL-250', price: '0.450', barcode: 'IBC-WGL-250' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219005008', name: 'IBC صمغ ابيض (غراء) 500 جرام مع ريشة IBC-WGL-500', price: '0.900', barcode: 'IBC-WGL-500' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام رصاص', code: '9556091107360', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام كتابة', code: '9556091135646', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام كتابة', code: '9556091139873', name: '' },
@@ -517,11 +524,8 @@ const products = [
   { brand: 'Stationery IBC', sub: 'مطارات', code: '6933655158137-3', name: 'مطارة ستانلس ستيل' },
   { brand: 'Stationery IBC', sub: 'مطارات', code: '6933655158137-4', name: 'مطارة ستانلس ستيل' },
   { brand: 'Stationery IBC', sub: 'مطارات', code: '6933655158137', name: 'مطارة ستانلس ستيل' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219000850', name: 'صمغ عرض /5' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084034', name: 'IBC محاية عرض /3' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084058', name: 'IBC محاية عرض /2' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084072', name: 'صمغ عرض /4' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219094767', name: 'صمغ عرض /2' },
   { brand: 'Stationery IBC', sub: 'سبورة مدرسية', code: '6952680304029', name: 'سبورة مدرسية' },
   { brand: 'Stationery IBC', sub: 'سبورة مدرسية', code: '6952680355038', name: 'سبورة مدرسية' },
   { brand: 'Stationery IBC', sub: 'سبورة مدرسية', code: '6952680456049', name: 'سبورة مدرسية' },
@@ -820,6 +824,5 @@ const products = [
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK', code: '6014562024125', name: 'مقلمة GPACK', price: '0.000', barcode: '' }
 
   ];
-
 
 
