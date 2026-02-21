@@ -893,7 +893,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342028-7', name: 'IBC فايل شفاف سحاب الوان زاوية 12 لون مشكل B4 (PVC FREE)', price: '1.000', barcode: 'IBC-002-CV-B4' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342028-8', name: 'IBC فايل شفاف سحاب الوان زاوية 12 لون مشكل B4 (PVC FREE)', price: '1.000', barcode: 'IBC-002-CV-B4' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342028-9', name: 'IBC فايل شفاف سحاب الوان زاوية 12 لون مشكل B4 (PVC FREE)', price: '1.000', barcode: 'IBC-002-CV-B4' },
-{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342028', name: 'IBC فايل شفاف سحاب الوان زاوية 12 لون مشكل B4 (PVC FREE)', price: '1.000', barcode: 'IBC-002-CV-B4' }
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342028', name: 'IBC فايل شفاف سحاب الوان زاوية 12 لون مشكل B4 (PVC FREE)', price: '1.000', barcode: 'IBC-002-CV-B4' },
 // قائمة فايلات SMART الشفافة (10، 20، 30 جيب)
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847325-1', name: 'IBC فايل شفاف سادة 10 جيب SMART', price: '0.700', barcode: 'IBC-10CT' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847325-2', name: 'IBC فايل شفاف سادة 10 جيب SMART', price: '0.700', barcode: 'IBC-10CT' },
@@ -914,6 +914,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847349-5', name: 'IBC فايل شفاف سادة 30 جيب SMART', price: '1.100', barcode: 'IBC-30CT' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847349', name: 'IBC فايل شفاف سادة 30 جيب SMART', price: '1.100', barcode: 'IBC-30CT' }
   ];
+
 
 
 
