@@ -943,8 +943,17 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847547-3', name: 'IBC فايل شفاف سادة 100 جيب SMART', price: '2.400', barcode: 'IBC-100CT' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847547-4', name: 'IBC فايل شفاف سادة 100 جيب SMART', price: '2.400', barcode: 'IBC-100CT' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847547-5', name: 'IBC فايل شفاف سادة 100 جيب SMART', price: '2.400', barcode: 'IBC-100CT' },
-{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847547', name: 'IBC فايل شفاف سادة 100 جيب SMART', price: '2.400', barcode: 'IBC-100CT' }
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847547', name: 'IBC فايل شفاف سادة 100 جيب SMART', price: '2.400', barcode: 'IBC-100CT' },
+// فايلات IBC سحاب B4 - الترتيب المعدل
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-1', name: 'IBC فايل سحاب B4 عربي ', price: '0.880', barcode: 'IBC-1001SB-B4(ARABIC)' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-2', name: 'IBC فايل سحاب B4 اجتماعيات ', price: '0.880', barcode: 'IBC-1001SB-B4(SOCIAL)' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-3', name: 'IBC فايل سحاب B4 علوم ', price: '0.880', barcode: 'IBC-1001SB-B4(SCIENCE)' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-4', name: 'IBC فايل سحاب B4 انجليزي ', price: '0.880', barcode: 'IBC-1001SB-B4(ENGLISH)' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-5', name: 'IBC فايل سحاب B4 تربية اسلامية ', price: '0.880', barcode: 'IBC-1001SB-B4(ISLAMIC)' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017', name: 'IBC فايل سحاب B4 رياضيات ', price: '0.880', barcode: 'IBC-1001SB-B4(MATH)' }
+
   ];
+
 
 
 
