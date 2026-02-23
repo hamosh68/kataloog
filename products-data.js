@@ -968,8 +968,66 @@ const products = [
 { brand: 'info notes', sub: 'بوستت', code: '4044355772256', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355772256' },
 { brand: 'info notes', sub: 'بوستت', code: '4044355785065', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355785065' },
 { brand: 'info notes', sub: 'بوستت', code: '4044355787007', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355787007' },
-{ brand: 'info notes', sub: 'بوستت', code: '4044355787083', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355787083' }
+{ brand: 'info notes', sub: 'بوستت', code: '4044355787083', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355787083' },
+// ريفل IBC (80 ورقة و150 ورقة)
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233919745', name: 'IBC ريفل 80 ورقة 2-حلقة LL80SH/2', price: '0.800', barcode: 'LL80SH/2' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233877182', name: 'IBC ريفل 80 ورقة 2-حلقة LL80SH/2 New', price: '0.850', barcode: 'LL80SH/2' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233877199', name: 'IBC ريفل 80 ورقة 3-حلقة LL80SH/3 New', price: '0.850', barcode: 'LL80SH/3' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233877205', name: 'IBC ريفل 80 ورقة 4-حلقة LL80SH/4 New', price: '0.850', barcode: 'LL80SH/4' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233919776', name: 'IBC ريفل 150 ورقة 2-حلقة LL150SH/2', price: '1.350', barcode: 'LL150SH/2' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233919790', name: 'IBC ريفل 150 ورقة 4-حلقة LL150SH/4', price: '1.350', barcode: 'LL150SH/4' },
+
+// مقوى وفواصل
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233848465', name: 'IBC ريفل مقوى 160 ورقة A4 ملون 2,3,4', price: '1.650', barcode: 'EIBC160302' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233851502', name: 'IBC ريفل مقوى 160 ورقة A4 شفاف 2,3,4', price: '1.650', barcode: 'EIBC160810' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6920583847752', name: 'IBC ريفل فايل فولدر A411100/25-N New', price: '0.650', barcode: 'A411100/25-N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6920583847769', name: 'IBC ريفل فايل فولدر A411100/50-N New', price: '1.000', barcode: 'A411100/50-N' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6920583847776', name: 'IBC ريفل فايل فولدر A411100/100-N New', price: '1.500', barcode: 'A411100/100-N' },
+
+// اندكس وفواصل
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '4716982146853', name: 'IBC اندكس فواصل ملون 10/ VID-10-01', price: '0.650', barcode: 'VID-10-01' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '4716982146860', name: 'IBC اندكس فواصل ملون A-Z VID-20A-01', price: '0.950', barcode: 'VID-20A-01' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '4716982150133', name: 'IBC اندكس فواصل 10 ملون مع جيب VID-C10', price: '0.800', barcode: 'VID-C10' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6920583833588', name: 'IBC اندكس فواصل 5 ملون IBC-US-005C', price: '0.400', barcode: 'IBC-US-005C' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6920583833601', name: 'IBC اندكس فواصل 10 ملون IBC-US-010C', price: '0.500', barcode: 'IBC-US-010C' },
+
+// دفاتر رسم بياني ونوت
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855265-1', name: 'IBC دفتر رسم بياني A4 مخرم برتقالي 60 ورقة', price: '0.850', barcode: 'EIBC170210' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855265', name: 'IBC دفتر رسم بياني A4 مخرم ازرق 60 ورقة', price: '0.850', barcode: 'EIBC170209' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855272', name: 'IBC ريفل رسم بياني A4 مخرم برتقالي 50 ورقة', price: '0.600', barcode: 'EIBC170212' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855272-B', name: 'IBC ريفل رسم بياني A4 مخرم ازرق 50 ورقة', price: '0.600', barcode: 'EIBC170211' }, // تم إضافة تمييز للكود
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233855289', name: 'IBC ريفل رسم بياني A4 مخرم ازرق 100 ورقة', price: '1.100', barcode: 'EIBC170213' },
+
+// دفاتر نوت باد (Writing Pads)
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949858', name: 'IBC دفتر نوت باد مسطر A4', price: '0.550', barcode: 'EIBC990406/M.P001A4' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949896', name: 'IBC دفتر نوت باد مسطر B5', price: '0.450', barcode: 'EIBC030802/M.P001B5' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949865', name: 'IBC دفتر نوت باد مسطر A5', price: '0.350', barcode: 'EIBC990407/M.P001A5' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949889', name: 'IBC دفتر نوت باد مسطر A6', price: '0.250', barcode: 'EIBC030801/M.P001A6' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949872', name: 'IBC دفتر نوت باد مسطر A7', price: '0.200', barcode: 'EIBC990408/M.P001A7' },
+
+// كروت اندكس
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994117', name: 'IBC كروت اندكس ابيض 4x6 50 كرت', price: '0.400', barcode: 'EIBC080215' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994100', name: 'IBC كروت اندكس ابيض 3x5 100 كرت', price: '0.550', barcode: 'EIBC080214' },
+// قائمة بوستت info notes
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005513', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005520', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005537', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005544', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005551', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005575', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005582', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005599', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005711', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005728', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005735', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005742', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005759', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005773', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005780', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
+{ brand: 'info notes', sub: 'بوستت', code: '5200317005797', name: 'info notes نوت ملاحظات', price: '', barcode: '' }
+
   ];
+
 
 
 
