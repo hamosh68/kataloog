@@ -1008,25 +1008,27 @@ const products = [
 // كروت اندكس
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994117', name: 'IBC كروت اندكس ابيض 4x6 50 كرت', price: '0.400', barcode: 'EIBC080215' },
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994100', name: 'IBC كروت اندكس ابيض 3x5 100 كرت', price: '0.550', barcode: 'EIBC080214' },
-// قائمة بوستت info notes
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005513', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005520', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005537', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005544', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005551', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005575', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005582', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005599', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005711', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005728', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005735', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005742', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005759', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005773', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005780', name: 'info notes نوت ملاحظات', price: '', barcode: '' },
-{ brand: 'info notes', sub: 'بوستت', code: '5200317005797', name: 'info notes نوت ملاحظات', price: '', barcode: '' }
+// فايل جامعة Stationery IBC
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005513', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005520', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005537', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005544', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005551', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005575', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005582', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005599', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005711', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005728', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005735', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005742', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005759', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005773', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005780', name: 'فايل جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005797', name: 'فايل جامعة', price: '', barcode: '' }  
+];
 
-  ];
+
+
 
 
 
