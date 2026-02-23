@@ -950,9 +950,27 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-3', name: 'IBC فايل سحاب B4 علوم ', price: '0.880', barcode: 'IBC-1001SB-B4(SCIENCE)' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-4', name: 'IBC فايل سحاب B4 انجليزي ', price: '0.880', barcode: 'IBC-1001SB-B4(ENGLISH)' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017-5', name: 'IBC فايل سحاب B4 تربية اسلامية ', price: '0.880', barcode: 'IBC-1001SB-B4(ISLAMIC)' },
-{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017', name: 'IBC فايل سحاب B4 رياضيات ', price: '0.880', barcode: 'IBC-1001SB-B4(MATH)' }
-
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021102341017', name: 'IBC فايل سحاب B4 رياضيات ', price: '0.880', barcode: 'IBC-1001SB-B4(MATH)' },
+// قائمة بوستت info notes
+{ brand: 'info notes', sub: 'بوستت', code: '4011169510008', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169510008' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169510107', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169510107' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169589219', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169589219' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169589257', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169589257' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169589431', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169589431' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169654320', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169654320' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169654337', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169654337' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169654344', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169654344' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169654351', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169654351' },
+{ brand: 'info notes', sub: 'بوستت', code: '4011169820015', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4011169820015' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355771471', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355771471' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355772096', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355772096' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355772119', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355772119' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355772256', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355772256' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355785065', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355785065' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355787007', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355787007' },
+{ brand: 'info notes', sub: 'بوستت', code: '4044355787083', name: 'info notes نوت ملاحظات', price: '0.000', barcode: '4044355787083' }
   ];
+
 
 
 
