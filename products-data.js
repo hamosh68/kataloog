@@ -244,7 +244,6 @@ const products = [
 // قائمة العروض الكاملة - Stationery IBC
 { brand: 'عروض', sub: 'عروض', code: '6985680122621', name: 'IBC سبورة مغناطيس مع زوايا عرض طقم 4 قطع IBC-WBPR-2S SMILEY', price: '1.250', barcode: 'IBC-WBPR-2S' },
 { brand: 'عروض', sub: 'عروض', code: '2000700355248', name: 'IBC سبورة مغناطيس N(30X30) مربع + 2 قلم استابيلو وايت بورد + محاية وجوه Smiley', price: '1.500', barcode: '' },
-{ brand: 'عروض', sub: 'عروض', code: '2000700201248..2', name: 'IBC سبورة مغناطيس N(30X30) مربع + 2 قلم استابيلو وايت بورد + محاية وجوه Smiley', price: '1.500', barcode: '' },
 
 // أطقم أقلام الرصاص
 { brand: 'عروض', sub: 'عروض', code: '6974217871095', name: 'IBC طقم 2 علبة / 12 قلم رصاص مثلث بدون محاية IBC-T288N/2', price: '0.850', barcode: 'IBC-T288N/2' },
@@ -1071,6 +1070,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005780', name: 'فايل دفتر جامعة', price: '', barcode: '' },
 { brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005797', name: 'فايل دفتر جامعة', price: '', barcode: '' }  
 ];
+
 
 
 
