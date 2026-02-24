@@ -231,14 +231,58 @@ const products = [
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381592246', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381592307', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381597180', name: '' },
-    { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219094750', name: 'IBC صمغ شمعي 8 جرام طقم / 3 IBC-GL8/3N (BD) Y4', price: '0.325', barcode: 'IBC-GL8/3N' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084072', name: 'IBC صمغ شمعي 8 جرام طقم / 4 IBC-GL8/4N (BD) Y3', price: '0.400', barcode: 'IBC-GL8/4N' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219000850', name: 'IBC صمغ شمعي 8 جرام طقم / 5 IBC-GL8/5N (BD) Y3', price: '0.500', barcode: 'IBC-GL8/5N' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219094767', name: 'IBC صمغ شمعي 15 جرام طقم / 2 IBC-GL15/2N (BD) Y4', price: '0.350', barcode: 'IBC-GL15/2N' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219084096', name: 'IBC صمغ شمعي 15 جرام طقم / 3 IBC-GL15/3N (BD) Y3', price: '0.450', barcode: 'IBC-GL15/3N' },
+// صمغ غراء
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219001000', name: 'IBC صمغ ابيض (غراء) 100 جرام مع ريشة IBC-WGL-100', price: '0.250', barcode: 'IBC-WGL-100' },
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219002502', name: 'IBC صمغ ابيض (غراء) 250 جرام مع ريشة IBC-WGL-250', price: '0.450', barcode: 'IBC-WGL-250' },
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6939219005008', name: 'IBC صمغ ابيض (غراء) 500 جرام مع ريشة IBC-WGL-500', price: '0.900', barcode: 'IBC-WGL-500' },
+// عروض صمغ شمعي
+    { brand: 'عروض', sub: 'عروض', code: '6939219094750', name: 'IBC صمغ شمعي 8 جرام طقم / 3 IBC-GL8/3N (BD) Y4', price: '0.325', barcode: 'IBC-GL8/3N' },
+{ brand: 'عروض', sub: 'عروض', code: '6939219084072', name: 'IBC صمغ شمعي 8 جرام طقم / 4 IBC-GL8/4N (BD) Y3', price: '0.400', barcode: 'IBC-GL8/4N' },
+{ brand: 'عروض', sub: 'عروض', code: '6939219000850', name: 'IBC صمغ شمعي 8 جرام طقم / 5 IBC-GL8/5N (BD) Y3', price: '0.500', barcode: 'IBC-GL8/5N' },
+{ brand: 'عروض', sub: 'عروض', code: '6939219094767', name: 'IBC صمغ شمعي 15 جرام طقم / 2 IBC-GL15/2N (BD) Y4', price: '0.350', barcode: 'IBC-GL15/2N' },
+{ brand: 'عروض', sub: 'عروض', code: '6939219084096', name: 'IBC صمغ شمعي 15 جرام طقم / 3 IBC-GL15/3N (BD) Y3', price: '0.450', barcode: 'IBC-GL15/3N' },
+// قائمة العروض الكاملة - Stationery IBC
+{ brand: 'عروض', sub: 'عروض', code: '6985680122621', name: 'IBC سبورة مغناطيس مع زوايا عرض طقم 4 قطع IBC-WBPR-2S SMILEY', price: '1.250', barcode: 'IBC-WBPR-2S' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700355248', name: 'IBC سبورة مغناطيس N(30X30) مربع + 2 قلم استابيلو وايت بورد + محاية وجوه Smiley', price: '1.500', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700201248..2', name: 'IBC سبورة مغناطيس N(30X30) مربع + 2 قلم استابيلو وايت بورد + محاية وجوه Smiley', price: '1.500', barcode: '' },
+
+// أطقم أقلام الرصاص
+{ brand: 'عروض', sub: 'عروض', code: '6974217871095', name: 'IBC طقم 2 علبة / 12 قلم رصاص مثلث بدون محاية IBC-T288N/2', price: '0.850', barcode: 'IBC-T288N/2' },
+{ brand: 'عروض', sub: 'عروض', code: '6974217871118', name: 'IBC طقم 2 علبة / 12 قلم رصاص سداسي بدون محاية IBC-X288N/2', price: '0.850', barcode: 'IBC-X288N/2' },
+{ brand: 'عروض', sub: 'عروض', code: '6974217871057', name: 'IBC طقم 3 علبة / 12 قلم رصاص مثلث بدون محاية IBC-T288N/3', price: '1.200', barcode: 'IBC-T288N/3' },
+{ brand: 'عروض', sub: 'عروض', code: '6974217871071', name: 'IBC طقم 3 علبة / 12 قلم رصاص سداسي بدون محاية IBC-X288N/3', price: '1.200', barcode: 'IBC-X288N/3' },
+{ brand: 'عروض', sub: 'عروض', code: '6974217871088', name: 'IBC طقم 2 علبة / 12 قلم رصاص مثلث مع محاية IBC-T288EN/2', price: '0.900', barcode: 'IBC-T288EN/2' },
+{ brand: 'عروض', sub: 'عروض', code: '6974217871101', name: 'IBC طقم 2 علبة / 12 قلم رصاص سداسي مع محاية IBC-X288EN/2', price: '0.900', barcode: 'IBC-X288EN/2' },
+{ brand: 'عروض', sub: 'عروض', code: '69742178711040', name: 'IBC طقم 3 علبة / 12 قلم رصاص مثلث مع محاية IBC-T288EN/3', price: '1.300', barcode: 'IBC-T288EN/3' },
+{ brand: 'عروض', sub: 'عروض', code: '69742178711064', name: 'IBC طقم 3 علبة / 12 قلم رصاص سداسي مع محاية IBC-X288EN/3', price: '1.300', barcode: 'IBC-X288EN/3' },
+
+// أطقم الرسم والتلوين (IL COLORI-IBC)
+{ brand: 'عروض', sub: 'عروض', code: '2000700204386', name: 'IL COLORI-IBC طقم رسم صغير + ألوان (مشكل) Y3-A', price: '0.635', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700204386..3', name: 'IL COLORI-IBC دفتر رسم صغير مشكل + ألوان شمعية 12 N23', price: '0.635', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700204386..4', name: 'IL COLORI-IBC دفتر رسم صغير مشكل + ألوان خشبي قصير 12 N23', price: '0.635', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700204386..2', name: 'IL COLORI-IBC دفتر رسم صغير مشكل + ألوان مائي علبة بلاستيك مع فرشاة N23', price: '0.635', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700204386', name: 'IL COLORI-IBC دفتر رسم صغير مشكل + أقلام رصاص مع باكيت 12 N23', price: '0.635', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700204386', name: 'IL COLORI-IBC دفتر رسم صغير مشكل + ألوان شيني 12 N23', price: '0.635', barcode: '' },
+
+// أطقم رسم كبيرة
+{ brand: 'عروض', sub: 'عروض', code: '2000700205062', name: 'IL COLORI-IBC طقم رسم كبير + ألوان (مشكل) Y3-B', price: '1.045', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700205062', name: 'IL COLORI-IBC طقم رسم كبير مشكل + صمغ 8 جرام 2/ + أقلام رصاص 12 / + محاية كبير N23', price: '1.045', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700205062..2', name: 'IL COLORI-IBC دفتر رسم كبير مشكل + ألوان مائي علبة بلاستيك مع فرشاة N23', price: '1.045', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700205062', name: 'IL COLORI-IBC دفتر رسم كبير مشكل + ألوان شمعية 12/ + ألوان خشبي 12 طويل N23', price: '1.045', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700205062..3', name: 'IL COLORI-IBC طقم رسم كبير مشكل + ألوان شمعية 18 / + مقص أطفال N23', price: '1.045', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700205062..4', name: 'IL COLORI-IBC طقم رسم كبير مشكل + ألوان شيني 8 / 12 + صمغ 8 جرام 2/ N23', price: '1.045', barcode: '' },
+
+// أطقم فايلات سحاب وقرطاسية
+{ brand: 'عروض', sub: 'عروض', code: '2000700203600', name: 'IBC طقم فايل سحاب بلاستيك وسط + قرطاسية (مشكل) M-23', price: '1.135', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700203600', name: 'IBC طقم رسم صغير + صمغ غراء 15 جرام + (A4 M) فايل سحاب بلاستيك 2 لون وسط سبورة لاصقة + قلم وايت بورد + أقلام رصاص 3/3 + محاية وجوه 23-', price: '1.135', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700203600', name: 'IBC دفتر رسم صغير + ألوان شيني + (A4 M) فايل سحاب بلاستيك 2 لون وسط سبورة لاصقة + قلم وايت بورد + محاية وجوه 23-12/', price: '1.135', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700203600', name: 'IBC دفتر رسم صغير + صمغ غراء + (A4 M) فايل سحاب بلاستيك 2 لون وسط 100 جرام + سبورة لاصقة + قلم وايت بورد + محاية وجوه 23-', price: '1.135', barcode: '' },
+
+// أطقم كبيرة جداً
+{ brand: 'عروض', sub: 'عروض', code: '2000700206748..2', name: 'IBC طقم فايل سحاب بلاستيك كبير + قرطاسية (مشكل) L-23', price: '1.315', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700206748', name: 'IBC دفتر رسم كبير + ألوان شيني 12 / (B4 L) فايل سحاب بلاستيك 2 لون كبير سبورة لاصقة + صمغ 8 جرام + أقلام رصاص 3/ + قلم وايت بورد 23-', price: '1.315', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700206748..3', name: 'IBC دفتر رسم كبير + ألوان شيني 12/ + ألوان (B4 L) فايل سحاب بلاستيك 2 لون كبير خشبي قصير 12/ + سبورة لاصقة + قلم وايت بورد 23-', price: '1.315', barcode: '' },
+{ brand: 'عروض', sub: 'عروض', code: '2000700206748..4', name: 'IBC دفتر رسم كبير + صمغ غراء 100 جرام + (B4 L) فايل سحاب بلاستيك 2 لون كبير ألوان شمعية + سبورة لاصقة + قلم وايت بورد 23-', price: '1.315', barcode: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام رصاص', code: '9556091107360', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام كتابة', code: '9556091135646', name: '' },
     { brand: 'Stabilo', sub: 'ستابيلو اقلام كتابة', code: '9556091139873', name: '' },
@@ -1008,24 +1052,27 @@ const products = [
 // كروت اندكس
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994117', name: 'IBC كروت اندكس ابيض 4x6 50 كرت', price: '0.400', barcode: 'EIBC080215' },
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233994100', name: 'IBC كروت اندكس ابيض 3x5 100 كرت', price: '0.550', barcode: 'EIBC080214' },
-// فايل جامعة Stationery IBC
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005513', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005520', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005537', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005544', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005551', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005575', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005582', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005599', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005711', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005728', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005735', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005742', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005759', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005773', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005780', name: 'فايل جامعة', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '5200317005797', name: 'فايل جامعة', price: '', barcode: '' }  
+// قائمة فايل دفتر جامعة info notes
+// قائمة قرطاسية Stationery IBC
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005513', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005520', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005537', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005544', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005551', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005575', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005582', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005599', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005711', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005728', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005735', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005742', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005759', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005773', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005780', name: 'فايل دفتر جامعة', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005797', name: 'فايل دفتر جامعة', price: '', barcode: '' }  
 ];
+
+
 
 
 
