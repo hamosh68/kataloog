@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض صور المنتجات - IBC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background: #f5f5f5; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-title i {
+            font-size: 1.8rem;
+        }
+        
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 50px;
+            padding: 8px 20px;
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(5px);
+        }
+        
+        .search-section {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 2px solid #e0e0e0;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            outline: none;
+            font-family: 'Cairo';
+            font-size: 1rem;
+        }
+        
+        .search-box button {
+            padding: 0 25px;
+            background: #1a237e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo';
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #3949ab;
+        }
+        
+        .stats-bar {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1a237e;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            background: white;
+            cursor: pointer;
+            font-family: 'Cairo';
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active {
+            background: #1a237e;
+            color: white;
+            border-color: #1a237e;
+        }
+        
+        .filter-btn:hover {
+            border-color: #1a237e;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border: 1px solid #eee;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-image-container {
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            background: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            padding: 15px;
+            transition: transform 0.3s;
+        }
+        
+        .product-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-brand {
+            font-size: 0.9rem;
+            color: #1a237e;
+            font-weight: bold;
+            background: #e8eaf6;
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+        }
+        
+        .product-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .product-details {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            padding: 3px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+        
+        .detail-label {
+            color: #666;
+        }
+        
+        .detail-value {
+            font-weight: bold;
+            color: #333;
+            font-family: monospace;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: left;
+            margin-top: 10px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 50px;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">
+            <i class="fas fa-images"></i>
+            <h1>معرض صور المنتجات</h1>
+        </div>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-right"></i>
+            العودة للرئيسية
+        </a>
+    </div>
+    
+    <div class="search-section">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="ابحث باسم المنتج، الباركود، الكود أو الماركة...">
+            <button onclick="searchProducts()"><i class="fas fa-search"></i> بحث</button>
+        </div>
+    </div>
+    
+    <div class="stats-bar">
+        <div class="stat-card">
+            <div class="stat-value" id="totalProducts">0</div>
+            <div class="stat-label">إجمالي المنتجات</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="totalImages">0</div>
+            <div class="stat-label">صور متاحة</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" id="totalBrands">0</div>
+            <div class="stat-label">عدد الماركات</div>
+        </div>
+    </div>
+    
+    <div class="gallery-container">
+        <div class="filter-buttons" id="filterButtons"></div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/js/glightbox.min.js"></script>
+    <script src="products-data.js"></script>
+    <script>
+        const SUPPORTED_EXTENSIONS = ['webp', 'png', 'jpg', 'jpeg', 'gif'];
+        
+        // المنتجات من الملف الخارجي
+        let allProducts = products || [];
+        let filteredProducts = [];
+        
+        // إحصائيات
+        let imagesAvailable = 0;
+        let lightbox = null;
+        
+        // تهيئة GLightbox
+        function initLightbox() {
+            lightbox = GLightbox({
+                selector: '.glightbox',
+                touchNavigation: true,
+                loop: true,
+                zoomable: true,
+                draggable: true,
+                openEffect: 'fade',
+                closeEffect: 'fade'
+            });
+        }
+        
+        // عرض المنتجات
+        async function displayProducts(productsToShow) {
+            const grid = document.getElementById('galleryGrid');
+            
+            if (productsToShow.length === 0) {
+                grid.innerHTML = '<div class="no-results"><i class="fas fa-search"></i><br>لا توجد نتائج مطابقة للبحث</div>';
+                return;
+            }
+            
+            let html = '';
+            
+            for (const product of productsToShow) {
+                // البحث عن صورة المنتج
+                let imageUrl = '';
+                for (const ext of SUPPORTED_EXTENSIONS) {
+                    const url = `images/${product.code}.${ext}`;
+                    const exists = await imageExists(url);
+                    if (exists) {
+                        imageUrl = url;
+                        break;
+                    }
+                }
+                
+                // استخدام صورة افتراضية إذا لم توجد
+                const finalImageUrl = imageUrl || 'images/default-product.webp';
+                
+                html += `
+                    <div class="product-card">
+                        <a href="${finalImageUrl}" class="glightbox" data-gallery="product-gallery" data-title="${product.name || 'منتج'} | ${product.brand} | ${product.code}">
+                            <div class="product-image-container">
+                                <img src="${finalImageUrl}" 
+                                     class="product-image" 
+                                     alt="${product.name || 'منتج'}"
+                                     onerror="this.src='images/default-product.webp'">
+                            </div>
+                        </a>
+                        <div class="product-info">
+                            <span class="product-brand">${product.brand || 'عام'}</span>
+                            <div class="product-name">${product.name || 'منتج'}</div>
+                            <div class="product-details">
+                                <div class="detail-row">
+                                    <span class="detail-label"><i class="fas fa-barcode"></i> الباركود:</span>
+                                    <span class="detail-value">${product.barcode || product.code || '-'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label"><i class="fas fa-qrcode"></i> الكود:</span>
+                                    <span class="detail-value">${product.code || '-'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label"><i class="fas fa-tag"></i> الماركة:</span>
+                                    <span class="detail-value">${product.brand || '-'}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="detail-label"><i class="fas fa-folder"></i> القسم:</span>
+                                    <span class="detail-value">${product.sub || '-'}</span>
+                                </div>
+                            </div>
+                            ${product.price ? `<div class="product-price">💰 ${product.price} د.ك</div>` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            grid.innerHTML = html;
+            
+            // إعادة تهيئة GLightbox بعد إضافة العناصر الجديدة
+            if (lightbox) {
+                lightbox.reload();
+            } else {
+                initLightbox();
+            }
+        }
+        
+        // التحقق من وجود صورة
+        function imageExists(url) {
+            return new Promise(resolve => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+        
+        // حساب الإحصائيات
+        async function calculateStats() {
+            document.getElementById('totalProducts').textContent = allProducts.length;
+            
+            const brands = new Set(allProducts.map(p => p.brand));
+            document.getElementById('totalBrands').textContent = brands.size;
+            
+            // حساب الصور المتاحة
+            imagesAvailable = 0;
+            for (const product of allProducts) {
+                for (const ext of SUPPORTED_EXTENSIONS) {
+                    const url = `images/${product.code}.${ext}`;
+                    if (await imageExists(url)) {
+                        imagesAvailable++;
+                        break;
+                    }
+                }
+            }
+            document.getElementById('totalImages').textContent = imagesAvailable;
+        }
+        
+        // البحث
+        function searchProducts() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!query) {
+                filteredProducts = allProducts;
+            } else {
+                filteredProducts = allProducts.filter(p => {
+                    return (p.name && p.name.toLowerCase().includes(query)) ||
+                           (p.barcode && p.barcode.toLowerCase().includes(query)) ||
+                           (p.code && p.code.toLowerCase().includes(query)) ||
+                           (p.brand && p.brand.toLowerCase().includes(query)) ||
+                           (p.sub && p.sub.toLowerCase().includes(query)) ||
+                           (p.price && p.price.toString().includes(query));
+                });
+            }
+            
+            displayProducts(filteredProducts);
+        }
+        
+        // إضافة أزرار التصفية
+        function createFilterButtons() {
+            const brands = ['الكل', ...new Set(allProducts.map(p => p.brand))];
+            const container = document.getElementById('filterButtons');
+            
+            container.innerHTML = brands.map(brand => `
+                <button class="filter-btn ${brand === 'الكل' ? 'active' : ''}" onclick="filterByBrand('${brand}')">
+                    ${brand}
+                </button>
+            `).join('');
+        }
+        
+        // تصفية حسب الماركة
+        function filterByBrand(brand) {
+            // تحديث حالة الأزرار
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent === brand) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            if (brand === 'الكل') {
+                filteredProducts = allProducts;
+            } else {
+                filteredProducts = allProducts.filter(p => p.brand === brand);
+            }
+            
+            document.getElementById('searchInput').value = '';
+            displayProducts(filteredProducts);
+        }
+        
+        // التهيئة
+        async function init() {
+            allProducts = products || [];
+            filteredProducts = allProducts;
+            
+            createFilterButtons();
+            await calculateStats();
+            displayProducts(allProducts);
+        }
+        
+        // البحث عند الضغط على Enter
+        document.getElementById('searchInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') searchProducts();
+        });
+        
+        init();
+    </script>
+</body>
+</html>
