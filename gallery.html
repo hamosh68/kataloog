@@ -539,7 +539,7 @@
             "use strict";
             
             const SUPPORTED_EXTENSIONS = ['webp', 'png', 'jpg', 'jpeg', 'gif'];
-            const DEFAULT_BRAND = "الكل";
+            const DEFAULT_BRAND = "ستابيلو"; // الماركة الافتراضية عند فتح الصفحة
             const ITEMS_PER_PAGE = 50; // 50 منتج في كل مرة
             
             let allProducts = [];
@@ -773,8 +773,15 @@
                 const select = document.getElementById('brandSelect');
                 select.innerHTML = brands.map(brand => `<option value="${brand}">${brand}</option>`).join('');
                 
-                select.value = DEFAULT_BRAND;
-                currentBrand = DEFAULT_BRAND;
+                // تعيين الماركة الافتراضية إلى ستابيلو
+                if (brands.includes(DEFAULT_BRAND)) {
+                    select.value = DEFAULT_BRAND;
+                    currentBrand = DEFAULT_BRAND;
+                } else {
+                    select.value = 'الكل';
+                    currentBrand = 'الكل';
+                }
+                
                 updateFilteredProducts();
                 
                 select.addEventListener('change', function() {
@@ -800,8 +807,14 @@
                     document.getElementById('brandSelect').value = 'الكل';
                     displayProducts(true);
                 } else {
-                    currentBrand = DEFAULT_BRAND;
-                    document.getElementById('brandSelect').value = DEFAULT_BRAND;
+                    // الرجوع إلى ستابيلو عند إفراغ البحث
+                    if (allProducts.some(p => p.brand === DEFAULT_BRAND)) {
+                        currentBrand = DEFAULT_BRAND;
+                        document.getElementById('brandSelect').value = DEFAULT_BRAND;
+                    } else {
+                        currentBrand = 'الكل';
+                        document.getElementById('brandSelect').value = 'الكل';
+                    }
                     updateFilteredProducts();
                     displayProducts(true);
                 }
@@ -829,6 +842,7 @@
                 }
             });
             
+            // بدء التشغيل
             allProducts = products || [];
             populateBrandSelect();
             calculateStats().catch(console.error);
@@ -837,5 +851,6 @@
     </script>
 </body>
 </html>
+
 
 
