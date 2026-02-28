@@ -634,7 +634,38 @@ body {
     color: var(--primary);
     background: #e8eaf6;
 }
+/* القوة المطلقة - إلغاء كل الإخفاءات */
+.bottom-nav {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: white !important;
+    justify-content: space-around !important;
+    padding: 10px 0 !important;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1) !important;
+    z-index: 999999 !important;
+}
 
+/* حتى لو في ميديا كوير تخفيه، نلغيه */
+@media (min-width: 768px) {
+    .bottom-nav {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .bottom-nav {
+        display: flex !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .bottom-nav {
+        display: flex !important;
+    }
+}
 /* تحميل */
 .loading {
     display: inline-block;
@@ -1313,3 +1344,4 @@ init = function() {
     addStatsButton();
 };
 }
+
