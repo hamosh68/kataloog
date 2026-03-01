@@ -3,147 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض صور المنتجات - IBC</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <title>معرض IBC - الجرد الذكي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/glightbox/3.2.0/css/glightbox.min.css" />
-    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background: #f5f5f5; }
+        body { background: #f0f2f5; padding-bottom: 50px; }
         
-        .header {
-            background: linear-gradient(135deg, #1a237e, #3949ab);
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .header-title { display: flex; align-items: center; gap: 10px; }
-        .header-title i { font-size: 1.8rem; }
-        
-        .back-btn {
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 50px;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-family: 'Cairo';
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-        
-        .back-btn:hover { background: rgba(255,255,255,0.3); transform: translateX(5px); }
-        
-        .search-section { max-width: 800px; margin: 20px auto; padding: 0 20px; }
-        
-        .search-box {
-            display: flex;
-            background: white;
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            border: 2px solid #e0e0e0;
-            position: relative;
-        }
-        
-        .search-box input { flex: 1; padding: 15px 20px; border: none; outline: none; font-size: 1rem; }
-        .search-box button { padding: 0 25px; background: #1a237e; color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .search-box button:hover { background: #3949ab; }
-        
-        .clear-search-btn {
-            position: absolute; left: 120px; top: 50%; transform: translateY(-50%);
-            background: #f44336; color: white; border: none; border-radius: 50%;
-            width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; font-size: 1.2rem; transition: 0.3s; z-index: 10;
-        }
+        .header { background: linear-gradient(135deg, #1a237e, #3949ab); color: white; padding: 15px; text-align: center; position: relative; }
+        .back-btn { position: absolute; left: 15px; top: 15px; color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid #fff; }
 
-        /* كارت الإحصائيات المطور */
-        .brand-stats-card {
-            background: white; border-radius: 12px; padding: 15px; margin: 15px auto;
-            max-width: 550px; box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-            border-right: 5px solid #FF9800; text-align: center;
-        }
+        .brand-stats-card { background: white; border-radius: 12px; padding: 10px; margin: 10px auto; max-width: 500px; box-shadow: 0 3px 10px rgba(0,0,0,0.08); border-right: 5px solid #FF9800; text-align: center; }
+        .brand-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin-top: 5px; }
+        .brand-stat-item { background: #f8f9fa; border-radius: 8px; padding: 5px; }
+        .brand-stat-value { font-size: 1.1rem; font-weight: bold; color: #1a237e; }
+        .brand-stat-label { font-size: 0.7rem; color: #666; }
+
+        .btn-missing-report { background: #f44336; color: white; border: none; padding: 5px 15px; border-radius: 20px; font-size: 0.75rem; cursor: pointer; margin-top: 10px; font-family: 'Cairo'; display: none; transition: 0.3s; }
+        .btn-missing-report:hover { background: #d32f2f; transform: scale(1.05); }
+
+        .search-section { max-width: 800px; margin: 15px auto; padding: 0 10px; }
+        .search-box { display: flex; background: white; border-radius: 50px; overflow: hidden; border: 2px solid #3949ab; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; }
+        .search-box select { padding: 0 15px; border: none; border-left: 1px solid #eee; background: #f8f9fa; font-family: 'Cairo'; cursor: pointer; font-size: 0.85rem; font-weight: bold; color: #1a237e; }
+        .search-box input { flex: 1; padding: 12px 45px 12px 20px; border: none; outline: none; font-size: 0.95rem; }
         
-        .brand-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; }
-        .brand-stat-item { background: #f8f9fa; border-radius: 8px; padding: 10px 5px; }
-        .brand-stat-value { font-size: 1.3rem; font-weight: bold; display: block; }
-        .brand-stat-label { font-size: 0.75rem; color: #666; }
+        .clear-btn { position: absolute; left: 75px; top: 50%; transform: translateY(-50%); color: #f44336; cursor: pointer; font-size: 1.2rem; display: none; }
 
-        .btn-missing-report {
-            background: #f44336; color: white; border: none; padding: 5px 15px;
-            border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin-top: 10px;
-            font-family: 'Cairo'; display: none;
-        }
+        .search-box button { padding: 0 25px; background: #1a237e; color: white; border: none; cursor: pointer; transition: 0.3s; }
+        .search-box button:hover { background: #FF9800; }
 
-        .gallery-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px; margin-bottom: 30px;
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; padding: 10px; max-width: 1400px; margin: 0 auto; }
         
-        .product-card {
-            background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s;
-            border: 1px solid #eee; animation: fadeIn 0.4s ease-out;
-        }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .product-image { width: 100%; height: 200px; object-fit: contain; padding: 15px; background: #fff; }
-        .product-info { padding: 15px; }
-        .product-brand { font-size: 0.8rem; font-weight: bold; color: #1a237e; background: #e8eaf6; padding: 3px 10px; border-radius: 12px; }
-        .product-name { font-weight: bold; font-size: 1.05rem; margin: 10px 0; height: 2.6em; overflow: hidden; }
+        .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #eee; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
+        .product-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
         
-        .price-tag { background: #4CAF50; color: white; padding: 8px; border-radius: 10px; text-align: center; font-weight: bold; margin-top: 10px; }
-        .missing-tag { font-size: 0.7rem; color: #f44336; font-weight: bold; display: block; margin-top: 5px; }
+        .product-image { width: 100%; height: 160px; object-fit: contain; padding: 10px; background: #fff; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+        .product-info { padding: 12px; flex-grow: 1; }
+        .product-brand { font-size: 0.7rem; font-weight: bold; color: #1a237e; background: #e8eaf6; padding: 2px 8px; border-radius: 10px; }
+        .product-name { font-weight: bold; font-size: 0.9rem; margin: 5px 0; height: 2.4em; overflow: hidden; line-height: 1.2; color: #333; }
+        
+        .data-mini { font-size: 0.75rem; color: #666; margin-top: 5px; border-top: 1px solid #f9f9f9; padding-top: 5px; }
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 3px; }
+        .sub-tag { background: #fff3e0; color: #e65100; padding: 1px 6px; border-radius: 4px; font-weight: bold; font-size: 0.7rem; border: 1px solid #ffe0b2; }
 
-        .scroll-top-btn {
-            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
-            background: #1a237e; color: white; border: none; border-radius: 50%;
-            display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 1000;
+        .price-mini { color: #2e7d32; font-weight: bold; font-size: 1.1rem; margin-top: 8px; text-align: center; background: #f1f8e9; border-radius: 8px; padding: 5px; border: 1px solid #c8e6c9; }
+
+        .action-buttons { display: flex; gap: 5px; margin-top: 12px; border-top: 1px solid #f0f0f0; padding-top: 10px; }
+        .action-btn { flex: 1; border: none; padding: 7px; border-radius: 8px; cursor: pointer; font-size: 0.75rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 5px; transition: 0.3s; }
+        .btn-download { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+        .btn-share { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+
+        .scroll-top-btn { position: fixed; bottom: 20px; right: 20px; width: 45px; height: 45px; background: #1a237e; color: white; border: none; border-radius: 50%; display: none; align-items: center; justify-content: center; z-index: 1000; cursor: pointer; border: 2px solid white; }
+        
+        @media (max-width: 600px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 5px; }
+            .product-image { height: 130px; }
+            .action-btn span { display: none; }
         }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <div class="header-title">
-        <i class="fas fa-images"></i>
-        <h1>معرض الصور</h1>
-    </div>
-    <a href="index.html" class="back-btn"><i class="fas fa-arrow-right"></i> العودة</a>
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> الرئيسية</a>
+    <h3><i class="fas fa-boxes-stacked"></i> معرض أصناف IBC</h3>
 </div>
+
+<div class="stats-container" id="currentBrandStats"></div>
 
 <div class="search-section">
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="ابحث بالاسم، الكود، الباركود...">
-        <button class="clear-search-btn" id="clearSearchBtn" onclick="clearSearch()" style="display: none;">✕</button>
-        <button onclick="searchProducts()"><i class="fas fa-search"></i> بحث</button>
+        <select id="brandSelect" onchange="runApp()"></select>
+        <input type="text" id="searchInput" placeholder="ابحث باسم، كود، باركود..." onkeyup="toggleClearBtn(); runApp();">
+        <i class="fas fa-times-circle clear-btn" id="clearBtn" onclick="clearInput()"></i>
+        <button onclick="runApp()"><i class="fas fa-search"></i></button>
     </div>
 </div>
 
-<div id="currentBrandStats"></div>
+<div class="gallery-grid" id="galleryGrid"></div>
 
-<div class="search-section" style="display: flex; gap: 10px; align-items: center; justify-content: space-between;">
-    <select id="brandSelect" style="padding: 10px 20px; border-radius: 25px; border: 2px solid #ddd; font-family: 'Cairo'; flex: 1;"></select>
-    <div id="currentBrandBadge"></div>
-</div>
-
-<div class="gallery-container">
-    <div class="gallery-grid" id="galleryGrid"></div>
-    <div class="load-more-container" id="loadMoreContainer" style="text-align: center; display: none;">
-        <button class="load-more-btn" onclick="loadMoreProducts()" id="loadMoreBtn" style="padding: 12px 30px; background: #1a237e; color: white; border-radius: 50px; border: none; cursor: pointer;">
-            عرض المزيد
-        </button>
-    </div>
+<div id="loadMoreContainer" style="text-align:center; padding: 20px; display:none;">
+    <button onclick="loadMore()" style="padding: 12px 40px; border-radius: 25px; background: #1a237e; color:white; border:none; cursor:pointer; font-weight:bold;">عرض المزيد</button>
 </div>
 
 <button class="scroll-top-btn" id="scrollTopBtn" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
@@ -153,138 +94,121 @@
 <script>
     (function() {
         "use strict";
-        const SUPPORTED_EXTENSIONS = ['webp', 'png', 'jpg'];
-        const ITEMS_PER_PAGE = 40;
         let allProducts = typeof products !== 'undefined' ? products : [];
         let filteredProducts = [];
-        let currentBrand = "Stabilo";
         let currentPage = 1;
-        let isLoading = false;
+        const ITEMS_PER_PAGE = 40;
         let lightbox = null;
-        let missingImagesList = [];
+        window.missingList = []; // مصفوفة النواقص العالمية
 
-        // التحقق من الصورة
-        function checkImage(url) {
-            return new Promise(resolve => {
-                const img = new Image();
-                img.onload = () => resolve(true);
-                img.onerror = () => resolve(false);
-                img.src = url;
-            });
+        function checkImg(url) {
+            return new Promise(r => { const i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; });
         }
 
-        // بناء الإحصائيات للماركة الحالية
         async function updateStats(brand) {
             const container = document.getElementById('currentBrandStats');
-            const targetProducts = brand === "الكل" ? allProducts : allProducts.filter(p => p.brand === brand);
-            
+            const target = brand === "الكل" ? allProducts : allProducts.filter(p => p.brand === brand);
             let hasImg = 0;
-            missingImagesList = [];
+            window.missingList = []; // تصفير النواقص للماركة المختارة
 
-            for (const p of targetProducts) {
-                const exists = await checkImage(`images/${p.code}.webp`);
-                if (exists) hasImg++; else missingImagesList.push(p.code);
+            for(let p of target) { 
+                const ex = await checkImg(`images/${p.code}.webp`); 
+                if(ex) hasImg++; else window.missingList.push(`${p.code} - ${p.barcode || 'بدون باركود'}`); 
             }
-
-            const total = targetProducts.length;
-            const percent = Math.round((hasImg / total) * 100);
 
             container.innerHTML = `
                 <div class="brand-stats-card">
-                    <div class="brand-stats-title"><b>إحصائية ${brand}</b></div>
                     <div class="brand-stats-grid">
-                        <div class="brand-stat-item"><span class="brand-stat-value">${total}</span><span class="brand-stat-label">صنف</span></div>
-                        <div class="brand-stat-item"><span class="brand-stat-value" style="color:#4CAF50">${hasImg}</span><span class="brand-stat-label">صور</span></div>
-                        <div class="brand-stat-item"><span class="brand-stat-value" style="color:#f44336">${total - hasImg}</span><span class="brand-stat-label">نقص</span></div>
+                        <div class="brand-stat-item"><span class="brand-stat-value">${target.length}</span><br><span class="brand-stat-label">صنف</span></div>
+                        <div class="brand-stat-item"><span class="brand-stat-value" style="color:green">${hasImg}</span><br><span class="brand-stat-label">صور</span></div>
+                        <div class="brand-stat-item"><span class="brand-stat-value" style="color:red">${target.length - hasImg}</span><br><span class="brand-stat-label">نقص</span></div>
                     </div>
-                    <div style="font-size: 0.9rem; font-weight: bold; color: #4CAF50; margin-top: 5px;">نسبة الإكمال: ${percent}%</div>
-                    <button class="btn-missing-report" id="btnShowMissing" style="${missingImagesList.length > 0 ? 'display:inline-block' : 'none'}" onclick="alert('الأكواد الناقصة صورها:\\n\\n' + window.missingList.join('\\n'))">عرض الأكواد الناقصة</button>
-                </div>
-            `;
-            window.missingList = missingImagesList;
+                    ${window.missingList.length > 0 ? `<button class="btn-missing-report" style="display:inline-block" onclick="alert('باركودات وأكواد الأصناف الناقصة:\\n\\n' + window.missingList.join('\\n'))">عرض النواقص</button>` : ''}
+                </div>`;
         }
 
-        async function displayProducts(reset = true) {
-            if (isLoading) return;
-            isLoading = true;
+        async function display(reset = true) {
             const grid = document.getElementById('galleryGrid');
-            if (reset) { grid.innerHTML = ''; currentPage = 1; }
-
+            if(reset) { grid.innerHTML = ''; currentPage = 1; }
             const end = currentPage * ITEMS_PER_PAGE;
-            const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-            const slice = filteredProducts.slice(startIndex, end);
+            const slice = filteredProducts.slice((currentPage-1)*ITEMS_PER_PAGE, end);
 
-            let html = '';
-            for (const p of slice) {
-                const imgUrl = `images/${p.code}.webp`;
-                const exists = await checkImage(imgUrl);
+            for(let p of slice) {
+                const img = `images/${p.code}.webp`;
+                const ex = await checkImg(img);
+                const finalImg = ex ? img : 'images/default-product.webp';
                 
-                html += `
+                grid.insertAdjacentHTML('beforeend', `
                     <div class="product-card">
-                        <a href="${exists ? imgUrl : 'images/default-product.webp'}" class="glightbox" data-title="${p.name}">
-                            <img src="${exists ? imgUrl : 'images/default-product.webp'}" class="product-image" loading="lazy">
+                        <a href="${finalImg}" class="glightbox" data-title="${p.name}">
+                            <img src="${finalImg}" class="product-image" loading="lazy" onerror="this.src='images/default-product.webp'">
                         </a>
                         <div class="product-info">
                             <span class="product-brand">${p.brand}</span>
                             <div class="product-name">${p.name}</div>
-                            <div class="product-details" style="background:#f9f9f9; padding:10px; border-radius:8px; font-size:0.85rem;">
-                                <div style="display:flex; justify-content:space-between;"><span>كود:</span> <b>${p.code}</b></div>
-                                <div style="display:flex; justify-content:space-between;"><span>باركود:</span> <b>${p.barcode || '-'}</b></div>
-                                <div style="display:flex; justify-content:space-between;"><span>القسم:</span> <b>${p.sub || '-'}</b></div>
+                            <div class="data-mini">
+                                <div class="data-row"><span>كود:</span> <b>${p.code}</b></div>
+                                <div class="data-row"><span>باركود:</span> <b>${p.barcode || '-'}</b></div>
+                                <div class="data-row"><span>القسم:</span> <span class="sub-tag">${p.sub || 'عام'}</span></div>
                             </div>
-                            <div class="price-tag">${p.price || '0.00'} د.ك</div>
-                            ${!exists ? '<span class="missing-tag">⚠️ الصورة غير متوفرة</span>' : ''}
+                            <div class="price-mini">${p.price || '0.00'} د.ك</div>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-download" onclick="downloadImg('${finalImg}', '${p.code}')"><i class="fas fa-download"></i> <span>حفظ</span></button>
+                                <button class="action-btn btn-share" onclick="shareProduct('${p.name}', '${p.code}', '${p.price}')"><i class="fas fa-share-nodes"></i> <span>مشاركة</span></button>
+                            </div>
                         </div>
-                    </div>`;
+                    </div>`);
             }
-
-            grid.insertAdjacentHTML('beforeend', html);
             document.getElementById('loadMoreContainer').style.display = filteredProducts.length > end ? 'block' : 'none';
-            
-            if (lightbox) lightbox.reload();
-            else lightbox = GLightbox({ selector: '.glightbox' });
-            isLoading = false;
+            if(lightbox) lightbox.reload(); else lightbox = GLightbox({selector:'.glightbox'});
         }
 
-        window.searchProducts = function() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+        window.runApp = function() {
+            const b = document.getElementById('brandSelect').value;
+            const s = document.getElementById('searchInput').value.toLowerCase().trim();
             filteredProducts = allProducts.filter(p => 
-                p.name.toLowerCase().includes(query) || p.code.toLowerCase().includes(query) || (p.barcode && p.barcode.includes(query))
+                (b === "الكل" || p.brand === b) && 
+                (p.name.toLowerCase().includes(s) || p.code.toLowerCase().includes(s) || (p.barcode && p.barcode.includes(s)))
             );
-            document.getElementById('clearSearchBtn').style.display = query ? 'flex' : 'none';
-            updateStats("النتائج");
-            displayProducts(true);
+            updateStats(b);
+            display(true);
         };
 
-        window.loadMoreProducts = function() { currentPage++; displayProducts(false); };
-        window.clearSearch = function() { document.getElementById('searchInput').value = ''; searchProducts(); };
+        window.toggleClearBtn = () => {
+            const val = document.getElementById('searchInput').value;
+            document.getElementById('clearBtn').style.display = val ? 'block' : 'none';
+        };
 
-        // القائمة والترتيب
+        window.clearInput = () => {
+            document.getElementById('searchInput').value = '';
+            window.toggleClearBtn();
+            window.runApp();
+        };
+
+        window.downloadImg = (url, name) => {
+            const a = document.createElement('a'); a.href = url; a.download = `${name}.webp`; a.click();
+        };
+
+        window.shareProduct = (name, code, price) => {
+            const text = `صنف: ${name}\nكود: ${code}\nالسعر: ${price} د.ك`;
+            if(navigator.share) navigator.share({title: name, text: text});
+            else alert("تم نسخ البيانات");
+        };
+
+        window.loadMore = () => { currentPage++; display(false); };
+
         const brands = ["Stabilo", ...new Set(allProducts.map(p => p.brand).filter(b => b !== "Stabilo"))].sort();
-        const select = document.getElementById('brandSelect');
-        select.innerHTML = brands.map(b => `<option value="${b}">${b}</option>`).join('') + '<option value="الكل">الكل</option>';
-        
-        select.addEventListener('change', function() {
-            currentBrand = this.value;
-            filteredProducts = currentBrand === "الكل" ? allProducts : allProducts.filter(p => p.brand === currentBrand);
-            updateStats(currentBrand);
-            displayProducts(true);
-        });
+        const sel = document.getElementById('brandSelect');
+        sel.innerHTML = brands.map(b => `<option value="${b}">${b}</option>`).join('') + '<option value="الكل">الكل</option>';
+        sel.value = "Stabilo";
+        runApp();
 
-        // التشغيل الأولي
-        select.value = "Stabilo";
-        filteredProducts = allProducts.filter(p => p.brand === "Stabilo");
-        updateStats("Stabilo");
-        displayProducts(true);
-
-        window.addEventListener('scroll', () => {
-            document.getElementById('scrollTopBtn').style.display = window.scrollY > 400 ? 'flex' : 'none';
-        });
-
+        window.onscroll = () => { document.getElementById('scrollTopBtn').style.display = window.scrollY > 400 ? 'flex' : 'none'; };
     })();
 </script>
 </body>
 </html>
+
 
 
 
