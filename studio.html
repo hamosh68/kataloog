@@ -156,6 +156,30 @@
         navigator.clipboard.writeText(document.getElementById('log-area').textContent);
         alert("تم نسخ الأكواد!");
     }
+    // --- كود الربط الذكي مع الرادار ---
+window.addEventListener('load', function() {
+    // 1. فحص إذا كان هناك باركود قادم من صفحة المعرض
+    const urlParams = new URLSearchParams(window.location.search);
+    const incomingBarcode = urlParams.get('barcode');
+    
+    if (incomingBarcode) {
+        // 2. وضع الباركود في الخانة المخصصة له فوراً
+        const pCodeInput = document.getElementById('p_code');
+        if (pCodeInput) {
+            pCodeInput.value = incomingBarcode;
+            
+            // 3. تنبيه بصري بسيط بأن الرقم جاهز
+            pCodeInput.style.backgroundColor = "#fff9c4"; // لون أصفر خفيف للتنبيه
+            console.log("تم استلام الباركود بنجاح: " + incomingBarcode);
+            
+            // 4. فحص إذا كان الصنف موجود مسبقاً (اختياري)
+            if (typeof checkIfExists === "function") {
+                checkIfExists(incomingBarcode);
+            }
+        }
+    }
+});
 </script>
 </body>
+
 </html>
