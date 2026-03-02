@@ -594,7 +594,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871286', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293-1', name: 'مقص مدرسي' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6974217871293', name: 'مقص مدرسي' },
-  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955233875416', name: 'دفتر رسم بياني' },
+  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9556233875416', name: 'دفتر رسم بياني' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-1', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-2', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-3', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
@@ -1070,6 +1070,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005780', name: 'فايل دفتر جامعة', price: '', barcode: '' },
 { brand: 'Stationery IBC', sub: 'دفتر جامعة', code: '5200317005797', name: 'فايل دفتر جامعة', price: '', barcode: '' }  
 ];
+
 
 
 
