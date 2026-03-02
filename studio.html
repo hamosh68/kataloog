@@ -55,10 +55,13 @@
     <button class="btn btn-save" onclick="doFinalSave()">✅ حفظ وتنزيل الصورة HD</button>
 
     <div id="log-area">الأكواد الجاهزة للنسخ...</div>
-    <button class="btn" style="background:#1e293b; margin-top:10px;" onclick="copyLogs()">📋 نسخ جميع الأكواد لـ GitHub</button>
-<input type="file" id="honor-cam" accept="image/*" capture="environment" hidden onchange="doRemoveAndEnhance(this)">
-<button class="btn" style="background: linear-gradient(135deg, #000, #444); border: 2px solid #FF9800;" onclick="document.getElementById('honor-cam').click()">
-    <i class="fas fa-camera-retro"></i> 📸 تصوير بكاميرا الموبايل (أقصى جودة)
+    <button class="btn btn-camera" onclick="document.getElementById('item-file').click()">
+    <i class="fas fa-magic"></i> تصوير مع عزل الخلفية (Remove.bg)
+</button>
+
+<input type="file" id="raw-camera" accept="image/*" capture="environment" hidden onchange="processRawImage(this)">
+<button class="btn" style="background: #1e293b; border: 2px solid #38bdf8;" onclick="document.getElementById('raw-camera').click()">
+    <i class="fas fa-camera"></i> تصوير احترافي خام (بدون عزل - جودة Honor)
 </button>
 </div>
 
@@ -181,31 +184,52 @@ window.addEventListener('load', function() {
     }
 });
 
-// --- كود الربط الذكي مع الرادار ---
-window.addEventListener('load', function() {
-    // 1. فحص إذا كان هناك باركود قادم من صفحة المعرض
-    const urlParams = new URLSearchParams(window.location.search);
-    const incomingBarcode = urlParams.get('barcode');
+// دالة معالجة الصور الخام (بدون عزل خلفية)
+function processRawImage(input) {
+    if (!input.files[0]) return;
     
-    if (incomingBarcode) {
-        // 2. وضع الباركود في الخانة المخصصة له فوراً
-        const pCodeInput = document.getElementById('p_code');
-        if (pCodeInput) {
-            pCodeInput.value = incomingBarcode;
+    const loader = document.getElementById('loader');
+    const preview = document.getElementById('preview-container');
+    loader.style.display = "flex";
+    preview.style.display = "block";
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = new Image();
+        img.src = e.target.result;
+        img.onload = () => {
+            // نستخدم دقة عالية جداً للصورة الخام
+            canvas.width = 3000;
+            canvas.height = 3000;
             
-            // 3. تنبيه بصري بسيط بأن الرقم جاهز
-            pCodeInput.style.backgroundColor = "#fff9c4"; // لون أصفر خفيف للتنبيه
-            console.log("تم استلام الباركود بنجاح: " + incomingBarcode);
+            // خلفية بيضاء
+            ctx.fillStyle = "#ffffff";
+            ctx.fillRect(0, 0, 3000, 3000);
+
+            // تحسين الألوان فقط (بدون مسح)
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.filter = 'contrast(1.1) brightness(1.02) saturate(1.1)'; 
             
-            // 4. فحص إذا كان الصنف موجود مسبقاً (اختياري)
-            if (typeof checkIfExists === "function") {
-                checkIfExists(incomingBarcode);
-            }
-        }
-    }
-});
+            let ratio = Math.min(3000 / img.width, 3000 / img.height);
+            let w = img.width * ratio;
+            let h = img.height * ratio;
+            
+            ctx.drawImage(img, (3000 - w) / 2, (3000 - h) / 2, w, h);
+            
+            ctx.filter = 'none';
+            loader.style.display = "none";
+            
+            // إظهار زر الحفظ
+            const saveBtn = document.querySelector('.btn-save');
+            if(saveBtn) saveBtn.style.display = "flex";
+        };
+    };
+    reader.readAsDataURL(input.files[0]);
+}
 </script>
 </body>
 </html>
+
 
 
