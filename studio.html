@@ -181,34 +181,31 @@ window.addEventListener('load', function() {
     }
 });
 
-// دالة إضافية لتحسين الوضوح بعد التصوير (تلوين حجي الاحترافي)
-function drawAndEnhance(url) {
-    const img = new Image();
-    img.src = url;
-    img.onload = () => {
-        // نرفع الدقة لـ 3000 بكسل لأن كاميرا الهونر قوية جداً
-        canvas.width = 3000;
-        canvas.height = 3000;
-        
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, 3000, 3000);
-
-        // فلاتر لزيادة الحدة (Sharpness) وإظهار تفاصيل الصنف
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.filter = 'contrast(1.1) brightness(1.02) saturate(1.1) contrast(1.1)'; 
-        
-        let ratio = Math.min(3000 / img.width, 3000 / img.height);
-        let w = img.width * ratio;
-        let h = img.height * ratio;
-        ctx.drawImage(img, (3000 - w) / 2, (3000 - h) / 2, w, h);
-        
-        ctx.filter = 'none';
-        document.getElementById('loader').style.display = "none";
-        document.getElementById('preview-container').style.display = "block";
-    };
-}
+// --- كود الربط الذكي مع الرادار ---
+window.addEventListener('load', function() {
+    // 1. فحص إذا كان هناك باركود قادم من صفحة المعرض
+    const urlParams = new URLSearchParams(window.location.search);
+    const incomingBarcode = urlParams.get('barcode');
+    
+    if (incomingBarcode) {
+        // 2. وضع الباركود في الخانة المخصصة له فوراً
+        const pCodeInput = document.getElementById('p_code');
+        if (pCodeInput) {
+            pCodeInput.value = incomingBarcode;
+            
+            // 3. تنبيه بصري بسيط بأن الرقم جاهز
+            pCodeInput.style.backgroundColor = "#fff9c4"; // لون أصفر خفيف للتنبيه
+            console.log("تم استلام الباركود بنجاح: " + incomingBarcode);
+            
+            // 4. فحص إذا كان الصنف موجود مسبقاً (اختياري)
+            if (typeof checkIfExists === "function") {
+                checkIfExists(incomingBarcode);
+            }
+        }
+    }
+});
 </script>
 </body>
 </html>
+
 
