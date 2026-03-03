@@ -487,7 +487,6 @@ const products = [
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233860566', name: 'IBC ريكورد ازرق 150 ورقة- 8 EIBC040502 10x8', price: '1.600', barcode: 'EIBC040502' },
   { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949858', name: 'نوت باد A4' },
-  { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949865', name: 'نوت باد A5' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949872', name: 'نوت باد A7' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949889', name: 'نوت باد A6' },
   { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233949896', name: 'نوت باد B5' },
@@ -1096,9 +1095,9 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-6', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-7', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-8', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233919745', name: 'ورق مخرم 2 حلقة ', price: '', barcode: '' }   
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' }  
 ];
+
 
 
 
