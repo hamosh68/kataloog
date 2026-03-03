@@ -1073,7 +1073,6 @@ const products = [
 { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381467308', name: '', price: '', barcode: '' },
 { brand: 'Stabilo', sub: 'ستابيلو اقلام خرايط', code: '4006381574785', name: 'استابيلو اقلام POINT 88/8', price: '2.000', barcode: '88/8-04' },
 { brand: 'Stabilo', sub: 'ستابيلو اقلام خرايط', code: '4006381579575', name: 'استابيلو اقلام POINT 88/18', price: '4.500', barcode: '8818-22' },
-{ brand: 'Stabilo', sub: 'ستابيلو اقلام خرايط', code: '4006381594745.', name: 'استابيلو اقلام POINT 88/12', price: '3.000', barcode: '88/12-04' },
 { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381603140', name: 'استابيلو فوسفوري BOSS ORIGINAL NATURE طقم /6', price: '2.490', barcode: '70/6-2-2' },
 { brand: 'Stabilo', sub: 'ستابيلو اقلام فوسفوري', code: '4006381619998', name: '', price: '', barcode: '' },
 { brand: 'IL COLORI', sub: 'ادوات رسم', code: '6974217870654', name: 'الوان شمعية 12 لون جامبو', price: '', barcode: '' },
@@ -1100,6 +1099,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '9556233919745', name: 'ورق مخرم 2 حلقة ', price: '', barcode: '' }   
 ];
+
 
 
 
