@@ -141,20 +141,26 @@
 
     // --- نظام البحث الصوتي ---
     function startVoiceSearch() {
-        const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!Speech) return alert("متصفحك لا يدعم البحث الصوتي");
-        const rec = new Speech(); rec.lang = 'ar-SA';
-        const btn = document.getElementById('voiceBtn');
-        btn.classList.add('active');
-        rec.start();
-        rec.onresult = (e) => {
-            document.getElementById('searchInput').value = e.results[0][0].transcript;
-            btn.classList.remove('active');
-            toggleClearBtn(); runApp();
-        };
-        rec.onspeechend = () => { rec.stop(); btn.classList.remove('active'); };
-        rec.onerror = () => btn.classList.remove('active');
-    }
+    const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Speech) return alert("متصفحك لا يدعم البحث الصوتي");
+    const rec = new Speech();
+    rec.lang = 'ar-SA';
+    const btn = document.getElementById('voiceBtn');
+    btn.classList.add('active');
+    rec.start();
+
+    rec.onresult = (e) => {
+        let result = e.results[0][0].transcript;
+        // تنظيف شامل: مسح الرموز والمسافات الزائدة
+        result = result.replace(/[^\u0600-\u06FFa-zA-Z0-9\s]/g, "").trim();
+        document.getElementById('searchInput').value = result;
+        btn.classList.remove('active');
+        toggleClearBtn();
+        window.runApp(); // تشغيل البحث
+    };
+    rec.onerror = () => btn.classList.remove('active');
+    rec.onspeechend = () => { rec.stop(); btn.classList.remove('active'); };
+}
 
     // --- نظام النسخ السريع ---
     function copyText(text) {
@@ -342,6 +348,7 @@
 </script>
 </body>
 </html>
+
 
 
 
