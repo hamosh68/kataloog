@@ -1095,8 +1095,19 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-6', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-7', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-8', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' }  
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' }, 
+// قائمة كرات الضغط ergo - الاسم المعدل
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..1', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..2', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..3', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..4', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..5', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..6', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..7', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..8', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..9', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' }
 ];
+
 
 
 
