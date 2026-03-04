@@ -1087,16 +1087,17 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233870954', name: 'دفتر رسم هولندي الوانة مائية', price: '', barcode: '' },
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233870978', name: 'دفتر رسم هولندي الوانة اكريليك', price: '', barcode: '' },
 { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233871005', name: 'A3دفتر رسم هولندي الوانة اكريليك', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-1', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-2', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-3', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-4', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-5', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-6', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-7', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-8', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' },
-{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '', barcode: '0.650' }  
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-1', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-2', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-3', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-4', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-5', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-6', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-7', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093-8', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'دفتر رسم', code: '9556233876093', name: 'دفتر رسم وسط مع يد', price: '0.650', barcode: '' }  
 ];
+
 
 
 
