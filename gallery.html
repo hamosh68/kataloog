@@ -305,16 +305,20 @@
             else lightbox = GLightbox({selector:'.glightbox', closeButton: true});
         }
 
-        window.runApp = function() {
-            const b = document.getElementById('brandSelect').value;
-            const s = document.getElementById('searchInput').value.toLowerCase().trim();
-            filteredProducts = allProducts.filter(p => 
-                (b === "الكل" || p.brand === b) && 
-                (p.name.toLowerCase().includes(s) || p.code.toLowerCase().includes(s) || (p.barcode && p.barcode.includes(s)))
-            );
-            updateStats(b);
-            display(true);
-        };
+       window.runApp = function() {
+    const b = document.getElementById('brandSelect').value;
+    // .trim() هنا تمسح أي مسافات مخفية جات من الصوت أو الكيبورد
+    const s = document.getElementById('searchInput').value.toLowerCase().trim();
+    
+    filteredProducts = allProducts.filter(p => 
+        (b === "الكل" || p.brand === b) && 
+        (p.name.toLowerCase().includes(s) || 
+         p.code.toLowerCase().includes(s) || 
+         (p.barcode && p.barcode.includes(s)))
+    );
+    updateStats(b);
+    display(true);
+};
 
         window.toggleClearBtn = () => {
             document.getElementById('clearBtn').style.display = document.getElementById('searchInput').value ? 'block' : 'none';
@@ -348,6 +352,7 @@
 </script>
 </body>
 </html>
+
 
 
 
