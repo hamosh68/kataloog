@@ -139,21 +139,43 @@
     }
     window.onload = () => { if (sessionStorage.getItem('isLoggedIn') === 'true') document.getElementById('loginOverlay').style.display = 'none'; };
 
-    // --- نظام البحث الصوتي ---
+    // --- نظام البحث الصوتي المطور ---
     function startVoiceSearch() {
         const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!Speech) return alert("متصفحك لا يدعم البحث الصوتي");
-        const rec = new Speech(); rec.lang = 'ar-SA';
+        
+        const rec = new Speech();
+        rec.lang = 'ar-SA';
+        rec.continuous = false;
+        rec.interimResults = false;
+
         const btn = document.getElementById('voiceBtn');
         btn.classList.add('active');
+        
         rec.start();
+
         rec.onresult = (e) => {
-            document.getElementById('searchInput').value = e.results[0][0].transcript;
+            // تنظيف النص الناتج من أي رموز أو مسافات غريبة
+            let result = e.results[0][0].transcript;
+            result = result.replace(/[^\w\s\u0600-\u06FF]/gi, ''); // مسح الرموز الغريبة
+            result = result.trim(); // مسح المسافات من الأطراف
+
+            document.getElementById('searchInput').value = result;
             btn.classList.remove('active');
-            toggleClearBtn(); runApp();
+            
+            toggleClearBtn(); 
+            window.runApp(); // تشغيل البحث فوراً
         };
-        rec.onspeechend = () => { rec.stop(); btn.classList.remove('active'); };
-        rec.onerror = () => btn.classList.remove('active');
+
+        rec.onerror = (err) => {
+            console.error("Voice Error:", err);
+            btn.classList.remove('active');
+        };
+
+        rec.onspeechend = () => {
+            rec.stop();
+            btn.classList.remove('active');
+        };
     }
 
     // --- نظام النسخ السريع ---
@@ -600,6 +622,7 @@ function processScanResult(barcode) {
 </script>
 </body>
 </html>
+
 
 
 
