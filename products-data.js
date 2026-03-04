@@ -1122,7 +1122,7 @@ const products = [
 { brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007995', name: 'الوان توي كولور', price: '', barcode: '8015189007995' }
 ];
 
-];
+
 
 
 
