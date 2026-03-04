@@ -1105,8 +1105,25 @@ const products = [
 { brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..6', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
 { brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..7', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
 { brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..8', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
-{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..9', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' }
+{ brand: 'ergo', sub: 'كرة الضغط stress ball', code: '6272025016805..9', name: 'كرة الضغط', price: '1.650', barcode: '6272025016805' },
+// برايات KUM - الماني
+{ brand: 'KUM', sub: 'براية', code: '4064900006988', name: 'براية الماني', price: '', barcode: '4064900006988' },
+{ brand: 'KUM', sub: 'براية', code: '4064900101188', name: 'براية الماني', price: '', barcode: '4064900101188' },
+{ brand: 'KUM', sub: 'براية', code: '4064900101218', name: 'براية الماني', price: '', barcode: '4064900101218' },
+
+// علب طعام Stationery IBC
+{ brand: 'Stationery IBC', sub: 'علبة طعام', code: '6974217874324..1', name: 'علبة طعام', price: '', barcode: '6974217874324' },
+{ brand: 'Stationery IBC', sub: 'علبة طعام', code: '6974217874324', name: 'علبة طعام', price: '', barcode: '6974217874324' },
+
+// ألوان Toy Color
+{ brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189001917', name: 'الوان توي كولور', price: '', barcode: '8015189001917' },
+{ brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007674', name: 'الوان توي كولور', price: '', barcode: '8015189007674' },
+{ brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007940', name: 'الوان توي كولور', price: '', barcode: '8015189007940' },
+{ brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007995', name: 'الوان توي كولور', price: '', barcode: '8015189007995' }
 ];
+
+];
+
 
 
 
