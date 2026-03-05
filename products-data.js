@@ -1121,9 +1121,22 @@ const products = [
 { brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870173', name: 'مسطرة', price: '', barcode: '6974217870173' },
 { brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870968', name: 'مسطرة', price: '', barcode: '6974217870968' },
 { brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870975', name: 'مسطرة', price: '', barcode: '6974217870975' },
-{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870982', name: 'مسطرة', price: '', barcode: '6974217870982' }
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870982', name: 'مسطرة', price: '', barcode: '6974217870982' },
+// قائمة الأقلام من واقع الصور الأخيرة المرفقة (Stationery IBC)
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873358', name: 'IBC اقلام رصاص سداسي باستيل مخطط مع محاية /12 علبة كرتون', price: '0.750', barcode: 'IBC-XP689E-12B' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873372', name: 'IBC اقلام رصاص مثلث باستيل سادة تريو مع محاية /12 علبة كرتون', price: '0.750', barcode: 'IBC-TP788E-12B' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873396', name: 'IBC اقلام رصاص مثلث باستيل مخطط تريو مع محاية /12 علبة كرتون', price: '0.750', barcode: 'IBC-TP789E-12B' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873426', name: 'IBC اقلام رصاص سداسي باستيل منقط مع محاية تيوب الوان فاتح /24', price: '1.500', barcode: 'IBC-XPP888E1-24P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873365', name: 'IBC اقلام رصاص سداسي باستيل مخطط مع محاية تيوب /24', price: '1.500', barcode: 'IBC-XP689E-24P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873402', name: 'IBC اقلام رصاص مثلث باستيل مخطط تريو مع محاية تيوب /24', price: '1.500', barcode: 'IBC-TP789E-24P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص باستيل', code: '6974217873440', name: 'IBC اقلام رصاص سداسي باستيل منقط مع محاية تيوب ابيض فاتح /24', price: '1.500', barcode: 'IBC-XPP888E2-24P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217871125', name: 'IBC اقلام رصاص سداسي مع محاية تيوب /24', price: '1.100', barcode: 'IBC-X288E-24P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217873327', name: 'IBC اقلام رصاص سداسي مع محاية تيوب /36', price: '1.650', barcode: 'IBC-X288E-36P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217871132', name: 'IBC اقلام رصاص مثلث مع محاية تيوب /24', price: '1.100', barcode: 'IBC-T288E-24P' },
+{ brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217873310', name: 'IBC اقلام رصاص مثلث مع محاية تيوب /36', price: '1.650', barcode: 'IBC-T288E-36P' }
    
 ];
+
 
 
 
