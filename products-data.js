@@ -1119,8 +1119,17 @@ const products = [
 { brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189001917', name: 'الوان توي كولور', price: '', barcode: '8015189001917' },
 { brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007674', name: 'الوان توي كولور', price: '', barcode: '8015189007674' },
 { brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007940', name: 'الوان توي كولور', price: '', barcode: '8015189007940' },
-{ brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007995', name: 'الوان توي كولور', price: '', barcode: '8015189007995' }
+{ brand: 'Toy Color', sub: 'الوان توي كولور', code: '8015189007995', name: 'الوان توي كولور', price: '', barcode: '8015189007995'},
+// قائمة مساطر Stationery IBC
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870159', name: 'مسطرة', price: '', barcode: '6974217870159' },
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870166', name: 'مسطرة', price: '', barcode: '6974217870166' },
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870173', name: 'مسطرة', price: '', barcode: '6974217870173' },
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870968', name: 'مسطرة', price: '', barcode: '6974217870968' },
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870975', name: 'مسطرة', price: '', barcode: '6974217870975' },
+{ brand: 'Stationery IBC', sub: 'مسطرة', code: '6974217870982', name: 'مسطرة', price: '', barcode: '6974217870982' }
+   
 ];
+
 
 
 
