@@ -460,7 +460,6 @@ const products = [
 { brand: 'TWINY COLORI', sub: 'اقلام', code: '8809022631542', name: 'اقلام TWINY COLORI 15/ راسين IBC-TW-15', price: '3.375', barcode: 'IBC-TW-15' },
 { brand: 'TWINY COLORI', sub: 'اقلام', code: '8809022631634', name: 'اقلام TWINY COLORI 20/ راسين IBC-TW-20', price: '4.500', barcode: 'IBC-TW-20' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010003', name: 'IBC دفاتر تلوين للكبار EIBC160803 A4 200gsm Amazing animals', price: '2.000', barcode: 'EIBC160803' },
-{ brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9556233851359', name: 'IBC دفاتر تلوين للكبار A4 (Beautiful Botanicals) 805 EIBC160805', price: '2.000', barcode: 'EIBC160805' },
 { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010027', name: 'IBC دفاتر تلوين للكبار EIBC160804 A4 200gsm mystic mandalas', price: '2.000', barcode: 'EIBC160804' },
 { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010041', name: 'IBC دفاتر تلوين للكبار EIBC160805 A4 200gsm Beautiful Botanicals', price: '2.000', barcode: 'EIBC160805' },
 { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010065', name: 'IBC دفاتر تلوين للكبار EIBC160807 (20X20) 200gsm amazing animals', price: '1.650', barcode: 'EIBC160807' },
@@ -1136,6 +1135,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217873310', name: 'IBC اقلام رصاص مثلث مع محاية تيوب /36', price: '1.650', barcode: 'IBC-T288E-36P' }
    
 ];
+
 
 
 
