@@ -593,6 +593,34 @@ const products = [
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-4', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-5', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146', name: 'اقلام 5*1 كيس', price: '0.900', barcode: '' },
+ { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-6', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-7', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-8', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-9', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-10', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-11', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-12', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-13', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-14', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-15', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-16', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-17', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-18', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-19', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-20', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-21', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-22', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-23', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-24', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-25', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-26', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-27', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-28', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-29', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-30', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-31', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-32', name: 'اقلام 5*1', price: '0.900', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-33', name: 'اقلام 5*1', price: '0.900', barcode: '' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-1', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc200802' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-2', name: 'دفتر تلوين مع يد A4 ', price: '0.800', barcode: 'ibc20080' },
   { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004010126-3', name: 'دفتر تلوين مع يد A4', price: '0.800', barcode: 'ibc20080' },
@@ -1135,6 +1163,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217873310', name: 'IBC اقلام رصاص مثلث مع محاية تيوب /36', price: '1.650', barcode: 'IBC-T288E-36P' }
    
 ];
+
 
 
 
