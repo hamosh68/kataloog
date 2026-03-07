@@ -142,17 +142,20 @@
     const correctPass = "1234";
     function checkPassword() {
         if (document.getElementById('passInput').value === correctPass) {
+            // استخدام localStorage بدلاً من sessionStorage ليتذكر الدخول
             localStorage.setItem('isLoggedIn_AbuShams', 'true');
             document.getElementById('loginOverlay').style.display = 'none';
         } else { document.getElementById('errorMsg').style.display = 'block'; }
     }
     
+    // الفحص عند تحميل الصفحة
     window.onload = () => { 
         if (localStorage.getItem('isLoggedIn_AbuShams') === 'true') {
             document.getElementById('loginOverlay').style.display = 'none';
         } 
     };
 
+    // --- نظام البحث الصوتي ---
     function startVoiceSearch() {
         const Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!Speech) return alert("متصفحك لا يدعم البحث الصوتي");
@@ -166,6 +169,201 @@
             let result = e.results[0][0].transcript;
             result = result.replace(/[^\u0600-\u06FFa-zA-Z0-9\s]/g, "").trim();
             document.getElementById('searchInput').value = result;
+            btn.classList.remove('active');
+            toggleClearBtn();
+            window.runApp();
+        };
+        rec.onerror = () => btn.classList.remove('active');
+        rec.onspeechend = () => { rec.stop(); btn.classList.remove('active'); };
+    }
+
+    // --- نظام النسخ السريع ---
+    function copyText(text) {
+        if(!text || text === '-') return;
+        navigator.clipboard.writeText(text);
+        const toast = document.createElement('div');
+        toast.innerText = "تم النسخ: " + text;
+        toast.style = "position:fixed; bottom:80px; left:50%; transform:translateX(-50%); background:#333; color:white; padding:8px 20px; border-radius:20px; font-size:0.8rem; z-index:10000;";
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 1200);
+    }
+
+    (function() {
+        "use strict";
+        let allProducts = typeof products !== 'undefined' ? products : [];
+        let filteredProducts = [];
+        let currentPage = 1;
+        const ITEMS_PER_PAGE = 50;
+        let lightbox = null;
+        let html5QrCode = null;
+        let showOnlyMissing = false; 
+        window.missingList = [];
+
+        window.startScanner = function() {
+            document.getElementById('scanOverlay').style.display = 'flex';
+            if (html5QrCode) { html5QrCode.clear(); }
+            html5QrCode = new Html5Qrcode("reader");
+            const config = { fps: 10, qrbox: { width: 250, height: 150 } };
+            html5QrCode.start({ facingMode: "environment" }, config, (decodedText) => {
+                if (navigator.vibrate) navigator.vibrate(100);
+                stopScanner();
+                processScanResult(decodedText);
+            }, (errorMessage) => {}).catch(err => {
+                alert("تأكد من صلاحية الكاميرا");
+                stopScanner();
+            });
+        };
+
+        window.stopScanner = function() {
+            document.getElementById('scanOverlay').style.display = 'none';
+            if (html5QrCode) {
+                html5QrCode.stop().then(() => { html5QrCode.clear(); }).catch(err => {});
+            }
+        };
+
+        function processScanResult(barcode) {
+            document.getElementById('searchInput').value = barcode;
+            document.getElementById('brandSelect').value = "الكل";
+            window.runApp();
+            const found = allProducts.find(p => p.code === barcode || (p.barcode && p.barcode === barcode));
+            if (!found) {
+                if (confirm(`🔍 صنف جديد! (${barcode})\nهل تريد تصويره الآن؟`)) {
+                    window.location.href = `studio.html?barcode=${barcode}`;
+                }
+            }
+        }
+
+        function checkImg(url) {
+            return new Promise(r => { const i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; });
+        }
+
+        async function updateStats(brand) {
+            const container = document.getElementById('currentBrandStats');
+            const target = brand === "الكل" ? allProducts : allProducts.filter(p => p.brand === brand);
+            let hasImg = 0;
+            window.missingList = []; 
+
+            for(let p of target) { 
+                const ex = await checkImg(`images/${p.code}.webp`); 
+                if(ex) hasImg++; else window.missingList.push(p.code); 
+            }
+
+            container.innerHTML = `
+                <div class="brand-stats-card">
+                    <div class="brand-stats-grid">
+                        <div class="brand-stat-item"><span class="brand-stat-value">${target.length}</span><br><span class="brand-stat-label">صنف</span></div>
+                        <div class="brand-stat-item"><span class="brand-stat-value" style="color:green">${hasImg}</span><br><span class="brand-stat-label">صور</span></div>
+                        <div class="brand-stat-item"><span class="brand-stat-value" style="color:red">${target.length - hasImg}</span><br><span class="brand-stat-label">نقص</span></div>
+                    </div>
+                    <div class="stats-actions">
+                        <button class="btn-stat" style="background:#1a237e" onclick="copyText(window.missingList.join('\\n'))"><i class="fas fa-copy"></i> نسخ النواقص</button>
+                        <button class="btn-stat" style="background:${showOnlyMissing?'#2e7d32':'#f44336'}" onclick="toggleMissingFilter()">${showOnlyMissing ? 'عرض الكل' : 'فلتر النواقص'}</button>
+                    </div>
+                </div>`;
+        }
+
+        window.toggleMissingFilter = () => { showOnlyMissing = !showOnlyMissing; runApp(); };
+
+        async function display(reset = true) {
+            const grid = document.getElementById('galleryGrid');
+            if(reset) { grid.innerHTML = ''; currentPage = 1; }
+            
+            let itemsToDisplay = filteredProducts;
+            if(showOnlyMissing) {
+                let missingOnly = [];
+                for(let p of filteredProducts) {
+                    const ex = await checkImg(`images/${p.code}.webp`);
+                    if(!ex) missingOnly.push(p);
+                }
+                itemsToDisplay = missingOnly;
+            }
+
+            const end = currentPage * ITEMS_PER_PAGE;
+            const slice = itemsToDisplay.slice((currentPage-1)*ITEMS_PER_PAGE, end);
+
+            for(let p of slice) {
+                const img = `images/${p.code}.webp`;
+                const ex = await checkImg(img);
+                const finalImg = ex ? img : 'images/default-product.webp';
+                
+                grid.insertAdjacentHTML('beforeend', `
+                    <div class="product-card">
+                        <a href="${finalImg}" class="glightbox" data-title="${p.name}">
+                            <img src="${finalImg}" class="product-image" loading="lazy" onerror="this.src='images/default-product.webp'">
+                        </a>
+                        <div class="product-info">
+                            <span class="product-brand">${p.brand}</span>
+                            <div class="product-name">${p.name}</div>
+                            <div class="data-mini">
+                                <div class="copy-row" onclick="copyText('${p.code}')"><span>كود:</span> <b>${p.code} <i class="far fa-copy" style="font-size:0.6rem"></i></b></div>
+                                <div class="copy-row" onclick="copyText('${p.barcode || ''}')"><span>باركود:</span> <b>${p.barcode || '-'} <i class="far fa-copy" style="font-size:0.6rem"></i></b></div>
+                                <div class="data-row"><span>القسم:</span> <span class="sub-tag">${p.sub || 'عام'}</span></div>
+                            </div>
+                            <div class="price-mini">${p.price || '0.00'} د.ك</div>
+                            <div class="action-buttons">
+                                <button class="action-btn btn-download" onclick="downloadImg('${finalImg}', '${p.code}')"><i class="fas fa-download"></i> <span>حفظ</span></button>
+                                <button class="action-btn btn-share" onclick="shareProduct('${p.name}', '${p.code}', '${p.price}')"><i class="fas fa-share-nodes"></i> <span>مشاركة</span></button>
+                            </div>
+                        </div>
+                    </div>`);
+            }
+            const rem = itemsToDisplay.length - end;
+            const container = document.getElementById('loadMoreContainer');
+            const btn = document.getElementById('loadMoreBtn');
+            if(rem > 0) {
+                container.style.display = 'block';
+                btn.innerHTML = `عرض المزيد (متبقي ${rem})`;
+            } else { container.style.display = 'none'; }
+
+            if(lightbox) lightbox.reload(); 
+            else lightbox = GLightbox({selector:'.glightbox', closeButton: true});
+        }
+
+        window.runApp = function() {
+            const b = document.getElementById('brandSelect').value;
+            const s = document.getElementById('searchInput').value.toLowerCase().trim();
+            filteredProducts = allProducts.filter(p => 
+                (b === "الكل" || p.brand === b) && 
+                (p.name.toLowerCase().includes(s) || 
+                 p.code.toLowerCase().includes(s) || 
+                 (p.barcode && p.barcode.includes(s)))
+            );
+            updateStats(b);
+            display(true);
+        };
+
+        window.toggleClearBtn = () => {
+            document.getElementById('clearBtn').style.display = document.getElementById('searchInput').value ? 'block' : 'none';
+        };
+
+        window.clearInput = () => {
+            document.getElementById('searchInput').value = '';
+            window.toggleClearBtn(); window.runApp();
+        };
+
+        window.downloadImg = (url, name) => {
+            const a = document.createElement('a'); a.href = url; a.download = `${name}.webp`; a.click();
+        };
+
+        window.shareProduct = (name, code, price) => {
+            const text = `صنف: ${name}\nكود: ${code}\nالسعر: ${price} د.ك`;
+            if(navigator.share) navigator.share({title: name, text: text});
+            else alert("تم نسخ البيانات");
+        };
+
+        window.loadMore = () => { currentPage++; display(false); };
+
+        const brands = ["Stabilo", ...new Set(allProducts.map(p => p.brand).filter(b => b !== "Stabilo"))].sort();
+        const sel = document.getElementById('brandSelect');
+        sel.innerHTML = brands.map(b => `<option value="${b}">${b}</option>`).join('') + '<option value="الكل">الكل</option>';
+        sel.value = "Stabilo";
+        runApp();
+
+        window.onscroll = () => { document.getElementById('scrollTopBtn').style.display = window.scrollY > 400 ? 'flex' : 'none'; };
+    })();
+</script>
+</body>
+</html>            document.getElementById('searchInput').value = result;
             btn.classList.remove('active');
             toggleClearBtn();
             window.runApp();
@@ -739,6 +937,7 @@
 </script>
 </body>
 </html>
+
 
 
 
