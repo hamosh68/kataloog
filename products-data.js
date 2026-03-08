@@ -1163,7 +1163,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'اقلام رصاص', code: '6974217873310', name: 'IBC اقلام رصاص مثلث مع محاية تيوب /36', price: '1.650', barcode: 'IBC-T288E-36P' },
  { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024057..1', name: '', price: '0.000', barcode: '' },
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024057..2', name: '', price: '0.000', barcode: '' },
-{ brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024064..1.', name: '', price: '0.000', barcode: '' },
+{ brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024064..1', name: '', price: '0.000', barcode: '' },
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024064..2', name: '', price: '0.000', barcode: '' },
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024064..3', name: '', price: '0.000', barcode: '' },
 { brand: 'GPACK', sub: 'شنطة ومقلمة GPACK AVVENTURA ', code: '6014562024064..4', name: '', price: '0.000', barcode: '' },
@@ -1231,6 +1231,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146-39', name: 'اقلام 5*1', price: '0.900', barcode: '' }
   
 ];
+
 
 
 
