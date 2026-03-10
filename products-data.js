@@ -1279,8 +1279,18 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-2', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-3', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-4', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' },
-{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-5', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' } 
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-5', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847608', name: 'فايل ابيض 1 × 2 حلقة IBC', price: '1.450', barcode: 'US-152PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847615', name: 'فايل ابيض 1.5 × 2 حلقة IBC', price: '1.650', barcode: 'US-202PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847622', name: 'فايل ابيض 1 × 3 حلقة IBC', price: '1.450', barcode: 'US-153PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847639', name: 'فايل ابيض 1.5 × 3 حلقة IBC', price: '1.650', barcode: 'US-203PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847646', name: 'فايل ابيض 1 × 4 حلقة IBC', price: '1.450', barcode: 'US-154PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847653', name: 'فايل ابيض 1.5 × 4 حلقة IBC', price: '1.650', barcode: 'US-204PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847660', name: 'فايل ابيض 2 × 2 حلقة IBC', price: '1.850', barcode: 'US-302PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847677', name: 'فايل ابيض 2 × 3 حلقة IBC', price: '1.850', barcode: 'US-303PD-N' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847684', name: 'فايل ابيض 2 × 4 حلقة IBC', price: '1.850', barcode: 'US-304PD-N' }, 
 ];
+
 
 
 
