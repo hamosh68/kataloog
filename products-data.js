@@ -447,9 +447,14 @@ const products = [
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6922681123363', name: 'وايت بورد' },
   { brand: 'Stationery IBC', sub: 'اقلام', code: '6941287402146', name: 'اقلام 5*1' },
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122814', name: 'وايت بورد' },
-  { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122838', name: 'وايت بورد' },
-  { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122845', name: 'وايت بورد' },
-  { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122852', name: 'وايت بورد' },
+  { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122821', name: 'IBC سبورة لاصق ديلوكس انجليزي طقم/ 5', price: '0.800', barcode: 'IBC-001E-WBS' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122807', name: 'IBC سبورة لاصق ديلوكس مربعات طقم/ 5', price: '0.800', barcode: 'IBC-001S-WBS' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122838', name: 'IBC سبورة لاصق ديلوكس طقم /7', price: '0.900', barcode: 'IBC-002-WBS' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122852', name: 'IBC سبورة لاصق ديلوكس طقم /10 الوان أساسية', price: '1.400', barcode: 'IBC-004S-WBS' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122845', name: 'IBC سبورة لاصق ديلوكس طقم /10 الوان', price: '1.400', barcode: 'IBC-003C-WBS' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952681123384', name: 'IBC سبورة لاصق (Plain) Set /6 sh', price: '1.450', barcode: 'IBC-WBS-6' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122869', name: 'IBC سبورة لاصق مربعات طقم /4', price: '0.650', barcode: 'IBC-WBSS-4S' },
+{ brand: 'Stationery IBC', sub: 'وايت بورد', code: '6985680122898', name: 'IBC سبورة لاصق انجليزي 4-خط طقم /4', price: '0.650', barcode: 'IBC-WBSS-4E' },
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6952680122876', name: 'وايت بورد' },
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6985680122638', name: 'وايت بورد' },
   { brand: 'Stationery IBC', sub: 'وايت بورد', code: '6985680122843', name: 'وايت بورد' },
@@ -1276,6 +1281,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-4', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847509-5', name: 'IBC فايل بلاستيك سادة مخطط باستيل اطار 4 حلقة "1.5', price: '1.300', barcode: 'A1540-P' } 
 ];
+
 
 
 
