@@ -1313,7 +1313,18 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523-1', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523-2', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523-3', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
+    ارت لاين
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836695', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836787', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836701', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836718', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836770', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836794', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836855', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836862', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836879', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },    
 ];
+
 
 
 
