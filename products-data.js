@@ -1289,7 +1289,32 @@ const products = [
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847660', name: 'فايل ابيض 2 × 2 حلقة IBC', price: '1.850', barcode: 'US-302PD-N' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847677', name: 'فايل ابيض 2 × 3 حلقة IBC', price: '1.850', barcode: 'US-303PD-N' },
 { brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847684', name: 'فايل ابيض 2 × 4 حلقة IBC', price: '1.850', barcode: 'US-304PD-N' }, 
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836336', name: 'فايل شفاف مخطط 20 جيب IBC SMART', price: '0.900', barcode: 'IBC-20CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836336-1', name: 'فايل شفاف مخطط 20 جيب IBC SMART', price: '0.900', barcode: 'IBC-20CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836336-2', name: 'فايل شفاف مخطط 20 جيب IBC SMART', price: '0.900', barcode: 'IBC-20CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836336-3', name: 'فايل شفاف مخطط 20 جيب IBC SMART', price: '0.900', barcode: 'IBC-20CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836343', name: 'فايل شفاف مخطط 30 جيب IBC SMART', price: '1.100', barcode: 'IBC-30CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836343-1', name: 'فايل شفاف مخطط 30 جيب IBC SMART', price: '1.100', barcode: 'IBC-30CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836343-2', name: 'فايل شفاف مخطط 30 جيب IBC SMART', price: '1.100', barcode: 'IBC-30CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836343-3', name: 'فايل شفاف مخطط 30 جيب IBC SMART', price: '1.100', barcode: 'IBC-30CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836350', name: 'فايل شفاف مخطط 40 جيب IBC SMART', price: '1.300', barcode: 'IBC-40CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836350-1', name: 'فايل شفاف مخطط 40 جيب IBC SMART', price: '1.300', barcode: 'IBC-40CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836350-2', name: 'فايل شفاف مخطط 40 جيب IBC SMART', price: '1.300', barcode: 'IBC-40CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836350-3', name: 'فايل شفاف مخطط 40 جيب IBC SMART', price: '1.300', barcode: 'IBC-40CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836367', name: 'فايل شفاف مخطط 60 جيب IBC SMART', price: '1.700', barcode: 'IBC-60CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836367-1', name: 'فايل شفاف مخطط 60 جيب IBC SMART', price: '1.700', barcode: 'IBC-60CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836367-2', name: 'فايل شفاف مخطط 60 جيب IBC SMART', price: '1.700', barcode: 'IBC-60CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583836367-3', name: 'فايل شفاف مخطط 60 جيب IBC SMART', price: '1.700', barcode: 'IBC-60CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847516', name: 'فايل شفاف مخطط 80 جيب IBC SMART', price: '2.200', barcode: 'IBC-80CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847516-1', name: 'فايل شفاف مخطط 80 جيب IBC SMART', price: '2.200', barcode: 'IBC-80CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847516-2', name: 'فايل شفاف مخطط 80 جيب IBC SMART', price: '2.200', barcode: 'IBC-80CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847516-3', name: 'فايل شفاف مخطط 80 جيب IBC SMART', price: '2.200', barcode: 'IBC-80CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523-1', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523-2', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6920583847523-3', name: 'فايل شفاف مخطط 100 جيب IBC SMART', price: '2.400', barcode: 'IBC-100CS' },
 ];
+
 
 
 
