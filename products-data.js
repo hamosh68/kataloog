@@ -238,6 +238,8 @@ const products = [
 { brand: 'عروض', sub: 'عروض', code: '6939219084096', name: 'IBC صمغ شمعي 15 جرام طقم / 3 IBC-GL15/3N (BD) Y3', price: '0.450', barcode: 'IBC-GL15/3N' },
 // قائمة العروض الكاملة - Stationery IBC
 { brand: 'عروض', sub: 'عروض', code: '6985680122621', name: 'IBC سبورة مغناطيس مع زوايا عرض طقم 4 قطع IBC-WBPR-2S SMILEY', price: '1.250', barcode: 'IBC-WBPR-2S' },
+{ brand: 'عروض', sub: 'عروض', code: '6985680122621..1', name: 'IBC سبورة مغناطيس مع زوايا عرض طقم 4 قطع IBC-WBPR-2S SMILEY', price: '1.250', barcode: 'IBC-WBPR-2S' },
+{ brand: 'عروض', sub: 'عروض', code: '6985680122621..2', name: 'IBC سبورة مغناطيس مع زوايا عرض طقم 4 قطع IBC-WBPR-2S SMILEY', price: '1.250', barcode: 'IBC-WBPR-2S' },    
 { brand: 'عروض', sub: 'عروض', code: '2000700355248', name: 'IBC سبورة مغناطيس N(30X30) مربع + 2 قلم استابيلو وايت بورد + محاية وجوه Smiley', price: '1.500', barcode: '' },
 
 // أطقم أقلام الرصاص
