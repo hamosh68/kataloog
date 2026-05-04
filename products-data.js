@@ -522,7 +522,7 @@ const products = [
   { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '6971064210886', name: 'دفتر رسم' },
   { brand: 'Stationery IBC', sub: 'دفتر رسم', code: '6971064210893', name: 'دفتر رسم' },
   { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '697106421135', name: 'لوحة رسم قماش' },
-  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '933668568944', name: 'لوحة رسم قماش' },
+  { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685944', name: 'لوحة رسم قماش' },
   { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685968', name: 'لوحة رسم قماش' },
   { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685975', name: 'لوحة رسم قماش' },
   { brand: 'Stationery IBC', sub: 'ادوات رسم', code: '9336685685982', name: 'لوحة رسم قماش' },
