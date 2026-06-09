@@ -205,7 +205,6 @@ function showCartPage() {
                         <button onclick="closeCartModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
                     </div>
                     
-                    <!-- إضافة خانة اسم الزبون -->
                     <div style="margin-bottom: 20px;">
                         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                             <i class="fas fa-user" style="color: #1a237e;"></i>
@@ -396,7 +395,6 @@ function clearCart() {
 // =======================
 
 function generateOrderNumber() {
-    // التاريخ: 20250214
     const today = new Date();
     const year = today.getFullYear();
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
@@ -425,7 +423,6 @@ function sendCartToWhatsApp() {
         return;
     }
     
-    // 🔴 توليد رقم الطلب
     const orderNumber = generateOrderNumber();
     
     // جلب اسم الزبون من الخانة
@@ -447,7 +444,7 @@ function sendCartToWhatsApp() {
     
     let message = `🛒 *طلب جديد - IBC*\n`;
     message += `═══════════════════════════════════\n`;
-    message += `📋 *رقم الطلب:* ${orderNumber}\n`; // 🔴 رقم الطلب
+    message += `📋 *رقم الطلب:* ${orderNumber}\n`;
     message += `📅 : ${currentDate}\n`;
     
     // إضافة اسم الزبون إذا كان موجوداً
@@ -472,7 +469,6 @@ function sendCartToWhatsApp() {
             message += `🏷️ *الكود:* ${product.barcode}\n`;
         }
 
-          
             if (product?.sub) {
             message += `🏷️ *الصنف:* ${product.sub}\n`;
         }
@@ -517,7 +513,7 @@ function sendCartToWhatsApp() {
     // فتح واتساب
     window.open(whatsappUrl, '_blank');
     
-    // 🔴 مسح اسم الزبون بعد الإرسال
+    // مسح اسم الزبون بعد الإرسال
     if (customerNameElement) {
         customerNameElement.value = '';
         localStorage.setItem('abushams_customer_name', '');
@@ -534,6 +530,7 @@ function sendCartToWhatsApp() {
         );
     }, 500);
 }
+
 function renderSubCategories() {
     let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
     const subs = ['الكل', ...new Set(filtered.map(p => p.sub))];
@@ -567,7 +564,6 @@ function setSub(sub) {
 }
 
 // عرض المنتجات
-// عرض المنتجات
 function renderProducts() {
     if (!productsGrid || !searchInput) return;
 
@@ -578,27 +574,22 @@ function renderProducts() {
         const brandMatch = currentBrand === 'الكل' || product.brand === currentBrand;
         const subMatch = (typeof currentSub === 'undefined' || currentSub === 'الكل') || product.sub === currentSub;
         
-        // ✅ توسيع البحث ليشمل كل شي
         const searchMatch = !query || 
-            // الحقول الأساسية
             product.code?.toLowerCase().includes(query) || 
             product.name?.toLowerCase().includes(query) || 
             product.brand?.toLowerCase().includes(query) || 
             product.sub?.toLowerCase().includes(query) ||
             
-            // ✅ الحقول الجديدة
-            product.barcode?.toLowerCase().includes(query) ||  // الباركود
-            product.price?.toString().toLowerCase().includes(query) ||  // السعر (كرقم)
-            `💰 ${product.price}`.toLowerCase().includes(query) ||  // السعر مع الرمز
-            product.note?.toLowerCase().includes(query);  // الملاحظات
+            product.barcode?.toLowerCase().includes(query) ||
+            product.price?.toString().toLowerCase().includes(query) ||
+            `💰 ${product.price}`.toLowerCase().includes(query) ||
+            product.note?.toLowerCase().includes(query);
         
         const isFavMode = typeof showOnlyFavorites !== 'undefined' && showOnlyFavorites;
         const favMatch = !isFavMode || favorites.includes(product.code);
         
         return brandMatch && subMatch && searchMatch && favMatch;
     });
-
-
 
     // عرض النتائج
     if (filtered.length === 0) {
@@ -664,26 +655,25 @@ function createProductCard(product) {
                 <i class="${isFavorite ? 'fas' : 'far'} fa-heart"></i>
             </button>
             
-            <!-- زر الطلب المعدل - أكبر مع دائرة صفراء -->
 <button class="cart-add-btn" onclick="addToCart('${product.code}', '${productName}', '${product.brand}')" 
         title="أضف للطلب"
         style="
             position: absolute;
             top: 8px;
             left: 8px;
-            width: 40px;  /* أكبر */
-            height: 40px; /* أكبر */
+            width: 40px;
+            height: 40px;
             background: linear-gradient(135deg, #2196F3, #1976D2);
-            border: 3px solid #FFD700; /* دائرة صفراء */
+            border: 3px solid #FFD700;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem; /* أيقونة أكبر */
+            font-size: 1.3rem;
             color: white;
             cursor: pointer;
             z-index: 10;
-            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5), 0 0 0 4px rgba(255, 215, 0, 0.3); /* توهج أصفر */
+            box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5), 0 0 0 4px rgba(255, 215, 0, 0.3);
             transition: all 0.3s ease;
             margin: 0;
             padding: 0;
@@ -709,7 +699,6 @@ function createProductCard(product) {
                 ${productBarcode}
                 <div class="product-code">🔢 ${product.code}</div>
                 ${productPrice}
-                  <!-- هنا الأزرار تحت السعر 👇 -->
             <div style="display: flex; justify-content: space-between; gap: 4px; margin-top: 8px;">
                 <button onclick="openProduct('${product.code}', '${productName}', '${product.brand}', event)" 
                         style="flex: 1; background: #2196F3; color: white; border: none; border-radius: 6px; padding: 6px 4px; font-family: 'Cairo'; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 3px;">
@@ -731,17 +720,21 @@ function createProductCard(product) {
         </div>
     </div>
 `;        
-      
 }
 
+// دالة فحص الصور المعدلة لدعم مجلدين بالتتابع الآمن
 function tryNextExtension(img, code) {
     const currentSrc = img.src;
-    const currentExt = currentSrc.split('.').pop().toLowerCase();
+    // تحديد المجلد الحالي النشط في الفحص لحماية المسار
+    const isMainFolder = currentSrc.includes('/images/') && !currentSrc.includes('/images-1/');
+    const currentExt = currentSrc.split('.').pop().toLowerCase().split('?')[0];
     const currentIndex = SUPPORTED_EXTENSIONS.indexOf(currentExt);
    
     if (currentIndex < SUPPORTED_EXTENSIONS.length - 1) {
+        // 1. الانتقال للامتداد التالي في نفس المجلد الحالي
         const nextExt = SUPPORTED_EXTENSIONS[currentIndex + 1];
-        const newPath = `images/${code}.${nextExt}`;
+        const folder = isMainFolder ? 'images' : 'images-1';
+        const newPath = `${folder}/${code}.${nextExt}`;
        
         img.src = newPath;
        
@@ -753,26 +746,29 @@ function tryNextExtension(img, code) {
         img.onerror = function() {
             tryNextExtension(this, code);
         };
+    } else if (isMainFolder) {
+        // 2. إذا انتهت كل الامتدادات في مجلد images الرئيسي، ننتقل فوراً لفحص مجلد images-1 من البداية
+        const newPath = `images-1/${code}.${SUPPORTED_EXTENSIONS[0]}`;
+        img.src = newPath;
+        img.onerror = function() {
+            tryNextExtension(this, code);
+        };
     } else {
-        // صورة افتراضية مع جملة تعبر عن عدم وجود الصورة
-        // هذه ستختفي تلقائياً عند إضافة الصورة الحقيقية وإعادة تحميل الصفحة
-        img.src = 'https://www.appsheet.com/image/getimageurl?appName=ibcno1-3381183&tableName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852&fileName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852_Images%2F2596%D8%B5%D9%88%D8%B1%D8%A9%20%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A%D8%A9.imge.072756.jpg&appVersion=1.002911&signature=db0575ab63e3d8ad6f8c650dd1339a1304e66ad34c5fab15127f90ee4f6f085a';
+        // 3. في حال فشل البحث في المجلدين بالكامل، يتم عرض الصورة الافتراضية الخاصة بك
+        img.src = 'https://www.appsheet.com/image/getimageurl?appName=ibcno1-3381183&tableName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852&fileName=%D9%86%D8%B3%D8%AE%D8%A9%20%D9%85%D9%86%20%D8%A7%D9%84%D8%AA%D8%AD%D8%AF%D9%8A%D8%AB%20%D8%A7%D9%84%D8%B9%D8%A7%D9%852_Images%2F2596%D8%B5%D9%8ور%D8%A9%20%D8%A7%D9%81%D8%AA%D8%B1%D8%A7%D8%B6%D9%8A%D8%A9.imge.071853.jpg&appVersion=1.002911&signature=3ee63307bee2b069afefefb553ff0d913075dc9addaca6d07f75d438d6250698';
         
-        // اختياري: إذا أردت صورة افتراضية خارجية بدلاً من SVG، استخدم هذا:
-        // img.src = 'images/default-placeholder.jpg';  // تأكد من وجود الملف هذا
-        
-        // إذا أردت إخفاء زر التحميل أو تعديله عند الفشل
         const downloadBtn = document.getElementById(`dl-${code}`);
         if (downloadBtn) {
-            downloadBtn.style.display = 'none';  // إخفاء الزر إذا لم تكن الصورة موجودة
+            downloadBtn.style.display = 'none';
         }
     }
 }
 
-// فتح المنتج
+// فتح المنتج مع دعم ذكي للمجلد الثاني
 async function openProduct(code, name, brand, event) {
     if (event) event.stopPropagation();
     
+    // فحص مجلد images الرئيسي أولاً
     for (const ext of SUPPORTED_EXTENSIONS) {
         const url = `images/${code}.${ext}`;
         const exists = await fileExists(url);
@@ -800,8 +796,37 @@ async function openProduct(code, name, brand, event) {
             return;
         }
     }
+
+    // إذا لم تنجح، يفحص مجلد images-1 تلقائياً قبل إعطاء خطأ
+    for (const ext of SUPPORTED_EXTENSIONS) {
+        const url = `images-1/${code}.${ext}`;
+        const exists = await fileExists(url);
+        
+        if (exists) {
+            if (ext === 'pdf') {
+                window.open(url, '_blank');
+            } else {
+                if (typeof GLightbox !== 'undefined') {
+                    const lightbox = GLightbox({
+                        elements: [{
+                            href: url,
+                            type: 'image',
+                            title: `${brand} - ${name}<br><small>كود: ${code}</small>`
+                        }],
+                        touchNavigation: true,
+                        loop: true,
+                        zoomable: true
+                    });
+                    lightbox.open();
+                } else {
+                    window.open(url, '_blank');
+                }
+            }
+            return;
+        }
+    }
     
-    showSmartNotification('لم يتم العثور', 'لم يتم العثور على ملف لهذا المنتج', 'error');
+    showSmartNotification('لم يتم العثور', 'لم يتم العثور على ملف لهذا المنتج في مجلدات النظام', 'error');
 }
 
 function fileExists(url) {
@@ -900,7 +925,7 @@ function addToCart(productCode, productName = '', productBrand = '') {
     
     localStorage.setItem('abushams_cart', JSON.stringify(cart));
     updateCartBadge();
-    renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
+    renderProducts();
 }
 
 function showAll() {
@@ -979,7 +1004,6 @@ function setupEventListeners() {
     showFavBtn.addEventListener('click', showFavorites);
     clearFavBtn.addEventListener('click', clearFavorites);
     
-    // البحث بالضغط على Enter
     searchInput.addEventListener('keypress', e => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -987,7 +1011,6 @@ function setupEventListeners() {
         }
     });
     
-    // إغلاق لوحة المفاتيح عند التمرير
     window.addEventListener('scroll', () => {
         if (document.activeElement === searchInput) {
             searchInput.blur();
@@ -1008,7 +1031,6 @@ function showStatsPage() {
                         <button onclick="closeStatsModal()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666;">×</button>
                     </div>
                     
-                    <!-- بطاقة إحصائيات المنتجات -->
                     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                             <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -1021,7 +1043,6 @@ function showStatsPage() {
                         </div>
                     </div>
                     
-                    <!-- بطاقة إحصائية الصور لكل براند -->
                     <div style="background: #f8f9fa; border-radius: 15px; padding: 20px; margin-bottom: 20px;">
                         <h4 style="color: #4CAF50; margin-bottom: 15px; border-bottom: 2px solid #E8F5E9; padding-bottom: 10px;">
                             <i class="fas fa-camera"></i> إحصائية الصور لكل ماركة
@@ -1034,20 +1055,17 @@ function showStatsPage() {
                         </div>
                     </div>
                     
-                    <!-- بطاقة إحصائيات الصور -->
                     <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                             <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
                                 <i class="fas fa-images"></i>
                             </div>
                             <div>
-                                <div style="font-size: 1.2rem; opacity: 0.9;">الصور المتاحة</div>
                                 <div style="font-size: 2.8rem; font-weight: bold;" id="availableImages">جاري العد...</div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- بطاقة إحصائيات التصنيفات -->
                     <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; border-radius: 15px; padding: 25px; margin-bottom: 20px;">
                         <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
                             <div style="font-size: 2.5rem; background: rgba(255,255,255,0.2); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
@@ -1060,7 +1078,6 @@ function showStatsPage() {
                         </div>
                     </div>
                     
-                    <!-- بطاقة إحصائيات المفضلة والطلبات -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
                         <div style="background: #FF4081; color: white; border-radius: 12px; padding: 20px; text-align: center;">
                             <div style="font-size: 2.5rem; margin-bottom: 10px;">
@@ -1079,7 +1096,6 @@ function showStatsPage() {
                         </div>
                     </div>
                     
-                    <!-- أزرار التحكم -->
                     <div style="display: flex; gap: 10px; margin-top: 20px;">
                         <button onclick="checkAllImages()" style="flex: 1; padding: 15px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; border-radius: 10px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;">
                             <i class="fas fa-sync-alt"></i> تحديث الإحصائيات
@@ -1093,21 +1109,15 @@ function showStatsPage() {
         </div>
     `;
     
-    // إضافة المودال للصفحة
     if (document.getElementById('statsModal')) {
         document.getElementById('statsModal').remove();
     }
     
     document.body.insertAdjacentHTML('beforeend', statsModalHTML);
-    
-    // حساب الصور المتاحة
     countAvailableImages();
-    
-    // حساب إحصائية الصور لكل براند
     showBrandImagesStats();
 }
 
-// دالة إغلاق صفحة الإحصائيات
 function closeStatsModal() {
     const modal = document.getElementById('statsModal');
     if (modal) {
@@ -1115,13 +1125,12 @@ function closeStatsModal() {
     }
 }
 
-// دالة عد الصور المتاحة
+// عداد فحص الصور المعدل لدعم مجلدين بالتوازي في الإحصائيات
 async function countAvailableImages() {
     let imageCount = 0;
     let loadingCount = 0;
     const totalProducts = products.length;
     
-    // تحديث العداد أثناء العملية
     const updateCounter = () => {
         document.getElementById('availableImages').innerHTML = `
             <span>${imageCount}</span>
@@ -1132,13 +1141,12 @@ async function countAvailableImages() {
     for (const product of products) {
         loadingCount++;
         
-        // تحديث النسبة كل 10 منتجات
         if (loadingCount % 10 === 0) {
             updateCounter();
         }
         
-        // التحقق من وجود أي صورة للمنتج
         let hasImage = false;
+        // فحص المجلد الأساسي
         for (const ext of SUPPORTED_EXTENSIONS) {
             const url = `images/${product.code}.${ext}`;
             const exists = await checkImageExists(url);
@@ -1148,15 +1156,25 @@ async function countAvailableImages() {
             }
         }
         
+        // إذا لم يعثر عليها، يفحص المجلد الجديد
+        if (!hasImage) {
+            for (const ext of SUPPORTED_EXTENSIONS) {
+                const url = `images-1/${product.code}.${ext}`;
+                const exists = await checkImageExists(url);
+                if (exists) {
+                    hasImage = true;
+                    break;
+                }
+            }
+        }
+        
         if (hasImage) {
             imageCount++;
         }
     }
     
-    // التحديث النهائي
     updateCounter();
     
-    // إضافة نسبة مئوية
     const percentage = Math.round((imageCount / totalProducts) * 100);
     document.getElementById('availableImages').innerHTML = `
         <span>${imageCount}</span>
@@ -1167,7 +1185,6 @@ async function countAvailableImages() {
     `;
 }
 
-// دالة التحقق من وجود صورة
 function checkImageExists(url) {
     return new Promise((resolve) => {
         const img = new Image();
@@ -1185,15 +1202,12 @@ function checkImageExists(url) {
     });
 }
 
-// دالة حساب وإظهار إحصائية الصور لكل براند
 async function showBrandImagesStats() {
     const container = document.getElementById('brandImagesStats');
     if (!container) return;
     
-    // إحصائية البراندات
     const brandStats = {};
     
-    // تجميع إحصائية لكل براند
     products.forEach(product => {
         if (!brandStats[product.brand]) {
             brandStats[product.brand] = {
@@ -1205,10 +1219,9 @@ async function showBrandImagesStats() {
         brandStats[product.brand].total++;
     });
     
-    // حساب الصور لكل براند (نفحص عينة)
     for (const brand in brandStats) {
         const brandProducts = products.filter(p => p.brand === brand);
-        const sampleSize = Math.min(10, brandProducts.length); // فحص 10 منتجات كحد أقصى لكل براند
+        const sampleSize = Math.min(10, brandProducts.length);
         
         let imagesCount = 0;
         
@@ -1216,7 +1229,6 @@ async function showBrandImagesStats() {
             const product = brandProducts[i];
             let hasImage = false;
             
-            // التحقق من وجود أي صورة
             for (const ext of SUPPORTED_EXTENSIONS) {
                 const url = `images/${product.code}.${ext}`;
                 const exists = await checkImageExists(url);
@@ -1226,22 +1238,30 @@ async function showBrandImagesStats() {
                 }
             }
             
+            if (!hasImage) {
+                for (const ext of SUPPORTED_EXTENSIONS) {
+                    const url = `images-1/${product.code}.${ext}`;
+                    const exists = await checkImageExists(url);
+                    if (exists) {
+                        hasImage = true;
+                        break;
+                    }
+                }
+            }
+            
             if (hasImage) {
                 imagesCount++;
             }
         }
         
-        // حساب نسبة تقديرية
         const estimatedWithImages = Math.round((imagesCount / sampleSize) * brandStats[brand].total);
         brandStats[brand].withImages = estimatedWithImages;
         brandStats[brand].percentage = brandStats[brand].total > 0 ? 
             Math.round((estimatedWithImages / brandStats[brand].total) * 100) : 0;
     }
     
-    // ترتيب البراندات حسب عدد المنتجات
     const sortedBrands = Object.entries(brandStats).sort((a, b) => b[1].total - a[1].total);
     
-    // إنشاء الجدول
     let html = `
         <div style="display: flex; justify-content: space-between; padding: 12px 15px; background: #E8F5E9; border-radius: 8px; margin-bottom: 10px; font-weight: bold; color: #2E7D32;">
             <div style="flex: 4;">العلامة التجارية</div>
@@ -1251,7 +1271,6 @@ async function showBrandImagesStats() {
         </div>
     `;
     
-    // إضافة كل براند
     sortedBrands.forEach(([brand, stats]) => {
         const colorClass = stats.percentage >= 80 ? 'success' : 
                           stats.percentage >= 50 ? 'warning' : 'danger';
@@ -1285,7 +1304,6 @@ async function showBrandImagesStats() {
         `;
     });
     
-    // إضافة الإجماليات
     const totalProducts = Object.values(brandStats).reduce((sum, stat) => sum + stat.total, 0);
     const totalImages = Object.values(brandStats).reduce((sum, stat) => sum + stat.withImages, 0);
     const overallPercentage = totalProducts > 0 ? Math.round((totalImages / totalProducts) * 100) : 0;
@@ -1306,20 +1324,13 @@ async function showBrandImagesStats() {
     container.innerHTML = html;
 }
 
-// دالة فحص جميع الصور
 async function checkAllImages() {
     showSmartNotification('جاري التحديث', 'جاري تحديث إحصائيات الصور، قد تستغرق العملية بضع ثواني...', 'info', 5000);
-    
-    // إعادة حساب الصور
     await countAvailableImages();
-    
-    // إعادة حساب إحصائية الصور لكل براند
     await showBrandImagesStats();
-    
     showSmartNotification('تم التحديث', 'تم تحديث جميع الإحصائيات بنجاح', 'success');
 }
 
-// دالة تصدير الإحصائيات
 function exportStats() {
     const stats = {
         تاريخ_التصدير: new Date().toLocaleString('ar-EG'),
@@ -1330,7 +1341,6 @@ function exportStats() {
         تفاصيل_العلامات_التجارية: {}
     };
     
-    // إحصاء العلامات التجارية
     const brands = {};
     products.forEach(product => {
         brands[product.brand] = (brands[product.brand] || 0) + 1;
@@ -1338,7 +1348,6 @@ function exportStats() {
     
     stats.تفاصيل_العلامات_التجارية = brands;
     
-    // تحويل إلى نص
     let exportText = `📊 إحصائيات نظام IBC\n`;
     exportText += `📅 ${stats.تاريخ_التصدير}\n`;
     exportText += `═══════════════════════════════════\n\n`;
@@ -1356,7 +1365,6 @@ function exportStats() {
             exportText += `• ${brand}: ${count} منتج (${percentage}%)\n`;
         });
     
-    // نسخ إلى الحافظة
     navigator.clipboard.writeText(exportText).then(() => {
         showSmartNotification('تم التصدير', 'تم نسخ الإحصائيات إلى الحافظة', 'success');
     });
@@ -1365,7 +1373,6 @@ function exportStats() {
 // تشغيل التطبيق
 document.addEventListener('DOMContentLoaded', init);
 
-// منع التكبير باللمس المزدوج على الموبايل
 document.addEventListener('dblclick', e => e.preventDefault());
 
 let html5QrCode;
@@ -1393,24 +1400,17 @@ function startScanner() {
         { facingMode: "environment" }, 
         config,
         async (decodedText) => {
-            // 1. إيقاف الكاميرا أولاً
             stopScanner();
-            
-            // 2. البحث عن المنتج
             const product = products.find(p => p.code === decodedText);
             
             if (!product) {
                 showSmartNotification('لم يتم العثور', `الباركود ${decodedText} غير موجود`, 'error');
-                // إظهار حقل البحث مع الباركود للبحث اليدوي
                 searchInput.value = decodedText;
                 handleSearch();
                 return;
             }
             
-            // 3. عرض نافذة الإضافة المباشرة
             showQuickAddModal(product, decodedText);
-            
-            // 4. إهتزاز خفيف للموبايل عند نجاح القراءة
             if (navigator.vibrate) navigator.vibrate(100);
         }
     ).catch(err => {
@@ -1418,24 +1418,21 @@ function startScanner() {
         console.error(err);
     });
 }
+
 function stopScanner() {
-    // التأكد أن الكاميرا تعمل أصلاً قبل محاولة إغلاقها
     if (html5QrCode && html5QrCode.getState() > 1) { 
         html5QrCode.stop().then(() => {
-            // إخفاء الحاوية بعد الإيقاف بنجاح
             document.getElementById('reader-container').style.display = 'none';
             console.log("تم إغلاق الكاميرا بنجاح");
         }).catch(err => {
             console.error("فشل إيقاف الكاميرا:", err);
-            // في حال فشل الإيقاف البرمجي، نخفي الحاوية قسراً
             document.getElementById('reader-container').style.display = 'none';
         });
     } else {
-        // إذا لم تكن الكاميرا تعمل، فقط أخفِ الحاوية
         document.getElementById('reader-container').style.display = 'none';
     }
 }
-// نافذة الإضافة المباشرة عند المسح الضوئي
+
 function showQuickAddModal(product, scannedCode) {
     const modalHTML = `
         <div class="modal" id="quickAddModal" style="display: flex; z-index: 100000;">
@@ -1462,7 +1459,6 @@ function showQuickAddModal(product, scannedCode) {
                         </div>
                     </div>
                     
-                    <!-- اختيار الكمية -->
                     <div style="margin-bottom: 25px;">
                         <div style="font-weight: bold; color: #666; margin-bottom: 10px;">اختر الكمية المطلوبة:</div>
                         <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
@@ -1490,14 +1486,12 @@ function showQuickAddModal(product, scannedCode) {
                         </div>
                     </div>
                     
-                    <!-- الملاحظة السريعة -->
                     <div style="margin-bottom: 20px;">
                         <textarea id="quickNote" 
                                   placeholder="ملاحظة سريعة (اختياري)..."
-                                  style="width: 100%; height: 60px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: none; font-size: 0.9rem;"></textarea>
+                                  style="width: 100%; height: 60px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; resize: none; font-size: 0.9rem CONTAINER;"></textarea>
                     </div>
                     
-                    <!-- أزرار التحكم -->
                     <div style="display: flex; gap: 10px;">
                         <button id="cancelQuickAdd" 
                                 style="flex: 1; padding: 15px; background: #f5f5f5; color: #666; border: 1px solid #ddd; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer;">
@@ -1509,7 +1503,6 @@ function showQuickAddModal(product, scannedCode) {
                         </button>
                     </div>
                     
-                    <!-- الخيارات الإضافية -->
                     <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee;">
                         <button id="openProductDetails" 
                                 style="background: none; border: none; color: #2196F3; cursor: pointer; font-family: 'Cairo'; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; margin: 0 auto;">
@@ -1521,10 +1514,8 @@ function showQuickAddModal(product, scannedCode) {
         </div>
     `;
     
-    // إضافة النافذة للصفحة
     document.body.insertAdjacentHTML('beforeend', modalHTML);
     
-    // إضافة CSS للكميات السريعة
     const style = document.createElement('style');
     style.textContent = `
         .quickQtyBtn {
@@ -1548,21 +1539,9 @@ function showQuickAddModal(product, scannedCode) {
         #quickAddModal .modal-content {
             animation: slideUp 0.3s ease;
         }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     `;
     document.head.appendChild(style);
     
-    // إدارة الكمية
     let quantity = 1;
     const quantityDisplay = document.getElementById('quantityDisplay');
     const decreaseBtn = document.getElementById('decreaseQty');
@@ -1582,7 +1561,6 @@ function showQuickAddModal(product, scannedCode) {
         }
     });
     
-    // الكميات السريعة
     document.querySelectorAll('.quickQtyBtn').forEach(btn => {
         btn.addEventListener('click', () => {
             quantity = parseInt(btn.dataset.qty);
@@ -1590,11 +1568,8 @@ function showQuickAddModal(product, scannedCode) {
         });
     });
     
-    // إضافة للطلب
     document.getElementById('addToCartQuick').addEventListener('click', () => {
         const note = document.getElementById('quickNote').value.trim();
-        
-        // البحث عن المنتج في السلة الحالية
         const existingItem = cart.find(item => item.code === product.code);
         
         if (existingItem) {
@@ -1616,19 +1591,16 @@ function showQuickAddModal(product, scannedCode) {
         localStorage.setItem('abushams_cart', JSON.stringify(cart));
         updateCartBadge();
         closeQuickAddModal();
-        renderProducts(); // تحديث عرض الكميات في الصفحة الرئيسية
+        renderProducts();
     });
     
-    // إلغاء
     document.getElementById('cancelQuickAdd').addEventListener('click', closeQuickAddModal);
     
-    // فتح تفاصيل المنتج
     document.getElementById('openProductDetails').addEventListener('click', () => {
         closeQuickAddModal();
         openProduct(product.code, product.name, product.brand);
     });
     
-    // إغلاق بالنقر خارج النافذة
     const modal = document.getElementById('quickAddModal');
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -1636,7 +1608,6 @@ function showQuickAddModal(product, scannedCode) {
         }
     });
     
-    // إغلاق بالزر ESC
     const handleEsc = (e) => {
         if (e.key === 'Escape') {
             closeQuickAddModal();
@@ -1644,13 +1615,11 @@ function showQuickAddModal(product, scannedCode) {
     };
     document.addEventListener('keydown', handleEsc);
     
-    // التركيز على حقل الملاحظة
     setTimeout(() => {
         document.getElementById('quickNote').focus();
     }, 300);
 }
 
-// إغلاق نافذة الإضافة السريعة
 function closeQuickAddModal() {
     const modal = document.getElementById('quickAddModal');
     if (modal) {
@@ -1662,7 +1631,7 @@ function closeQuickAddModal() {
         }, 300);
     }
 }
-// عرض العلامات التجارية كقائمة منسدلة
+
 function renderBrands() {
     const brands = ['ماركات', ...new Set(products.map(p => p.brand))];
     const brandDropdown = document.getElementById('brandDropdown');
@@ -1673,7 +1642,6 @@ function renderBrands() {
     `).join('');
 }
 
-// عرض التصنيفات الفرعية كقائمة منسدلة
 function renderSubCategories() {
     let filtered = currentBrand === 'الكل' ? products : products.filter(p => p.brand === currentBrand);
     const subs = ['افرع ', ...new Set(filtered.map(p => p.sub))];
@@ -1686,7 +1654,6 @@ function renderSubCategories() {
     subDropdown.parentElement.style.display = subs.length <= 1 ? 'none' : 'block';
 }
 
-// عند تغيير العلامة التجارية
 function setBrand(brand) {
     currentBrand = brand;
     currentSub = 'الكل';
@@ -1698,7 +1665,6 @@ function setBrand(brand) {
     updateActiveNav();
 }
 
-// عند تغيير التصنيف الفرعي
 function setSub(sub) {
     currentSub = sub;
     showOnlyFavorites = false;
@@ -1707,24 +1673,20 @@ function setSub(sub) {
     renderProducts();
     updateActiveNav();
 }
-// ===============================
-// نظام التقرير المنبثق
-// ===============================
 
+// نظام التقرير المنبثق
 function showOrderReport() {
     if (cart.length === 0) {
         showSmartNotification('سلة فارغة', 'لا توجد منتجات لعرضها', 'warning');
         return;
     }
 
-    // توليد رقم الطلب
     const orderNumber = generateOrderNumber();
     const currentDate = new Date().toLocaleDateString('ar-EG');
     const currentTime = new Date().toLocaleTimeString('ar-EG');
     const customerName = document.getElementById('customerName')?.value || 'غير محدد';
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     
-    // بناء جدول المنتجات
     let productsTable = '';
     cart.forEach((item, index) => {
         const product = products.find(p => p.code === item.code);
@@ -1741,8 +1703,6 @@ function showOrderReport() {
     });
 
     const generalNote = document.getElementById('cartNote')?.value || '';
-
-    // نافذة التقرير
     const reportWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes');
     
     reportWindow.document.write(`
@@ -1753,146 +1713,31 @@ function showOrderReport() {
             <title>تقرير الطلب - IBC</title>
             <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
             <style>
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                    font-family: 'Cairo', sans-serif;
-                }
-                body {
-                    background: #f5f5f5;
-                    padding: 30px;
-                }
-                .report-container {
-                    max-width: 1100px;
-                    margin: 0 auto;
-                    background: white;
-                    border-radius: 20px;
-                    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                    overflow: hidden;
-                }
-                .report-header {
-                    background: linear-gradient(135deg, #1a237e, #3949ab);
-                    color: white;
-                    padding: 30px;
-                    text-align: center;
-                }
-                .report-header h1 {
-                    font-size: 2.5rem;
-                    margin-bottom: 10px;
-                }
-                .report-header h3 {
-                    font-size: 1.2rem;
-                    opacity: 0.9;
-                }
-                .report-info {
-                    padding: 25px;
-                    background: #f8f9fa;
-                    border-bottom: 1px solid #eee;
-                }
-                .info-grid {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 20px;
-                }
-                .info-item {
-                    text-align: center;
-                }
-                .info-label {
-                    font-size: 0.9rem;
-                    color: #666;
-                    margin-bottom: 5px;
-                }
-                .info-value {
-                    font-size: 1.3rem;
-                    font-weight: bold;
-                    color: #1a237e;
-                }
-                .products-section {
-                    padding: 25px;
-                }
-                .products-section h2 {
-                    color: #1a237e;
-                    margin-bottom: 20px;
-                    border-bottom: 2px solid #e0e0e0;
-                    padding-bottom: 10px;
-                }
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    margin-bottom: 25px;
-                }
-                th {
-                    background: #1a237e;
-                    color: white;
-                    padding: 12px;
-                    font-weight: 600;
-                }
-                td {
-                    padding: 12px;
-                    border: 1px solid #ddd;
-                }
-                tr:nth-child(even) {
-                    background: #f8f9fa;
-                }
-                .notes-section {
-                    padding: 0 25px 25px 25px;
-                }
-                .notes-box {
-                    background: #fff9e6;
-                    border: 1px solid #ffd700;
-                    border-radius: 10px;
-                    padding: 20px;
-                    margin-top: 10px;
-                }
-                .report-footer {
-                    background: #f8f9fa;
-                    padding: 20px;
-                    text-align: center;
-                    border-top: 1px solid #eee;
-                    color: #666;
-                }
-                .action-buttons {
-                    padding: 25px;
-                    display: flex;
-                    gap: 15px;
-                    justify-content: center;
-                    border-top: 1px solid #eee;
-                }
-                .btn {
-                    padding: 12px 30px;
-                    border: none;
-                    border-radius: 8px;
-                    font-family: 'Cairo';
-                    font-weight: bold;
-                    cursor: pointer;
-                    display: inline-flex;
-                    align-items: center;
-                    gap: 8px;
-                    font-size: 1rem;
-                    transition: all 0.3s;
-                }
-                .btn-print {
-                    background: linear-gradient(135deg, #2196F3, #1976D2);
-                    color: white;
-                }
-                .btn-print:hover {
-                    transform: translateY(-2px);
-                    box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
-                }
-                .btn-close {
-                    background: #f5f5f5;
-                    color: #666;
-                    border: 1px solid #ddd;
-                }
-                .btn-close:hover {
-                    background: #eee;
-                }
-                @media print {
-                    body { background: white; padding: 0; }
-                    .report-container { box-shadow: none; }
-                    .action-buttons { display: none; }
-                }
+                * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+                body { background: #f5f5f5; padding: 30px; }
+                .report-container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; }
+                .report-header { background: linear-gradient(135deg, #1a237e, #3949ab); color: white; padding: 30px; text-align: center; }
+                .report-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+                .report-header h3 { font-size: 1.2rem; opacity: 0.9; }
+                .report-info { padding: 25px; background: #f8f9fa; border-bottom: 1px solid #eee; }
+                .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+                .info-item { text-align: center; }
+                .info-label { font-size: 0.9rem; color: #666; margin-bottom: 5px; }
+                .info-value { font-size: 1.3rem; font-weight: bold; color: #1a237e; }
+                .products-section { padding: 25px; }
+                .products-section h2 { color: #1a237e; margin-bottom: 20px; border-bottom: 2px solid #e0e0e0; padding-bottom: 10px; }
+                table { width: 100%; border-collapse: collapse; margin-bottom: 25px; }
+                th { background: #1a237e; color: white; padding: 12px; font-weight: 600; }
+                td { padding: 12px; border: 1px solid #ddd; }
+                tr:nth-child(even) { background: #f8f9fa; }
+                .notes-section { padding: 0 25px 25px 25px; }
+                .notes-box { background: #fff9e6; border: 1px solid #ffd700; border-radius: 10px; padding: 20px; margin-top: 10px; }
+                .report-footer { background: #f8f9fa; padding: 20px; text-align: center; border-top: 1px solid #eee; color: #666; }
+                .action-buttons { padding: 25px; display: flex; gap: 15px; justify-content: center; border-top: 1px solid #eee; }
+                .btn { padding: 12px 30px; border: none; border-radius: 8px; font-family: 'Cairo'; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-size: 1rem; transition: all 0.3s; }
+                .btn-print { background: linear-gradient(135deg, #2196F3, #1976D2); color: white; }
+                .btn-close { background: #f5f5f5; color: #666; border: 1px solid #ddd; }
+                @media print { body { background: white; padding: 0; } .report-container { box-shadow: none; } .action-buttons { display: none; } }
             </style>
         </head>
         <body>
@@ -1977,9 +1822,6 @@ function showOrderReport() {
     
     reportWindow.document.close();
 }
-// ===============================
-// إرسال التقرير عبر واتساب
-// ===============================
 
 function sendReportToWhatsApp() {
     if (cart.length === 0) {
@@ -2020,12 +1862,8 @@ function sendReportToWhatsApp() {
 
     const encoded = encodeURIComponent(message);
     window.open(`https://wa.me/?text=${encoded}`, '_blank');
-
     showSmartNotification('تم الإرسال', 'تم إرسال التقرير عبر واتساب', 'success');
 }
-// ===============================
-// إرسال التقرير PDF عبر واتساب أو بريد
-// ===============================
 
 async function shareReportAsPDF() {
     if (cart.length === 0) {
@@ -2036,8 +1874,6 @@ async function shareReportAsPDF() {
     const orderNumber = generateOrderNumber();
     const customerName = document.getElementById('customerName')?.value || 'غير محدد';
     const date = new Date().toLocaleDateString('ar-EG');
-    
-    // سحب الملاحظة العامة من الحقل (تأكد أن الـ ID هو cartNote)
     const generalNote = document.getElementById('cartNote')?.value || '';
 
     const element = document.createElement('div');
@@ -2091,7 +1927,6 @@ async function shareReportAsPDF() {
                 <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #000;">${generalNote}</p>
             </div>
             ` : ''}
-           
             
             <div style="margin-top: 30px; text-align: center; font-size: 11px; color: #888; border-top: 1px solid #eee; padding-top: 10px;">
                 تم توليد هذا التقرير عبر نظام IBC الذكي جميع الحقوق محفوظة 
@@ -2103,13 +1938,7 @@ async function shareReportAsPDF() {
         margin:       [10, 5],
         filename:     `IBC_Order_${orderNumber}.pdf`,
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { 
-            scale: 2, 
-            useCORS: true, 
-            letterRendering: true,
-            scrollX: 0,
-            scrollY: 0
-        },
+        html2canvas:  { scale: 2, useCORS: true, letterRendering: true, scrollX: 0, scrollY: 0 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
@@ -2121,5 +1950,3 @@ async function shareReportAsPDF() {
         alert("حدث خطأ، حاول مرة أخرى.");
     }
 }
-
-
