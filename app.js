@@ -127,12 +127,31 @@ function showSmartNotification(title, message, type = 'success', duration = 3000
 
 // التهيئة
 function init() {
+    // 🛡️ فحص ذكي وآمن: إزالة أي صنف مكرر بناءً على الكود (code) بدون ضرب الكود الثابت
+    if (typeof products !== 'undefined' && Array.isArray(products)) {
+        const uniqueCodes = new Set();
+        // تصفية المنتجات في مصفوفة مؤقتة
+        const filteredProducts = products.filter(product => {
+            if (!product.code) return true;
+            if (uniqueCodes.has(product.code)) {
+                return false; // مكرر، احذفه
+            }
+            uniqueCodes.add(product.code);
+            return true; // أول ظهور، احتفظ به
+        });
+        
+        // تفريغ المصفوفة الأصلية وإعادة تعبئتها بالمنتجات غير المكررة بأمان
+        products.length = 0;
+        products.push(...filteredProducts);
+    }
+
     renderBrands();
     renderSubCategories();
     renderProducts();
     setupEventListeners();
     showAll();
 }
+
 
 // التصنيفات
 function renderBrands() {
