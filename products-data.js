@@ -1323,7 +1323,8 @@ const products = [
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836794', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836855', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836862', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
-{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836879', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' }    
+{ brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836879', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'برايات', code: '6021112341120', name: 'براية IBC', price: '', barcode: '' }
 ];
 
 
