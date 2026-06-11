@@ -1340,7 +1340,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-1', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-10', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-11', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
-{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-2', name: 'دفتر مدر시 1 موضوع 80 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-2', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-3', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-4', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-5', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
@@ -1348,7 +1348,19 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-7', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-8', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973-9', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
-{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' }
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010973', name: 'دفتر مدرسي 1 موضوع 80 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-1', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-10', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-11', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-2', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-3', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-4', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-5', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-6', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-7', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-8', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980-9', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010980', name: 'دفتر مدرسي 1 موضوع 100 ورقة A4' }
 ];
 
 
