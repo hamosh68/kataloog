@@ -1324,7 +1324,19 @@ const products = [
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836855', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836862', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836879', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'برايات', code: '6021112341120', name: 'براية IBC', price: '', barcode: '' }
+{ brand: 'Stationery IBC', sub: 'برايات', code: '6021112341120', name: 'براية IBC', price: '', barcode: '' },
+ { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-1', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-10', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-11', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-2', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-4', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-5', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-6', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-7', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-8', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-9', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
+{ brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '955104010966-3', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' }   
 ];
 
 
