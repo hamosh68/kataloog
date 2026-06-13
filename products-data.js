@@ -1324,7 +1324,7 @@ const products = [
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836855', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836862', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
 { brand: 'Artline', sub: 'اقلام خط عربي', code: '4974052836879', name: 'قلم خط عربي ارت لاين', price: '', barcode: '' },
-{ brand: 'Stationery IBC', sub: 'برايات', code: '6021112341120', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341120', name: 'براية IBC', price: '', barcode: '' },
  { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-1', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-10', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
 { brand: 'Stationery IBC', sub: 'دفاتر مدرسية', code: '9551004010966-11', name: 'دفتر مدرسي 1 موضوع 60 ورقة A4' },
@@ -1412,7 +1412,21 @@ const products = [
 { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004012304-1', name: 'دفاتر تلوين احرف وارقام' },
 { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004012304-2', name: 'دفاتر تلوين احرف وارقام' },
 { brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004012304-3', name: 'دفاتر تلوين احرف وارقام' },
-{ brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004012304-4', name: 'دفاتر تلوين احرف وارقام' }
+{ brand: 'Stationery IBC', sub: 'دفاتر تلوين', code: '9551004012304-4', name: 'دفاتر تلوين احرف وارقام' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341021-1', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341021-2', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341021-3', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341021', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341090-1', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341090-2', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341090-3', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341090', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341106-1', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341106-2', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341106-3', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341106', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341120-1', name: 'براية IBC', price: '', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'براية', code: '6021112341120-2', name: 'براية IBC', price: '', barcode: '' }
 ];
 
 
