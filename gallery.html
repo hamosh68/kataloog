@@ -53,27 +53,27 @@
         .product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); border: 1px solid #eee; display: flex; flex-direction: column; transition: 0.3s; position: relative; }
         
         /* تقليل ارتفاع الصورة والحشو */
-        .product-image { width: 100%; height: 130px; /* تم تقليله من 160px */ object-fit: contain; padding: 5px; /* تم تقليله من 10px */ background: #fff; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
+        .product-image { width: 100%; height: 130px; object-fit: contain; padding: 5px; background: #fff; border-bottom: 1px solid #f5f5f5; cursor: pointer; }
         
         /* تقليل الحشو الداخلي للمعلومات */
-        .product-info { padding: 8px; /* تم تقليله من 12px */ flex-grow: 1; }
-        .product-brand { font-size: 0.65rem; /* تم تصغيره قليلاً */ font-weight: bold; color: #1a237e; background: #e8eaf6; padding: 1px 6px; /* تم تقليله */ border-radius: 10px; }
+        .product-info { padding: 8px; flex-grow: 1; }
+        .product-brand { font-size: 0.65rem; font-weight: bold; color: #1a237e; background: #e8eaf6; padding: 1px 6px; border-radius: 10px; }
         
         /* تقليل ارتفاع واسطر الاسم */
-        .product-name { font-weight: bold; font-size: 0.85rem; /* تم تصغيره قليلاً */ margin: 3px 0; /* تم تقليله من 5px */ height: 2.1em; /* تم تقليله من 2.4em */ overflow: hidden; line-height: 1.1; /* تم تقليله من 1.2 */ color: #333; }
+        .product-name { font-weight: bold; font-size: 0.85rem; margin: 3px 0; height: 2.1em; overflow: hidden; line-height: 1.1; color: #333; }
         
         /* تقليل الهوامش والحشو في البيانات السفلية */
-        .data-mini { font-size: 0.7rem; /* تم تصغيره قليلاً */ color: #666; margin-top: 3px; /* تم تقليله من 5px */ border-top: 1px solid #f9f9f9; padding-top: 3px; /* تم تقليله من 5px */ }
-        .copy-row { display: flex; justify-content: space-between; margin-bottom: 1px; /* تم تقليله من 3px */ cursor: pointer; }
+        .data-mini { font-size: 0.7rem; color: #666; margin-top: 3px; border-top: 1px solid #f9f9f9; padding-top: 3px; }
+        .copy-row { display: flex; justify-content: space-between; margin-bottom: 1px; cursor: pointer; }
         .copy-row:active { color: #FF9800; }
-        .sub-tag { background: #fff3e0; color: #e65100; padding: 0px 4px; /* تم تقليله */ border-radius: 4px; font-weight: bold; font-size: 0.65rem; /* تم تصغيره */ border: 1px solid #ffe0b2; }
+        .sub-tag { background: #fff3e0; color: #e65100; padding: 0px 4px; border-radius: 4px; font-weight: bold; font-size: 0.65rem; border: 1px solid #ffe0b2; }
 
         /* تقليل حجم السعر والحشو */
-        .price-mini { color: #2e7d32; font-weight: bold; font-size: 1rem; /* تم تصغيره من 1.1rem */ margin-top: 5px; /* تم تقليله من 8px */ text-align: center; background: #f1f8e9; border-radius: 8px; padding: 3px; /* تم تقليله من 5px */ border: 1px solid #c8e6c9; }
+        .price-mini { color: #2e7d32; font-weight: bold; font-size: 1rem; margin-top: 5px; text-align: center; background: #f1f8e9; border-radius: 8px; padding: 3px; border: 1px solid #c8e6c9; }
 
         /* تقليل الهوامش للأزرار */
-        .action-buttons { display: flex; gap: 3px; /* تم تقليله من 5px */ margin-top: 8px; /* تم تقليله من 12px */ border-top: 1px solid #f0f0f0; padding-top: 6px; /* تم تقليله من 10px */ }
-        .action-btn { flex: 1; border: none; padding: 5px; /* تم تقليله من 7px */ border-radius: 8px; cursor: pointer; font-size: 0.7rem; /* تم تصغيره من 0.75rem */ font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 3px; /* تم تقليله من 5px */ transition: 0.3s; }
+        .action-buttons { display: flex; gap: 3px; margin-top: 8px; border-top: 1px solid #f0f0f0; padding-top: 6px; }
+        .action-btn { flex: 1; border: none; padding: 5px; border-radius: 8px; cursor: pointer; font-size: 0.7rem; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 3px; transition: 0.3s; }
         .btn-download { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
         .btn-share { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
 
@@ -83,7 +83,7 @@
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
         @media (max-width: 600px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; padding: 5px; }
-            .product-image { height: 110px; /* تم تقليله من 130px */ }
+            .product-image { height: 110px; }
             .action-btn span { display: none; }
         }
     </style>
@@ -142,7 +142,6 @@
     const correctPass = "1234";
     function checkPassword() {
         if (document.getElementById('passInput').value === correctPass) {
-            // استخدام localStorage بدلاً من sessionStorage ليتذكر الدخول
             localStorage.setItem('isLoggedIn_AbuShams', 'true');
             document.getElementById('loginOverlay').style.display = 'none';
         } else { document.getElementById('errorMsg').style.display = 'block'; }
@@ -227,14 +226,32 @@
             window.runApp();
             const found = allProducts.find(p => p.code === barcode || (p.barcode && p.barcode === barcode));
             if (!found) {
-                if (confirm(`🔍 صنف جديد! (${barcode})\nهل تريد تصويره الآن؟`)) {
+                if (confirm(`🔍 صنف جديد! (${barcode})\nهل تريد تصويره الآن服务؟`)) {
                     window.location.href = `studio.html?barcode=${barcode}`;
                 }
             }
         }
 
+        // دالة الفحص الذكي الأصلية
         function checkImg(url) {
             return new Promise(r => { const i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; });
+        }
+
+        // 🔥 الدالة الجديدة المضافة: لتحديد المسار الصحيح للصورة بفحص كلا المجلدين بالتتابع
+        async function getValidImgUrl(code) {
+            const mainFolderUrl = `images/${code}.webp`;
+            const secondFolderUrl = `images-1/${code}.webp`;
+            
+            // جرب المجلد الأول الرئيسي
+            const existsInMain = await checkImg(mainFolderUrl);
+            if (existsInMain) return mainFolderUrl;
+            
+            // إذا لم تكن موجودة، جرب المجلد الثاني الجديد
+            const existsInSecond = await checkImg(secondFolderUrl);
+            if (existsInSecond) return secondFolderUrl;
+            
+            // إذا اختفت من المجلدين بالكامل، اعطها الصورة الافتراضية
+            return 'images/default-product.webp';
         }
 
         async function updateStats(brand) {
@@ -244,8 +261,13 @@
             window.missingList = []; 
 
             for(let p of target) { 
-                const ex = await checkImg(`images/${p.code}.webp`); 
-                if(ex) hasImg++; else window.missingList.push(p.code); 
+                // نتحقق إذا كانت الصورة متوفرة في أي من المجلدين لتحديث عداد النواقص بدقة
+                const finalImgPath = await getValidImgUrl(p.code);
+                if(finalImgPath !== 'images/default-product.webp') {
+                    hasImg++; 
+                } else {
+                    window.missingList.push(p.code); 
+                }
             }
 
             container.innerHTML = `
@@ -272,8 +294,8 @@
             if(showOnlyMissing) {
                 let missingOnly = [];
                 for(let p of filteredProducts) {
-                    const ex = await checkImg(`images/${p.code}.webp`);
-                    if(!ex) missingOnly.push(p);
+                    const finalImgPath = await getValidImgUrl(p.code);
+                    if(finalImgPath === 'images/default-product.webp') missingOnly.push(p);
                 }
                 itemsToDisplay = missingOnly;
             }
@@ -282,9 +304,8 @@
             const slice = itemsToDisplay.slice((currentPage-1)*ITEMS_PER_PAGE, end);
 
             for(let p of slice) {
-                const img = `images/${p.code}.webp`;
-                const ex = await checkImg(img);
-                const finalImg = ex ? img : 'images/default-product.webp';
+                // جلب المسار الفعلي والناجح للصورة من المجلدين بالتتابع
+                const finalImg = await getValidImgUrl(p.code);
                 
                 grid.insertAdjacentHTML('beforeend', `
                     <div class="product-card">
