@@ -1451,6 +1451,47 @@ const products = [
 { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217873556-8', name: 'طين', price: '0.000', barcode: '' },
 { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217873556-9', name: 'طين', price: '0.000', barcode: '' },
 { brand: 'IL COLORI', sub: 'طين وسلايم', code: '6974217873556', name: 'طين', price: '0.000', barcode: '' },
+// المجموعة الأولى: مقاس A4 كما هي
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-1', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-10', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-11', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-2', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-3', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-4', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-5', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-6', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-7', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-8', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073-9', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342073', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A4 (PVC FREE)', price: '0.000', barcode: '' },
+
+// المجموعة الثانية: تم تعديل المقاس إلى B4
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-1', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-10', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-11', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-2', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-3', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-4', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-5', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-6', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-7', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-8', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080-9', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342080', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون B4 (PVC FREE)', price: '0.000', barcode: '' },
+
+// المجموعة الثالثة: تم تعديل المقاس إلى A3
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-1', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-10', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-11', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-2', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-3', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-4', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-5', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-6', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-7', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-8', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097-9', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' },
+{ brand: 'Stationery IBC', sub: 'فايلات', code: '6021112342097', name: 'IBC فايل شفاف 2 سحاب الوان 12 لون A3 (PVC FREE)', price: '0.000', barcode: '' }  
 ];
 
 
