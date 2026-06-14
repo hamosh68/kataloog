@@ -1587,7 +1587,27 @@ const products = [
 { brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9551004011062-7', name: 'IBC دفتر PVC سادة مدرسي الوان 60 ورقة Y5 A4 مشكل', price: '0.000', barcode: 'IBC011062(EIBC091004)' },
 { brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9551004011062-8', name: 'IBC دفتر PVC سادة مدرسي الوان 60 ورقة Y5 A4 مشكل', price: '0.000', barcode: 'IBC011062(EIBC091004)' },
 { brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9551004011062-9', name: 'IBC دفتر PVC سادة مدرسي الوان 60 ورقة Y5 A4 مشكل', price: '0.000', barcode: 'IBC011062(EIBC091004)' },
-{ brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9551004011062', name: 'IBC دفتر PVC سادة مدرسي الوان 60 ورقة Y5 A4 مشكل', price: '0.000', barcode: 'IBC011062(EIBC091004)' },  
+{ brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9551004011062', name: 'IBC دفتر PVC سادة مدرسي الوان 60 ورقة Y5 A4 مشكل', price: '0.000', barcode: 'IBC011062(EIBC091004)' },
+// المجموعة الأولى: فايل شفاف سحاب الوان A4
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847691-1', name: 'IBC فايل شفاف سحاب الوان A4 ', price: '0.000', barcode: 'US-A56-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847691-2', name: 'IBC فايل شفاف سحاب الوان A4 ', price: '0.000', barcode: 'US-A56-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847691-3', name: 'IBC فايل شفاف سحاب الوان A4 ', price: '0.000', barcode: 'US-A56-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847691-4', name: 'IBC فايل شفاف سحاب الوان A4 ', price: '0.000', barcode: 'US-A56-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847691', name: 'IBC فايل شفاف سحاب الوان A4 ', price: '0.000', barcode: 'US-A56-N New' },
+
+// المجموعة الثانية: فايل شفاف سحاب الوان B4
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847707-1', name: 'IBC فايل شفاف سحاب الوان B4 ', price: '0.000', barcode: 'US-A57-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847707-2', name: 'IBC فايل شفاف سحاب الوان B4 ', price: '0.000', barcode: 'US-A57-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847707-3', name: 'IBC فايل شفاف سحاب الوان B4 ', price: '0.000', barcode: 'US-A57-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847707-4', name: 'IBC فايل شفاف سحاب الوان B4 ', price: '0.000', barcode: 'US-A57-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847707', name: 'IBC فايل شفاف سحاب الوان B4 ', price: '0.000', barcode: 'US-A57-N New' },
+
+// المجموعة الثالثة: فايل شفاف سحاب الوان A3
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847714-1', name: 'IBC فايل شفاف سحاب الوان A3 ', price: '0.000', barcode: 'US-A58-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847714-2', name: 'IBC فايل شفاف سحاب الوان A3 ', price: '0.000', barcode: 'US-A58-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847714-3', name: 'IBC فايل شفاف سحاب الوان A3 ', price: '0.000', barcode: 'US-A58-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847714-4', name: 'IBC فايل شفاف سحاب الوان A3 ', price: '0.000', barcode: 'US-A58-N New' },
+{ brand: 'فايلات IBC', sub: 'فايلات', code: '6920583847714', name: 'IBC فايل شفاف سحاب الوان A3 ', price: '0.000', barcode: 'US-A58-N New' }    
 ];
 
 
