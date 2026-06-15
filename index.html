@@ -688,55 +688,54 @@ exports.init = init;
                             `;
                             
                             let newDisplay = `
-                            window.display = async function(reset = true) {
-                                const grid = document.getElementById('galleryGrid');
-                                if(reset) { grid.innerHTML = ''; currentPage = 1; }
-                                let itemsToDisplay = filteredProducts;
-                                if(showOnlyMissing) {
-                                    itemsToDisplay = filteredProducts.filter(p => brokenImagesCache.has(p.code));
-                                }
-                                const end = currentPage * ITEMS_PER_PAGE;
-                                const slice = itemsToDisplay.slice((currentPage-1)*ITEMS_PER_PAGE, end);
-                                for(let p of slice) {
-                                    const isKnownMissing = brokenImagesCache.has(p.code);
-                                    const finalImg = isKnownMissing ? 'images/default-product.webp' : 'images/' + p.code + '.webp';
-                                    grid.insertAdjacentHTML('beforeend', \`
-                                        <div class="product-card">
-                                            <a href="\${finalImg}" class="glightbox" data-title="\${p.name}">
-                                                <img src="\${finalImg}" class="product-image" loading="lazy" onerror="handleImgError(this, '\${p.code}')">
-                                            </a>
-                                            <div class="product-info">
-                                                <span class="product-brand">\${p.brand}</span>
-                                                <div class="product-name">\${p.name}</div>
-                                                <div class="data-mini">
-                                                    <div class="copy-row" onclick="copyText('\${p.code}')"><span>كود:</span> <b>\${p.code} <i class="far fa-copy" style="font-size:0.6rem"></i></b></div>
-                                                    <div class="copy-row" onclick="copyText('\${p.barcode || ''}')"><span>باركود:</span> <b>\${p.barcode || '-'} <i class="far fa-copy" style="font-size:0.6rem"></i></b></div>
-                                                    <div class="data-row"><span>القسم:</span> <span class="sub-tag">\${p.sub || 'عام'}</span></div>
-                                                </div>
-                                                <div class="price-mini">\${p.price || '0.00'} د.ك</div>
-                                                <div class="action-buttons">
-                                                    <button class="action-btn btn-download" onclick="downloadImg('\${finalImg}', '\${p.code}')"><i class="fas fa-download"></i> <span>حفظ</span></button>
-                                                    <button class="action-btn btn-share" onclick="shareProduct('\${p.name}', '\${p.code}', '\${p.price}')"><i class="fas fa-share-nodes"></i> <span>مشاركة</span></button>
-                                                </div>
-                                            </div>
-                                        </div>\`);
-                                }
-                                const rem = itemsToDisplay.length - end;
-                                const container = document.getElementById('loadMoreContainer');
-                                const btn = document.getElementById('loadMoreBtn');
-                                if(rem > 0) {
-                                    container.style.display = 'block';
-                                    btn.innerHTML = 'عرض المزيد (متبقي ' + rem + ')';
-                                } else { container.style.display = 'none'; }
-                                if(lightbox) lightbox.reload(); 
-                                else lightbox = GLightbox({selector:'.glightbox', closeButton: true});
-                            };
-                            `;
-                            
-                            codeText = injection + "\n" + codeText;
-                            codeText = codeText.replace(/function updateStats[\s\S]*?\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}\n\s*\}/, '/* removed old stats */'); 
-                            codeText = codeText + "\n" + newUpdateStats + "\n" + newDisplay;
-                            script.textContent = codeText;
+window.display = async function(reset = true) {
+    const grid = document.getElementById('galleryGrid');
+    if(reset) { grid.innerHTML = ''; currentPage = 1; }
+    let itemsToDisplay = filteredProducts;
+    if(showOnlyMissing) {
+        itemsToDisplay = filteredProducts.filter(p => brokenImagesCache.has(p.code));
+    }
+    const end = currentPage * ITEMS_PER_PAGE;
+    const slice = itemsToDisplay.slice((currentPage-1)*ITEMS_PER_PAGE, end);
+    for(let p of slice) {
+        const isKnownMissing = brokenImagesCache.has(p.code);
+        const finalImg = isKnownMissing ? 'images/default-product.webp' : 'images/' + p.code + '.webp';
+        grid.insertAdjacentHTML('beforeend', \`
+            <div class="product-card">
+                <a href="\${finalImg}" class="glightbox" data-title="\${p.name}">
+                    <img src="\${finalImg}" class="product-image" loading="lazy" onerror="handleImgError(this, '\${p.code}')">
+                </a>
+                <div class="product-info">
+                    <span class="product-brand">\${p.brand}</span>
+                    <div class="product-name">\${p.name}</div>
+                    <div class="data-mini">
+                        <div class="copy-row" onclick="copyText('\${p.code}')"><span>كود:</span> <b>\${p.code} <i class="far fa-copy" style="font-size:0.6rem"></i></b></div>
+                        <div class="copy-row" onclick="copyText('\${p.barcode || ''}')"><span>باركود:</span> <b>\${p.barcode || '-'} <i class="far fa-copy" style="font-size:0.6rem"></i></b></div>
+                        <div class="data-row"><span>القسم:</span> <span class="sub-tag">\${p.sub || 'عام'}</span></div>
+                    </div>
+                    <div class="price-mini">\${p.price || '0.00'} د.ك</div>
+                    <div class="action-buttons">
+                        <button class="action-btn btn-download" onclick="downloadImg('\${finalImg}', '\${p.code}')"><i class="fas fa-download"></i> <span>حفظ</span></button>
+                        <button class="action-btn btn-share" onclick="shareProduct('\${p.name}', '\${p.code}', '\${p.price}')"><i class="fas fa-share-nodes"></i> <span>مشاركة</span></button>
+                    </div>
+                </div>
+            </div>\`);
+    }
+    const rem = itemsToDisplay.length - end;
+    const container = document.getElementById('loadMoreContainer');
+    const btn = document.getElementById('loadMoreBtn');
+    if(rem > 0) {
+        if(container) container.style.display = 'block';
+        if(btn) btn.innerHTML = 'عرض المزيد (متبقي ' + rem + ')';
+    } else { if(container) container.style.display = 'none'; }
+    if(lightbox) lightbox.reload(); 
+    else lightbox = GLightbox({selector:'.glightbox', closeButton: true});
+};
+`;
+
+// الحماية الآمنة: نقوم بدمج الدوال الجديدة في نهاية السكربت مباشرة لتقوم بفرض نفسها فوق الدوال القديمة بالذاكرة تلقائياً
+codeText = injection + "\n" + codeText + "\n" + newUpdateStats + "\n" + newDisplay;
+script.textContent = codeText;
                         }
                     });
                     
