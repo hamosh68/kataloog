@@ -1655,7 +1655,19 @@ const products = [
 { brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9556233865899-7', name: 'IBC دفتر PP سادة 60 ورقة سلك A4 70gm مشكل', price: '0.000', barcode: '' },
 { brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9556233865899-8', name: 'IBC دفتر PP سادة 60 ورقة سلك A4 70gm مشكل', price: '0.000', barcode: '' },
 { brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9556233865899-9', name: 'IBC دفتر PP سادة 60 ورقة سلك A4 70gm مشكل', price: '0.000', barcode: '' },
-{ brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9556233865899', name: 'IBC دفتر PP سادة 60 ورقة سلك A4 70gm مشكل', price: '0.000', barcode: '' }
+{ brand: 'ورقيات IBC', sub: 'دفاتر مدرسية', code: '9556233865899', name: 'IBC دفتر PP سادة 60 ورقة سلك A4 70gm مشكل', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '556233864199-1', name: 'IBC دفتر جامعة 1 موضوع 80 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181001/IBC181001' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864199-2', name: 'IBC دفتر جامعة 1 موضوع 80 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181001/IBC181001' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864199-3', name: 'IBC دفتر جامعة 1 موضوع 80 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181001/IBC181001' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864199-4', name: 'IBC دفتر جامعة 1 موضوع 80 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181001/IBC181001' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864199-5', name: 'IBC دفتر جامعة 1 موضوع 80 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181001/IBC181001' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864199', name: 'IBC دفتر جامعة 1 موضوع 80 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181001/IBC181001' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864205-1', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181002/IBC181002' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864205-2', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181002/IBC181002' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864205-3', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181002/IBC181002' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864205-4', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181002/IBC181002' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864205-5', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181002/IBC181002' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864205', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A)', price: '0.000', barcode: 'EIBC181002/IBC181002' }  
 ];
 
 
