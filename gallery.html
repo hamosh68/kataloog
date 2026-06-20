@@ -198,55 +198,72 @@
         let showOnlyMissing = false; 
         window.missingList = [];
 
-        window.startScanner = function() {
+       window.startScanner = function() {
     document.getElementById('scanOverlay').style.display = 'flex';
-    if (html5QrCode) { html5QrCode.clear(); }
-    html5QrCode = new Html5Qrcode("reader");
     
+    // التأكد من تنظيف الكاميرا السابقة بشكل آمن
+    if (html5QrCode) { 
+        try { html5QrCode.clear(); } catch(e) { console.log(e); }
+    }
+    
+    html5QrCode = new Html5Qrcode("reader");
     const config = { fps: 10, qrbox: { width: 250, height: 150 } };
     
-    html5QrCode.start({ facingMode: "environment" }, config, (decodedText) => {
-        if (navigator.vibrate) navigator.vibrate(100);
-        stopScanner();
-        processScanResult(decodedText);
-    }, (errorMessage) => {})
+    html5QrCode.start(
+        { facingMode: "environment" }, 
+        config, 
+        (decodedText) => {
+            if (navigator.vibrate) navigator.vibrate(100);
+            window.stopScanner(); // تعديل: استدعاء الدالة الصحيحة بـ window
+            processScanResult(decodedText);
+        }, 
+        (errorMessage) => {}
+    )
     .then(() => {
-        /* ----- إضافة ميزة الزوم التلقائي هنا ----- */
-        const cameraTrack = html5QrCode.getRunningTrack();
-        if (cameraTrack && typeof cameraTrack.getCapabilities === 'function') {
-            const capabilities = cameraTrack.getCapabilities();
-            
-            // التأكد من أن الكاميرا تدعم الزوم
-            if (capabilities.zoom) {
-                const maxZoom = capabilities.zoom.max;
-                
-                // تحديد درجة تقريب مناسبة (مثلاً دبل الزوم العادي 2x أو أقصى زوم متاح لو كان أقل من 2)
-                const targetZoom = Math.min(2, maxZoom); 
-                
-                cameraTrack.applyConstraints({
-                    advanced: [{ zoom: targetZoom }]
-                }).catch(err => console.error("فشل تطبيق الزوم التلقائي:", err));
+        // ننتظر جزء من الثانية للتأكد من استقرار مسار الكاميرا قبل طلب الزوم
+        setTimeout(() => {
+            try {
+                const cameraTrack = html5QrCode.getRunningTrack();
+                if (cameraTrack && typeof cameraTrack.getCapabilities === 'function') {
+                    const capabilities = cameraTrack.getCapabilities();
+                    
+                    if (capabilities.zoom) {
+                        const maxZoom = capabilities.zoom.max;
+                        const targetZoom = Math.min(2, maxZoom); 
+                        
+                        cameraTrack.applyConstraints({
+                            advanced: [{ zoom: targetZoom }]
+                        }).catch(err => console.error("فشل تطبيق الزوم التلقائي:", err));
+                    }
+                }
+            } catch(zoomError) {
+                console.error("خطأ أثناء محاولة تفعيل الزوم:", zoomError);
             }
-        }
-        /* ----------------------------------------- */
+        }, 300); // تأخير بسيط 300 ملي ثانية
     })
     .catch(err => {
         alert("تأكد من صلاحية الكاميرا");
-        stopScanner();
+        window.stopScanner(); // تعديل: استدعاء الدالة الصحيحة بـ window
+        console.error("فشل تشغيل الكاميرا:", err);
     });
 };
 
 window.stopScanner = function() {
     document.getElementById('scanOverlay').style.display = 'none';
     if (html5QrCode) {
-        html5QrCode.stop().then(() => { html5QrCode.clear(); }).catch(err => {});
+        html5QrCode.stop()
+            .then(() => { html5QrCode.clear(); })
+            .catch(err => { console.error("خطأ أثناء إيقاف الكاميرا:", err); });
     }
 };
 
 function processScanResult(barcode) {
     document.getElementById('searchInput').value = barcode;
     document.getElementById('brandSelect').value = "الكل";
-    window.runApp();
+    if (typeof window.runApp === 'function') {
+        window.runApp();
+    }
+    
     const found = allProducts.find(p => p.code === barcode || (p.barcode && p.barcode === barcode));
     if (!found) {
         if (confirm(`🔍 صنف جديد! (${barcode})\nهل تريد تصويره الآن؟`)) {
