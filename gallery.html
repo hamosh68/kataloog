@@ -199,39 +199,61 @@
         window.missingList = [];
 
         window.startScanner = function() {
-            document.getElementById('scanOverlay').style.display = 'flex';
-            if (html5QrCode) { html5QrCode.clear(); }
-            html5QrCode = new Html5Qrcode("reader");
-            const config = { fps: 10, qrbox: { width: 250, height: 150 } };
-            html5QrCode.start({ facingMode: "environment" }, config, (decodedText) => {
-                if (navigator.vibrate) navigator.vibrate(100);
-                stopScanner();
-                processScanResult(decodedText);
-            }, (errorMessage) => {}).catch(err => {
-                alert("تأكد من صلاحية الكاميرا");
-                stopScanner();
-            });
-        };
-
-        window.stopScanner = function() {
-            document.getElementById('scanOverlay').style.display = 'none';
-            if (html5QrCode) {
-                html5QrCode.stop().then(() => { html5QrCode.clear(); }).catch(err => {});
-            }
-        };
-
-        function processScanResult(barcode) {
-            document.getElementById('searchInput').value = barcode;
-            document.getElementById('brandSelect').value = "الكل";
-            window.runApp();
-            const found = allProducts.find(p => p.code === barcode || (p.barcode && p.barcode === barcode));
-            if (!found) {
-                if (confirm(`🔍 صنف جديد! (${barcode})\nهل تريد تصويره الآن服务؟`)) {
-                    window.location.href = `studio.html?barcode=${barcode}`;
-                }
+    document.getElementById('scanOverlay').style.display = 'flex';
+    if (html5QrCode) { html5QrCode.clear(); }
+    html5QrCode = new Html5Qrcode("reader");
+    
+    const config = { fps: 10, qrbox: { width: 250, height: 150 } };
+    
+    html5QrCode.start({ facingMode: "environment" }, config, (decodedText) => {
+        if (navigator.vibrate) navigator.vibrate(100);
+        stopScanner();
+        processScanResult(decodedText);
+    }, (errorMessage) => {})
+    .then(() => {
+        /* ----- إضافة ميزة الزوم التلقائي هنا ----- */
+        const cameraTrack = html5QrCode.getRunningTrack();
+        if (cameraTrack && typeof cameraTrack.getCapabilities === 'function') {
+            const capabilities = cameraTrack.getCapabilities();
+            
+            // التأكد من أن الكاميرا تدعم الزوم
+            if (capabilities.zoom) {
+                const maxZoom = capabilities.zoom.max;
+                
+                // تحديد درجة تقريب مناسبة (مثلاً دبل الزوم العادي 2x أو أقصى زوم متاح لو كان أقل من 2)
+                const targetZoom = Math.min(2, maxZoom); 
+                
+                cameraTrack.applyConstraints({
+                    advanced: [{ zoom: targetZoom }]
+                }).catch(err => console.error("فشل تطبيق الزوم التلقائي:", err));
             }
         }
+        /* ----------------------------------------- */
+    })
+    .catch(err => {
+        alert("تأكد من صلاحية الكاميرا");
+        stopScanner();
+    });
+};
 
+window.stopScanner = function() {
+    document.getElementById('scanOverlay').style.display = 'none';
+    if (html5QrCode) {
+        html5QrCode.stop().then(() => { html5QrCode.clear(); }).catch(err => {});
+    }
+};
+
+function processScanResult(barcode) {
+    document.getElementById('searchInput').value = barcode;
+    document.getElementById('brandSelect').value = "الكل";
+    window.runApp();
+    const found = allProducts.find(p => p.code === barcode || (p.barcode && p.barcode === barcode));
+    if (!found) {
+        if (confirm(`🔍 صنف جديد! (${barcode})\nهل تريد تصويره الآن؟`)) {
+            window.location.href = `studio.html?barcode=${barcode}`;
+        }
+    }
+}
         // دالة الفحص الذكي الأصلية
         function checkImg(url) {
             return new Promise(r => { const i = new Image(); i.onload = () => r(true); i.onerror = () => r(false); i.src = url; });
