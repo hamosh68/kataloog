@@ -1716,8 +1716,15 @@ const products = [
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212-3', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' },
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212-4', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' },
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212-5', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' },
-{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' }
-
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-1', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-2', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-3', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-4', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-5', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-6', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-7', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' }
 ];
 
 
