@@ -1717,6 +1717,7 @@ const products = [
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212-4', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' },
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212-5', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' },
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233864212', name: 'IBC دفتر جامعة 1 موضوع 100 ورقة سلك A4 Online Pastel (A) ', price: '0.000', barcode: '' }
+
 ];
 
 
