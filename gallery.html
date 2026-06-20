@@ -198,7 +198,7 @@
         let showOnlyMissing = false; 
         window.missingList = [];
 
-      window.startScanner = function() {
+    window.startScanner = function() {
     document.getElementById('scanOverlay').style.display = 'flex';
     
     // التأكد من تنظيف الكاميرا السابقة بشكل آمن
@@ -208,21 +208,19 @@
     
     html5QrCode = new Html5Qrcode("reader");
     
-    // إعدادات مخصصة للأصناف والباركودات الصغيرة جداً
+    // الطريقة الصحيحة لطلب دقة عالية وتصغير المربع للباركودات الدقيقة
     const config = { 
-        fps: 15, // رفع السرعة قليلاً للمساعدة في سرعة التقاط التفاصيل
-        qrbox: { width: 220, height: 110 } // أبعاد متوازنة ومناسبة للأقلام والعلب الصغيرة
+        fps: 15, 
+        qrbox: { width: 180, height: 90 }, // مربع صغير ومستطيل مخصص للقرطاسية والأقلام
+        videoConstraints: {
+            facingMode: "environment",
+            width: { ideal: 1280 },  // طلب دقة عالية HD متوافقة مع كل الهواتف
+            height: { ideal: 720 }
+        }
     };
     
     html5QrCode.start(
-        { 
-            facingMode: "environment",
-            // التعديل السحري: إجبار الكاميرا على فتح أعلى دقة (Full HD) لرؤية الخطوط الدقيقة
-            video: {
-                width: { ideal: 1920 },
-                height: { ideal: 1080 }
-            }
-        }, 
+        { facingMode: "environment" }, 
         config, 
         (decodedText) => {
             if (navigator.vibrate) navigator.vibrate(100);
@@ -232,18 +230,18 @@
         (errorMessage) => {}
     )
     .then(() => {
-        // تطبيق زوم بصري/رقمي سريع وعام لتقريب الصورة على الشاشة للمستخدم
+        // تكبير الصورة على الشاشة 1.4 ضعف لتقريب الأرقام الصغيرة بصرياً للمستخدم
         try {
             const videoElement = document.querySelector("#reader video");
             if (videoElement) {
-                videoElement.style.transform = "scale(1.5)"; // تكبير الفيديو بنسبة 50% لتقريب الأرقام تلقائياً
+                videoElement.style.transform = "scale(1.4)";
                 videoElement.style.transformOrigin = "center center";
             }
         } catch(cssErr) {
-            console.error("خطأ في تكبير الفيديو:", cssErr);
+            console.error("خطأ في تكبير الفيديو المظهري:", cssErr);
         }
 
-        // محاولة تشغيل الزوم الميكانيكي للهاتف أيضاً لزيادة الدقة
+        // محاولة تشغيل الزوم الميكانيكي للهاتف إن وجد
         setTimeout(() => {
             try {
                 const cameraTrack = html5QrCode.getRunningTrack();
@@ -251,7 +249,7 @@
                     const capabilities = cameraTrack.getCapabilities();
                     if (capabilities.zoom) {
                         const maxZoom = capabilities.zoom.max;
-                        const targetZoom = Math.min(2, maxZoom); 
+                        const targetZoom = Math.min(1.8, maxZoom); 
                         cameraTrack.applyConstraints({
                             advanced: [{ zoom: targetZoom }]
                         }).catch(err => console.error("فشل الزوم الداخلي:", err));
@@ -268,7 +266,6 @@
         console.error("فشل تشغيل الكاميرا:", err);
     });
 };
-
 window.stopScanner = function() {
     document.getElementById('scanOverlay').style.display = 'none';
     if (html5QrCode) {
