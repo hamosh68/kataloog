@@ -1724,7 +1724,13 @@ const products = [
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-5', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-6', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
 { brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500-7', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
-{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' }
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9556233868500', name: 'IBC دفتر جامعة 100 ورقة سلك A6 Online Pastel  ', price: '0.000', barcode: '' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9551004011512-1', name: 'IBC دفتر 100 ورقة سلك SRT Mini I-Note Book Pastel 3x5', price: '0.000', barcode: 'IBC011512(EIBC211003)' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9551004011512-2', name: 'IBC دفتر 100 ورقة سلك SRT Mini I-Note Book Pastel 3x5', price: '0.000', barcode: 'IBC011512(EIBC211003)' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9551004011512-3', name: 'IBC دفتر 100 ورقة سلك SRT Mini I-Note Book Pastel 3x5', price: '0.000', barcode: 'IBC011512(EIBC211003)' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9551004011512-4', name: 'IBC دفتر 100 ورقة سلك SRT Mini I-Note Book Pastel 3x5', price: '0.000', barcode: 'IBC011512(EIBC211003)' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9551004011512-5', name: 'IBC دفتر 100 ورقة سلك SRT Mini I-Note Book Pastel 3x5', price: '0.000', barcode: 'IBC011512(EIBC211003)' },
+{ brand: 'دفاتر جامعة', sub: 'دفاتر جامعة', code: '9551004011512', name: 'IBC دفتر 100 ورقة سلك SRT Mini I-Note Book Pastel 3x5', price: '0.000', barcode: 'IBC011512(EIBC211003)' }
 ];
 
 
