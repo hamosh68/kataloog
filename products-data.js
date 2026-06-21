@@ -1061,7 +1061,7 @@ const products = [
 { brand: 'Stationery IBC', sub: 'قرطاسية', code: '6920583833601', name: 'IBC اندكس فواصل 10 ملون IBC-US-010C', price: '0.500', barcode: 'IBC-US-010C' },
 
 // دفاتر رسم بياني ونوت
-{ brand: ',ورقيات IBC', sub: 'قرطاسية', code: '9556233855265-1', name: 'IBC دفتر رسم بياني A4 مخرم برتقالي 60 ورقة', price: '0.850', barcode: 'EIBC170210' },
+{ brand: 'ورقيات IBC', sub: 'قرطاسية', code: '9556233855265-1', name: 'IBC دفتر رسم بياني A4 مخرم برتقالي 60 ورقة', price: '0.850', barcode: 'EIBC170210' },
 { brand: 'ورقيات IBC', sub: 'قرطاسية', code: '9556233855265', name: 'IBC دفتر رسم بياني A4 مخرم ازرق 60 ورقة', price: '0.850', barcode: 'EIBC170209' },
 { brand: 'ورقيات IBC', sub: 'قرطاسية', code: '9556233855272', name: 'IBC ريفل رسم بياني A4 مخرم برتقالي 50 ورقة', price: '0.600', barcode: 'EIBC170212' },
 { brand: 'ورقيات IBC', sub: 'قرطاسية', code: '9556233855272-B', name: 'IBC ريفل رسم بياني A4 مخرم ازرق 50 ورقة', price: '0.600', barcode: 'EIBC170211' }, // تم إضافة تمييز للكود
